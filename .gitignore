@@ -1,0 +1,19 @@
+# Python virtual environment
+backend/venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment variables and secrets
+.env
+*.env
+
+# VS Code local settings
+.vscode/
+
+# Node.js dependencies - later used by React
+frontend/node_modules/
+
+# Build output - later used by React
+frontend/dist/
