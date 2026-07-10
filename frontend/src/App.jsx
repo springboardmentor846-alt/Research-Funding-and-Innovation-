@@ -1,0 +1,123 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import ResearchProfile from "./pages/ResearchProfile";
+import ResearchDomains from "./pages/ResearchDomains";
+import ResearchKeywords from "./pages/ResearchKeywords";
+import TechnologyAreas from "./pages/TechnologyAreas";
+import OrganizationInformation from "./pages/OrganizationInformation";
+import Publications from "./pages/Publications";
+import Patents from "./pages/Patents";
+
+import ProtectedLayout from "./components/ProtectedLayout";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Root route */}
+        <Route
+          path="/"
+          element={
+            <Navigate
+              to={
+                localStorage.getItem("access_token")
+                  ? "/dashboard"
+                  : "/login"
+              }
+              replace
+            />
+          }
+        />
+
+        {/* Public routes */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        {/* Authenticated routes */}
+        <Route element={<ProtectedLayout />}>
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
+
+          {/* Researcher-only routes */}
+          <Route
+            element={
+              <RoleProtectedRoute
+                allowedRoles={["researcher"]}
+              />
+            }
+          >
+            <Route
+              path="/profile"
+              element={<ResearchProfile />}
+            />
+
+            <Route
+              path="/profile/domains"
+              element={<ResearchDomains />}
+            />
+
+            <Route
+              path="/profile/keywords"
+              element={<ResearchKeywords />}
+            />
+
+            <Route
+              path="/profile/technology-areas"
+              element={<TechnologyAreas />}
+            />
+
+            <Route
+              path="/profile/organization"
+              element={<OrganizationInformation />}
+            />
+
+            <Route
+              path="/profile/publications"
+              element={<Publications />}
+            />
+
+            <Route
+              path="/profile/patents"
+              element={<Patents />}
+            />
+          </Route>
+        </Route>
+
+        {/* Unknown routes */}
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to={
+                localStorage.getItem("access_token")
+                  ? "/dashboard"
+                  : "/login"
+              }
+              replace
+            />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
