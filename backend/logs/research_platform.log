@@ -1,0 +1,1193 @@
+2026-07-08 13:29:18,496 | INFO | No device provided, using cpu
+2026-07-08 13:29:20,540 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:20,541 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:29:20,542 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:29:21,141 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:21,529 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:29:21,779 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:29:22,126 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:22,499 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:29:23,047 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:29:23,425 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:29:23,861 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:29:24,019 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:24,235 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:24,430 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:24,660 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:29:24,836 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:25,241 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:25,619 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:25,985 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:29:26,440 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:29:27,426 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:29:27,679 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:29:28,087 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:28,500 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:28,868 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:29:29,259 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:29:29,667 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:29:29,980 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:29:30,344 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:29:30,558 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 13:29:30,558 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 13:29:30,558 | INFO | Scheduler started
+2026-07-08 13:31:39,769 | INFO | No device provided, using cpu
+2026-07-08 13:31:41,000 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:41,000 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:31:41,001 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:31:41,304 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:41,627 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:31:41,847 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:31:42,187 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:42,501 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:31:42,865 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:31:43,218 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:31:43,560 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:31:43,880 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:43,999 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:44,204 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:31:44,297 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:44,601 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:44,903 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:45,376 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:45,691 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:31:45,920 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:31:46,225 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:31:46,439 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:31:46,760 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:47,080 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:47,707 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:31:48,019 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:31:48,328 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:31:48,532 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:31:48,888 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:31:49,121 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 13:31:49,121 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 13:31:49,121 | INFO | Scheduler started
+2026-07-08 13:33:24,374 | INFO | No device provided, using cpu
+2026-07-08 13:33:25,897 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:25,898 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:33:25,899 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:33:26,194 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:26,493 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:33:26,680 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:33:27,526 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:28,167 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:33:28,626 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:33:28,938 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:33:29,249 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:33:29,538 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:29,651 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:29,848 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:33:29,939 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:30,241 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:30,558 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:30,889 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:31,199 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:33:31,400 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:33:31,704 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:33:31,887 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:33:32,200 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:32,520 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:32,847 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:33:33,199 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:33:33,496 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:33:33,685 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:33:34,019 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:33:34,265 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 13:33:34,265 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 13:33:34,265 | INFO | Scheduler started
+2026-07-08 13:39:43,853 | INFO | No device provided, using cpu
+2026-07-08 13:39:49,713 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:39:49,714 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:39:49,744 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:39:50,532 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:39:51,345 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:39:52,060 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:39:53,148 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:39:54,268 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:39:55,516 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:39:56,789 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:39:58,068 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:39:59,527 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:39:59,529 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:01,038 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:01,066 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:40:02,632 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:04,143 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:05,809 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:07,258 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:40:08,822 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:40:10,581 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:40:11,359 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:40:12,743 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:13,741 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:15,448 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:40:16,715 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:40:18,460 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:40:18,917 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:40:20,553 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:40:20,918 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 13:40:20,919 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 13:40:20,919 | INFO | Scheduler started
+2026-07-08 13:54:22,274 | INFO | No device provided, using cpu
+2026-07-08 13:54:23,144 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:23,148 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:54:23,623 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:23,624 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:54:23,943 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:24,018 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:24,582 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:24,908 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:54:25,553 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:54:25,890 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:54:26,184 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:26,235 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:54:26,500 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:26,531 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:26,823 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:26,869 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:54:27,142 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:27,463 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:27,783 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:27,861 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:28,182 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:28,274 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:28,590 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:29,064 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:29,383 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:29,703 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:54:30,023 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:30,111 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:54:30,501 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:54:51,103 | INFO | No device provided, using cpu
+2026-07-08 13:54:51,874 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:51,875 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 13:54:51,876 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 13:54:52,182 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:52,744 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:52,837 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:53,382 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:53,712 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:54:54,350 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 13:54:54,995 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 13:54:55,161 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:55,306 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 13:54:55,466 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:55,618 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:55,982 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:56,583 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 13:54:56,585 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:57,222 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:57,863 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:57,943 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:58,503 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:54:58,602 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 13:54:58,900 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:59,461 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 13:54:59,781 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 13:55:00,102 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 13:55:00,420 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 13:55:00,496 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 13:55:00,827 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 13:55:01,098 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 13:55:01,098 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 13:55:01,098 | INFO | Scheduler started
+2026-07-08 13:55:43,270 | INFO | Research Gap Analysis Started
+2026-07-08 13:55:43,270 | ERROR | Research Gap Error : name 'research_gap_service' is not defined
+2026-07-08 13:56:20,902 | INFO | Competitive Domain Analysis Started
+2026-07-08 13:56:20,928 | INFO | Competitive Domain Analysis Completed
+2026-07-08 13:56:39,748 | INFO | Organization Ranking Requested
+2026-07-08 13:56:39,748 | ERROR | Organization Ranking Error : 'OrganizationRankingService' object has no attribute 'rank'
+2026-07-08 13:57:04,431 | INFO | Research Productivity Analysis Started
+2026-07-08 13:57:04,459 | INFO | Research Productivity Analysis Completed
+2026-07-08 13:57:37,288 | INFO | Funding Success Prediction Started
+2026-07-08 13:57:37,288 | ERROR | Funding Success Error : name 'funding_success_service' is not defined
+2026-07-08 14:07:50,888 | INFO | No device provided, using cpu
+2026-07-08 14:07:52,943 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:52,944 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:07:53,542 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:53,543 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:07:53,869 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:07:53,939 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:07:54,305 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:54,955 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:07:55,392 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:07:55,675 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:07:55,943 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:56,028 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:07:56,302 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:56,331 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:56,741 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:56,742 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:07:57,186 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:57,501 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:58,150 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:07:58,306 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:07:58,620 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:07:58,700 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:07:59,440 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:07:59,744 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:00,062 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:00,389 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:08:00,709 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:08:00,820 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:08:01,197 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:08:01,375 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:08:01,375 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:08:01,375 | INFO | Scheduler started
+2026-07-08 14:08:31,297 | INFO | No device provided, using cpu
+2026-07-08 14:08:32,476 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:32,477 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:08:33,023 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:33,023 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:08:33,356 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:08:33,461 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:08:33,989 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:34,328 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:08:35,432 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:08:35,903 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:08:36,478 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:36,631 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:08:36,779 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:36,954 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:37,063 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:37,234 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:08:37,355 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:37,822 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:38,146 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:08:38,261 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:08:38,784 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:08:38,897 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:08:39,426 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:39,865 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:40,413 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:08:40,790 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:08:41,118 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:08:41,237 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:08:41,586 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:08:41,838 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:08:41,839 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:08:41,839 | INFO | Scheduler started
+2026-07-08 14:08:55,256 | INFO | Organization Ranking Requested
+2026-07-08 14:08:55,256 | ERROR | Organization Ranking Error : 'OrganizationRankingService' object has no attribute 'rank'
+2026-07-08 14:16:23,373 | INFO | No device provided, using cpu
+2026-07-08 14:16:24,771 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:24,771 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:16:24,777 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:16:25,185 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:25,896 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:16:25,998 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:16:26,510 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:26,921 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:16:27,465 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:16:28,058 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:16:28,662 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:16:28,866 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:28,967 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:29,174 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:29,332 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:16:29,582 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:29,890 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:30,304 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:30,709 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:16:30,820 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:16:31,220 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:16:31,430 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:16:31,837 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:32,347 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:32,762 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:16:33,166 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:16:33,576 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:16:33,679 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:16:34,190 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:16:34,487 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:16:34,487 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:16:34,488 | INFO | Scheduler started
+2026-07-08 14:17:04,705 | INFO | No device provided, using cpu
+2026-07-08 14:17:05,732 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:05,733 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:17:06,123 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:06,124 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:17:06,958 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:17:07,348 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:17:08,187 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:09,520 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:17:10,133 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:17:10,134 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:10,542 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:10,543 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:17:10,952 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:10,953 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:17:11,577 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:11,578 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:12,204 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:17:12,693 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:13,102 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:17:13,308 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:17:13,717 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:17:17,813 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:17:21,909 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:22,447 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:22,831 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:17:23,137 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:17:23,650 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:17:23,752 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:17:24,182 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:17:24,427 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:17:24,427 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:17:24,427 | INFO | Scheduler started
+2026-07-08 14:17:41,456 | INFO | Organization Ranking Requested
+2026-07-08 14:17:41,505 | INFO | Organization Ranking Generated
+2026-07-08 14:17:54,362 | INFO | Funding Success Prediction Started
+2026-07-08 14:17:54,362 | ERROR | Funding Success Error : name 'funding_success_service' is not defined
+2026-07-08 14:18:13,293 | INFO | Research Productivity Analysis Started
+2026-07-08 14:18:13,309 | INFO | Research Productivity Analysis Completed
+2026-07-08 14:21:27,649 | INFO | No device provided, using cpu
+2026-07-08 14:21:30,230 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:30,231 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:21:30,232 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:21:30,639 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:31,253 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:21:31,458 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:21:31,867 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:32,686 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:21:33,243 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:21:33,813 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:21:34,181 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:34,182 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:21:34,735 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:34,735 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:35,452 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:35,452 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:21:36,066 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:36,680 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:37,400 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:21:37,500 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:21:38,015 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:21:38,116 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:21:38,563 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:38,933 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:39,548 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:21:40,264 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:21:40,879 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:21:40,981 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:21:41,391 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:21:41,644 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:21:41,644 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:21:41,645 | INFO | Scheduler started
+2026-07-08 14:21:55,010 | INFO | Funding Success Prediction Started
+2026-07-08 14:21:55,033 | INFO | Funding Success Prediction Completed
+2026-07-08 14:22:01,862 | INFO | Research Gap Analysis Started
+2026-07-08 14:22:01,862 | ERROR | Research Gap Error : name 'research_gap_service' is not defined
+2026-07-08 14:22:42,425 | INFO | No device provided, using cpu
+2026-07-08 14:22:43,650 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:43,651 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 14:22:44,369 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:44,370 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 14:22:44,879 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:22:45,084 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:22:45,493 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:46,013 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:22:46,363 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 14:22:46,722 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 14:22:47,439 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:47,440 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 14:22:48,053 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:48,053 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:48,360 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:48,364 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 14:22:48,667 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:48,989 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:49,612 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:22:49,803 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:22:50,273 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:22:50,357 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 14:22:50,892 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:51,213 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:51,525 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 14:22:51,841 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 14:22:52,209 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 14:22:52,456 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 14:22:53,071 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 14:22:53,304 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 14:22:53,304 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 14:22:53,304 | INFO | Scheduler started
+2026-07-08 14:23:00,392 | INFO | Research Gap Analysis Started
+2026-07-08 14:23:00,410 | INFO | Research Gap Analysis Completed
+2026-07-08 18:56:52,515 | INFO | No device provided, using cpu
+2026-07-08 18:56:53,346 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:53,348 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 18:56:53,352 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 18:56:53,621 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:53,921 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:56:53,998 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:56:54,422 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:54,765 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 18:56:55,528 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 18:56:55,901 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 18:56:57,085 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 18:56:57,176 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:57,394 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:57,452 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:57,662 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 18:56:57,713 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:58,002 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:58,271 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:58,541 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:56:58,588 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:56:58,872 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:56:58,930 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:56:59,192 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:59,470 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:56:59,917 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:00,214 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 18:57:00,560 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:57:00,624 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 18:57:00,955 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 18:57:33,040 | INFO | No device provided, using cpu
+2026-07-08 18:57:34,893 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:34,894 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-08 18:57:35,172 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:35,429 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:57:35,430 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-08 18:57:35,470 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:57:35,758 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:36,016 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 18:57:36,455 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-08 18:57:36,734 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-08 18:57:37,059 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-08 18:57:37,516 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:37,791 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-08 18:57:37,871 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:38,158 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:38,453 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:38,804 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:39,160 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:39,532 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:57:39,575 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:57:39,917 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:57:39,960 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-08 18:57:40,220 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:40,617 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:40,892 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-08 18:57:41,153 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-08 18:57:41,421 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-08 18:57:41,476 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-08 18:57:41,838 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-08 18:57:42,048 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-08 18:57:42,048 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-08 18:57:42,048 | INFO | Scheduler started
+2026-07-09 11:24:09,481 | INFO | No device provided, using cpu
+2026-07-09 11:24:10,248 | INFO | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-09 11:24:10,536 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:10,548 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 11:24:10,865 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:10,865 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 11:24:11,189 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:11,303 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:11,657 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:11,960 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:24:12,318 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 11:24:13,071 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 11:24:13,393 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 11:24:13,700 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:13,789 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:13,994 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:14,112 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 11:24:14,325 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:14,746 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:15,079 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:15,443 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:15,547 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:15,946 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:16,070 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:16,466 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:16,838 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:17,137 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:17,482 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 11:24:17,839 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:18,002 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 11:24:18,388 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:24:45,429 | INFO | No device provided, using cpu
+2026-07-09 11:24:46,266 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:46,266 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 11:24:46,267 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 11:24:46,591 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:47,017 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:47,115 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:47,462 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:47,803 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:24:48,467 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 11:24:49,058 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 11:24:49,376 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 11:24:49,543 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:49,670 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:49,871 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:49,979 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 11:24:50,203 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:50,518 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:50,825 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:51,218 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:51,308 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:51,640 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:51,765 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:24:52,273 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:52,589 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:53,217 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 11:24:53,551 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 11:24:53,925 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:24:54,091 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 11:24:54,525 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:24:54,751 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 11:24:54,751 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 11:24:54,751 | INFO | Scheduler started
+2026-07-09 11:49:22,662 | INFO | No device provided, using cpu
+2026-07-09 11:49:23,573 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:23,574 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 11:49:23,575 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 11:49:23,899 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:24,213 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:49:24,321 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:49:24,866 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:25,173 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:49:25,818 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 11:49:26,349 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 11:49:26,525 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:26,688 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 11:49:26,820 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:26,970 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:27,129 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:27,288 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 11:49:27,456 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:28,056 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:28,370 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:49:28,453 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:49:29,022 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:49:29,101 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 11:49:29,418 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:29,820 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:30,224 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 11:49:30,624 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 11:49:30,944 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 11:49:31,025 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 11:49:31,342 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 11:49:31,563 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 11:49:31,564 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 11:49:31,564 | INFO | Scheduler started
+2026-07-09 12:16:40,828 | INFO | No device provided, using cpu
+2026-07-09 12:16:41,790 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:41,791 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 12:16:42,122 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:42,122 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 12:16:42,673 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:16:42,784 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:16:43,321 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:43,633 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:16:44,290 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 12:16:44,604 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 12:16:44,831 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:44,946 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 12:16:45,153 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:45,236 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:45,474 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:45,565 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 12:16:45,875 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:46,191 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:46,514 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:16:46,886 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:16:47,472 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:16:47,548 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:16:47,846 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:48,156 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:48,448 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 12:16:48,767 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 12:16:49,084 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:16:49,187 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 12:16:49,729 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:16:49,932 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 12:16:49,932 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 12:16:49,932 | INFO | Scheduler started
+2026-07-09 12:17:34,653 | INFO | No device provided, using cpu
+2026-07-09 12:17:35,316 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:35,317 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 12:17:35,319 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 12:17:35,792 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:36,104 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:17:36,200 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:17:36,555 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:37,088 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:17:37,473 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 12:17:37,708 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:38,042 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 12:17:38,053 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:38,691 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 12:17:38,716 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:39,086 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:39,242 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:39,386 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 12:17:39,550 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:39,874 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:17:39,989 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:17:40,598 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:17:40,709 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:17:41,234 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:41,556 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:41,882 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 12:17:42,232 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 12:17:42,849 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:17:42,956 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 12:17:43,505 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:18:08,161 | INFO | No device provided, using cpu
+2026-07-09 12:18:10,438 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:10,438 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 12:18:10,439 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 12:18:10,993 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:11,314 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:18:11,397 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:18:11,728 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:12,029 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:18:12,616 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 12:18:13,225 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 12:18:13,570 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 12:18:13,650 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:13,883 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:13,944 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:14,195 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 12:18:14,274 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:14,833 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:15,159 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:15,478 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:18:15,670 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:18:16,112 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:18:16,227 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 12:18:16,602 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:16,997 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:17,716 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 12:18:18,041 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 12:18:18,365 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 12:18:18,473 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 12:18:18,840 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 12:18:19,046 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 12:18:19,046 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 12:18:19,047 | INFO | Scheduler started
+2026-07-09 14:28:29,391 | INFO | No device provided, using cpu
+2026-07-09 14:28:30,528 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:30,535 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 14:28:30,926 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:31,249 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:28:31,330 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:28:31,731 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:31,732 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 14:28:32,348 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:28:32,860 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 14:28:33,265 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 14:28:33,572 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 14:28:33,741 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:33,895 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:34,018 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:34,201 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 14:28:34,306 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:34,776 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:35,089 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:35,380 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:28:35,463 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:28:35,727 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:28:36,149 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:28:36,453 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:37,009 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:37,281 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 14:28:37,647 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 14:28:38,290 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:28:38,467 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 14:28:38,931 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:28:39,360 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 14:28:39,360 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 14:28:39,360 | INFO | Scheduler started
+2026-07-09 14:29:24,805 | INFO | No device provided, using cpu
+2026-07-09 14:29:25,896 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:25,897 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 14:29:25,898 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 14:29:26,219 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:26,611 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:29:26,690 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:29:27,256 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:27,582 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:29:28,276 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 14:29:28,639 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 14:29:29,168 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 14:29:29,241 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:29,487 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:29,541 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:29,811 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 14:29:29,851 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:30,448 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:30,768 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:31,099 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:29:31,183 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:29:31,730 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:29:31,814 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:29:32,200 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:32,529 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:32,935 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 14:29:33,481 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 14:29:33,802 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:29:33,909 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 14:29:34,598 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:29:34,878 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 14:29:34,879 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 14:29:34,879 | INFO | Scheduler started
+2026-07-09 14:52:51,403 | INFO | No device provided, using cpu
+2026-07-09 14:52:52,489 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:52,490 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 14:52:52,493 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 14:52:52,817 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:53,130 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:52:53,213 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:52:53,549 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:54,176 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:52:54,927 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 14:52:55,296 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 14:52:55,507 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:55,640 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 14:52:55,802 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:55,929 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:56,105 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:56,251 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 14:52:56,470 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:56,970 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:57,289 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:52:57,378 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:52:57,691 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:52:57,773 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 14:52:58,104 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:58,570 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:58,862 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 14:52:59,219 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 14:52:59,849 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 14:52:59,931 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 14:53:00,306 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 14:53:00,584 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 14:53:00,585 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 14:53:00,585 | INFO | Scheduler started
+2026-07-09 17:52:07,956 | INFO | No device provided, using cpu
+2026-07-09 17:52:11,033 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:11,036 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 17:52:11,040 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 17:52:11,392 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:11,751 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:52:11,986 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:52:12,391 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:12,746 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 17:52:13,178 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 17:52:13,601 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 17:52:14,074 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 17:52:14,631 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:14,708 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:14,984 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 17:52:15,086 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:15,422 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:16,328 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:17,406 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:18,077 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:52:18,771 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:52:19,543 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:52:20,229 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:52:20,903 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:21,720 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:22,483 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:23,207 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 17:52:23,990 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:52:24,547 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 17:52:25,309 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 17:52:53,951 | INFO | No device provided, using cpu
+2026-07-09 17:52:55,237 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:55,239 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 17:52:55,240 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 17:52:55,584 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:56,005 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:52:56,311 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:52:56,711 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:57,120 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 17:52:57,663 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 17:52:58,178 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 17:52:58,554 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 17:52:58,963 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:59,373 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 17:52:59,633 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:52:59,988 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:00,397 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:00,807 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:01,129 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:01,524 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:53:01,830 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:53:02,164 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:53:02,445 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 17:53:02,888 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:03,264 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:03,610 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 17:53:03,982 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 17:53:04,391 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 17:53:04,698 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 17:53:05,111 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 17:53:05,350 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 17:53:05,351 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 17:53:05,351 | INFO | Scheduler started
+2026-07-09 18:31:32,145 | INFO | Fetching all research papers
+2026-07-09 18:35:44,793 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-09 18:35:44,812 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-09 18:38:44,849 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-09 18:38:44,853 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-09 18:38:44,858 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-09 18:38:44,860 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-09 18:41:52,927 | INFO | HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=Artificial+Intelligence&limit=3&fields=title%2Cauthors%2Cyear%2CcitationCount%2CinfluentialCitationCount%2Cvenue%2CfieldsOfStudy "HTTP/1.1 429 "
+2026-07-09 18:43:20,043 | INFO | Organization Ranking Requested
+2026-07-09 18:43:20,092 | INFO | Organization Ranking Generated
+2026-07-09 18:43:35,792 | INFO | Research Productivity Analysis Started
+2026-07-09 18:43:35,813 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:07,791 | INFO | Organization Ranking Requested
+2026-07-09 18:49:07,808 | INFO | Organization Ranking Generated
+2026-07-09 18:49:07,812 | INFO | Organization Ranking Requested
+2026-07-09 18:49:07,820 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:07,825 | INFO | Organization Ranking Generated
+2026-07-09 18:49:07,838 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:07,843 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:07,860 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:50,587 | INFO | Organization Ranking Requested
+2026-07-09 18:49:50,601 | INFO | Organization Ranking Generated
+2026-07-09 18:49:50,606 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:50,606 | INFO | Organization Ranking Requested
+2026-07-09 18:49:50,620 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:50,623 | INFO | Organization Ranking Generated
+2026-07-09 18:49:50,629 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:50,640 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:51,903 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-09 18:49:51,907 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-09 18:49:51,911 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-09 18:49:51,914 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-09 18:49:53,844 | INFO | Fetching all research papers
+2026-07-09 18:49:56,439 | INFO | Organization Ranking Requested
+2026-07-09 18:49:56,457 | INFO | Organization Ranking Generated
+2026-07-09 18:49:56,462 | INFO | Organization Ranking Requested
+2026-07-09 18:49:56,463 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:56,480 | INFO | Organization Ranking Generated
+2026-07-09 18:49:56,483 | INFO | Research Productivity Analysis Completed
+2026-07-09 18:49:56,489 | INFO | Research Productivity Analysis Started
+2026-07-09 18:49:56,503 | INFO | Research Productivity Analysis Completed
+2026-07-09 19:00:31,087 | INFO | No device provided, using cpu
+2026-07-09 19:00:32,003 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:32,004 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-09 19:00:32,011 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-09 19:00:32,279 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:32,625 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 19:00:32,742 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 19:00:33,102 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:33,373 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 19:00:33,734 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-09 19:00:34,059 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-09 19:00:34,399 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-09 19:00:34,750 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:35,021 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-09 19:00:36,518 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:36,789 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:37,131 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:37,643 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:37,950 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:38,258 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 19:00:38,364 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 19:00:38,666 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 19:00:39,077 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-09 19:00:39,384 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:39,692 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:39,949 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-09 19:00:40,305 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-09 19:00:40,662 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-09 19:00:40,721 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-09 19:00:41,124 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-09 19:00:41,749 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-09 19:00:41,749 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-09 19:00:41,750 | INFO | Scheduler started
+2026-07-09 19:10:10,199 | INFO | Organization Ranking Requested
+2026-07-09 19:10:10,222 | INFO | Organization Ranking Generated
+2026-07-09 19:10:10,228 | INFO | Organization Ranking Requested
+2026-07-09 19:10:10,232 | INFO | Research Productivity Analysis Started
+2026-07-09 19:10:10,240 | INFO | Organization Ranking Generated
+2026-07-09 19:10:10,248 | INFO | Research Productivity Analysis Completed
+2026-07-09 19:10:10,253 | INFO | Research Productivity Analysis Started
+2026-07-09 19:10:10,263 | INFO | Research Productivity Analysis Completed
+2026-07-10 11:50:11,371 | INFO | No device provided, using cpu
+2026-07-10 11:50:13,107 | INFO | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-07-10 11:50:13,532 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:13,532 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 11:50:13,535 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-10 11:50:14,113 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:15,240 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 11:50:15,548 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-10 11:50:16,564 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:17,714 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-10 11:50:19,234 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-10 11:50:20,323 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-10 11:50:20,917 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-10 11:50:21,521 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:22,164 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-10 11:50:47,804 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:48,424 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:51,335 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:52,924 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:55,113 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:50:56,590 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 11:50:57,020 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-10 11:50:58,303 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 11:50:59,683 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-10 11:51:01,322 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:51:01,834 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/tokenizer_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:51:03,272 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-07-10 11:51:08,182 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-07-10 11:51:09,616 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 11:51:09,981 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/vocab.txt "HTTP/1.1 200 OK"
+2026-07-10 11:51:12,808 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-10 11:52:20,749 | INFO | No device provided, using cpu
+2026-07-10 11:52:24,472 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:24,477 | INFO | No modules.json found for allenai/scibert_scivocab_uncased, initializing a new SentenceTransformer model.
+2026-07-10 11:52:24,983 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:24,984 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-10 11:52:25,703 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-07-10 11:52:26,210 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/scibert_scivocab_uncased/24f92d32b1bfb0bcaf9ab193ff3ad01e87732fc1/config.json "HTTP/1.1 200 OK"
+2026-07-10 11:52:26,621 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:27,043 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased "HTTP/1.1 200 OK"
+2026-07-10 11:52:28,274 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/main "HTTP/1.1 200 OK"
+2026-07-10 11:52:28,983 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/discussions?p=0 "HTTP/1.1 200 OK"
+2026-07-10 11:52:29,590 | INFO | HTTP Request: GET https://huggingface.co/api/models/allenai/scibert_scivocab_uncased/commits/refs%2Fpr%2F7 "HTTP/1.1 200 OK"
+2026-07-10 11:52:30,204 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:30,921 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/refs%2Fpr%2F7/model.safetensors "HTTP/1.1 302 Found"
+2026-07-10 11:52:32,970 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:39,831 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:52:41,416 | INFO | HTTP Request: HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-07-10 11:53:02,857 | WARNING | '[Errno 11001] getaddrinfo failed' thrown while requesting HEAD https://huggingface.co/allenai/scibert_scivocab_uncased/resolve/main/preprocessor_config.json
+2026-07-10 11:53:02,858 | WARNING | Retrying in 1s [Retry 1/5].
+2026-07-10 12:36:38,814 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-10 12:36:38,816 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-10 12:36:38,816 | INFO | Scheduler started
+2026-07-10 12:39:45,195 | INFO | Organization Ranking Requested
+2026-07-10 12:39:45,225 | INFO | Organization Ranking Generated
+2026-07-10 12:39:45,235 | INFO | Organization Ranking Requested
+2026-07-10 12:39:45,244 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:45,264 | INFO | Organization Ranking Generated
+2026-07-10 12:39:45,277 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:39:45,289 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:45,313 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:39:48,587 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-10 12:39:48,594 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-10 12:39:48,603 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-10 12:39:48,606 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-10 12:39:52,235 | INFO | Organization Ranking Requested
+2026-07-10 12:39:52,250 | INFO | Organization Ranking Generated
+2026-07-10 12:39:52,276 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:52,297 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:39:52,298 | INFO | Organization Ranking Requested
+2026-07-10 12:39:52,315 | INFO | Organization Ranking Generated
+2026-07-10 12:39:52,328 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:52,345 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:39:56,193 | INFO | Organization Ranking Requested
+2026-07-10 12:39:56,211 | INFO | Organization Ranking Generated
+2026-07-10 12:39:56,240 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:56,262 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:39:56,264 | INFO | Organization Ranking Requested
+2026-07-10 12:39:56,283 | INFO | Organization Ranking Generated
+2026-07-10 12:39:56,300 | INFO | Research Productivity Analysis Started
+2026-07-10 12:39:56,320 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:40:00,178 | INFO | Organization Ranking Requested
+2026-07-10 12:40:00,200 | INFO | Organization Ranking Generated
+2026-07-10 12:40:00,227 | INFO | Research Productivity Analysis Started
+2026-07-10 12:40:00,231 | INFO | Organization Ranking Requested
+2026-07-10 12:40:00,247 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:40:00,263 | INFO | Organization Ranking Generated
+2026-07-10 12:40:00,277 | INFO | Research Productivity Analysis Started
+2026-07-10 12:40:00,294 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:48:52,896 | INFO | Organization Ranking Requested
+2026-07-10 12:48:52,938 | INFO | Organization Ranking Generated
+2026-07-10 12:48:52,952 | INFO | Organization Ranking Requested
+2026-07-10 12:48:52,953 | INFO | Research Productivity Analysis Started
+2026-07-10 12:48:52,974 | INFO | Organization Ranking Generated
+2026-07-10 12:48:52,988 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:48:53,001 | INFO | Research Productivity Analysis Started
+2026-07-10 12:48:53,019 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:48:58,306 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-10 12:48:58,310 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-10 12:48:58,319 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-10 12:48:58,322 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-10 12:49:01,318 | INFO | Fetching all research papers
+2026-07-10 12:49:05,496 | INFO | Organization Ranking Requested
+2026-07-10 12:49:05,527 | INFO | Organization Ranking Generated
+2026-07-10 12:49:05,540 | INFO | Organization Ranking Requested
+2026-07-10 12:49:05,542 | INFO | Research Productivity Analysis Started
+2026-07-10 12:49:05,559 | INFO | Organization Ranking Generated
+2026-07-10 12:49:05,577 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:49:05,589 | INFO | Research Productivity Analysis Started
+2026-07-10 12:49:05,605 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:49:09,376 | INFO | Organization Ranking Requested
+2026-07-10 12:49:09,394 | INFO | Organization Ranking Generated
+2026-07-10 12:49:09,428 | INFO | Research Productivity Analysis Started
+2026-07-10 12:49:09,447 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:49:09,449 | INFO | Organization Ranking Requested
+2026-07-10 12:49:09,469 | INFO | Organization Ranking Generated
+2026-07-10 12:49:09,483 | INFO | Research Productivity Analysis Started
+2026-07-10 12:49:09,501 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:52:22,987 | INFO | Organization Ranking Requested
+2026-07-10 12:52:22,997 | INFO | Organization Ranking Generated
+2026-07-10 12:52:23,002 | INFO | Organization Ranking Requested
+2026-07-10 12:52:23,010 | INFO | Organization Ranking Generated
+2026-07-10 12:52:23,015 | INFO | Research Productivity Analysis Started
+2026-07-10 12:52:23,022 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:52:23,029 | INFO | Research Productivity Analysis Started
+2026-07-10 12:52:23,037 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:53:23,140 | INFO | Organization Ranking Requested
+2026-07-10 12:53:23,176 | INFO | Organization Ranking Generated
+2026-07-10 12:53:23,190 | INFO | Organization Ranking Requested
+2026-07-10 12:53:23,191 | INFO | Research Productivity Analysis Started
+2026-07-10 12:53:23,226 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:53:23,228 | INFO | Organization Ranking Generated
+2026-07-10 12:53:23,247 | INFO | Research Productivity Analysis Started
+2026-07-10 12:53:23,266 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:58:34,199 | INFO | Fetching all research papers
+2026-07-10 12:58:35,861 | INFO | Organization Ranking Requested
+2026-07-10 12:58:35,896 | INFO | Organization Ranking Generated
+2026-07-10 12:58:35,909 | INFO | Organization Ranking Requested
+2026-07-10 12:58:35,910 | INFO | Research Productivity Analysis Started
+2026-07-10 12:58:35,925 | INFO | Organization Ranking Generated
+2026-07-10 12:58:35,935 | INFO | Research Productivity Analysis Completed
+2026-07-10 12:58:35,946 | INFO | Research Productivity Analysis Started
+2026-07-10 12:58:35,962 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:15:40,682 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 15:15:40,684 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 15:15:40,685 | INFO | Scheduler started
+2026-07-11 15:16:11,996 | INFO | Organization Ranking Requested
+2026-07-11 15:16:12,031 | INFO | Organization Ranking Generated
+2026-07-11 15:16:12,043 | INFO | Organization Ranking Requested
+2026-07-11 15:16:12,052 | INFO | Research Productivity Analysis Started
+2026-07-11 15:16:12,075 | INFO | Organization Ranking Generated
+2026-07-11 15:16:12,097 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:16:12,108 | INFO | Research Productivity Analysis Started
+2026-07-11 15:16:12,137 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:25:08,594 | INFO | Organization Ranking Requested
+2026-07-11 15:25:08,650 | INFO | Organization Ranking Generated
+2026-07-11 15:25:08,665 | INFO | Organization Ranking Requested
+2026-07-11 15:25:08,667 | INFO | Research Productivity Analysis Started
+2026-07-11 15:25:08,690 | INFO | Organization Ranking Generated
+2026-07-11 15:25:08,707 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:25:08,720 | INFO | Research Productivity Analysis Started
+2026-07-11 15:25:08,744 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:25:13,707 | INFO | Fetching all research papers
+2026-07-11 15:32:01,746 | INFO | Fetching all research papers
+2026-07-11 15:34:45,973 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 15:34:46,020 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 15:34:46,030 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 15:34:46,033 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 15:34:47,330 | INFO | Organization Ranking Requested
+2026-07-11 15:34:47,370 | INFO | Organization Ranking Generated
+2026-07-11 15:34:47,382 | INFO | Organization Ranking Requested
+2026-07-11 15:34:47,389 | INFO | Research Productivity Analysis Started
+2026-07-11 15:34:47,419 | INFO | Organization Ranking Generated
+2026-07-11 15:34:47,429 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:34:47,444 | INFO | Research Productivity Analysis Started
+2026-07-11 15:34:47,473 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:34:49,432 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 15:34:49,435 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 15:34:49,443 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 15:34:49,446 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 15:34:58,360 | INFO | Organization Ranking Requested
+2026-07-11 15:34:58,403 | INFO | Organization Ranking Generated
+2026-07-11 15:34:58,418 | INFO | Organization Ranking Requested
+2026-07-11 15:34:58,419 | INFO | Research Productivity Analysis Started
+2026-07-11 15:34:58,438 | INFO | Organization Ranking Generated
+2026-07-11 15:34:58,453 | INFO | Research Productivity Analysis Completed
+2026-07-11 15:34:58,467 | INFO | Research Productivity Analysis Started
+2026-07-11 15:34:58,492 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:07:45,913 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 16:07:45,915 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 16:07:45,915 | INFO | Scheduler started
+2026-07-11 16:09:14,951 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 16:09:14,951 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 16:09:14,951 | INFO | Scheduler started
+2026-07-11 16:39:52,379 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 16:39:52,381 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 16:39:52,382 | INFO | Scheduler started
+2026-07-11 16:41:33,850 | INFO | Organization Ranking Requested
+2026-07-11 16:41:33,879 | INFO | Organization Ranking Generated
+2026-07-11 16:41:33,890 | INFO | Organization Ranking Requested
+2026-07-11 16:41:33,898 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:33,915 | INFO | Organization Ranking Generated
+2026-07-11 16:41:33,938 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:33,948 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:33,971 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:35,876 | INFO | Fetching all research papers
+2026-07-11 16:41:37,538 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 16:41:37,544 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 16:41:37,552 | INFO | Collaboration Recommendation Started for Profile 2
+2026-07-11 16:41:37,555 | INFO | Collaboration Recommendation Completed for Profile 2
+2026-07-11 16:41:39,837 | INFO | Organization Ranking Requested
+2026-07-11 16:41:39,856 | INFO | Organization Ranking Generated
+2026-07-11 16:41:39,890 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:39,908 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:39,912 | INFO | Organization Ranking Requested
+2026-07-11 16:41:39,935 | INFO | Organization Ranking Generated
+2026-07-11 16:41:39,948 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:39,965 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:42,733 | INFO | Organization Ranking Requested
+2026-07-11 16:41:42,756 | INFO | Organization Ranking Generated
+2026-07-11 16:41:42,783 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:42,785 | INFO | Organization Ranking Requested
+2026-07-11 16:41:42,804 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:42,822 | INFO | Organization Ranking Generated
+2026-07-11 16:41:42,835 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:42,853 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:45,811 | INFO | Organization Ranking Requested
+2026-07-11 16:41:45,836 | INFO | Organization Ranking Generated
+2026-07-11 16:41:45,865 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:45,893 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:45,896 | INFO | Organization Ranking Requested
+2026-07-11 16:41:45,914 | INFO | Organization Ranking Generated
+2026-07-11 16:41:45,930 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:45,946 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:48,713 | INFO | Organization Ranking Requested
+2026-07-11 16:41:48,738 | INFO | Organization Ranking Generated
+2026-07-11 16:41:48,767 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:48,787 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:48,788 | INFO | Organization Ranking Requested
+2026-07-11 16:41:48,810 | INFO | Organization Ranking Generated
+2026-07-11 16:41:48,823 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:48,838 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:51,457 | INFO | Organization Ranking Requested
+2026-07-11 16:41:51,478 | INFO | Organization Ranking Generated
+2026-07-11 16:41:51,510 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:51,513 | INFO | Organization Ranking Requested
+2026-07-11 16:41:51,529 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:51,542 | INFO | Organization Ranking Generated
+2026-07-11 16:41:51,557 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:51,577 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:54,929 | INFO | Organization Ranking Requested
+2026-07-11 16:41:54,948 | INFO | Organization Ranking Generated
+2026-07-11 16:41:54,981 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:54,999 | INFO | Research Productivity Analysis Completed
+2026-07-11 16:41:55,001 | INFO | Organization Ranking Requested
+2026-07-11 16:41:55,029 | INFO | Organization Ranking Generated
+2026-07-11 16:41:55,043 | INFO | Research Productivity Analysis Started
+2026-07-11 16:41:55,057 | INFO | Research Productivity Analysis Completed
+2026-07-11 17:02:18,140 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:02:18,141 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:02:18,141 | INFO | Scheduler started
+2026-07-11 17:03:07,545 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:03:07,545 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:03:07,545 | INFO | Scheduler started
+2026-07-11 17:05:08,123 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:05:08,124 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:05:08,124 | INFO | Scheduler started
+2026-07-11 17:05:30,017 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:05:30,018 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:05:30,018 | INFO | Scheduler started
+2026-07-11 17:08:07,763 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:08:07,763 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:08:07,763 | INFO | Scheduler started
+2026-07-11 17:25:46,503 | INFO | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-07-11 17:25:46,504 | INFO | Added job "SchedulerService.start.<locals>.<lambda>" to job store "default"
+2026-07-11 17:25:46,504 | INFO | Scheduler started
