@@ -1,11 +1,16 @@
+import jwt
+
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
 from app.core.security import (
     create_access_token,
+    create_refresh_token,
     hash_password,
     verify_password,
+    decode_token,
+
 )
 from app.dependencies import (
     get_current_user,
@@ -14,8 +19,11 @@ from app.dependencies import (
 )
 from app.models.role import Role
 from app.models.user import User
-from app.schemas.user import UserLogin, UserRegister
-
+from app.schemas.user import (
+    UserLogin,
+    UserRegister,
+    RefreshTokenRequest,
+)
 
 router = APIRouter(
     prefix="/auth",
@@ -101,27 +109,63 @@ def login_user(
     access_token = create_access_token(
     user_id=user.id,
     role=role.name
-        )
+    )
+
+    refresh_token = create_refresh_token(
+    user_id=user.id
+)
 
     return {
     "access_token": access_token,
+    "refresh_token": refresh_token,
     "token_type": "bearer"
 }
 
-@router.get("/me")
-def get_me(
-    current_user: User = Depends(get_current_user),
+
+@router.post("/refresh")
+def refresh_access_token(
+    token_data: RefreshTokenRequest,
     db: Session = Depends(get_db)
 ):
-    role = db.get(Role, current_user.role_id)
+    try:
+        payload = decode_token(
+            token_data.refresh_token
+        )
+    except jwt.InvalidTokenError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid refresh token"
+        )
+
+    if payload.get("type") != "refresh":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token type"
+        )
+
+    user_id = int(payload["sub"])
+
+    user = db.get(User, user_id)
+
+    if user is None or not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User not found or inactive"
+        )
+
+    role = db.get(Role, user.role_id)
+
+    access_token = create_access_token(
+        user_id=user.id,
+        role=role.name
+    )
 
     return {
-        "user_id": current_user.id,
-        "email": current_user.email,
-        "full_name": current_user.full_name,
-        "role": role.name,
-        "is_active": current_user.is_active
+        "access_token": access_token,
+        "token_type": "bearer"
     }
+
+
 
 
 @router.get("/me")

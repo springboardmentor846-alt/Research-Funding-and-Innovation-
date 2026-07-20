@@ -8,3 +8,5 @@ from app.models.technology_area import TechnologyArea
 from app.models.organization_information import OrganizationInformation
 from app.models.publication import Publication
 from app.models.patent import Patent
+
+from app.models.funding import FundingOpportunity

@@ -3,6 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 
+
 from app.dependencies import get_db, require_role
 from app.models.research_profile import ResearchProfile
 from app.models.research_domain import ResearchDomain
@@ -65,6 +66,7 @@ def create_research_profile(
     db.add(profile)
     db.commit()
     db.refresh(profile)
+
 
     return {
         "message": "Research profile created successfully",
@@ -1013,3 +1015,5 @@ def delete_my_patent(
         "message": "Patent deleted successfully",
         "deleted_patent": deleted_title
     }
+
+

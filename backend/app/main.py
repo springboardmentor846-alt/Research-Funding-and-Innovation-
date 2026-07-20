@@ -6,6 +6,17 @@ from app.database import engine
 from app.routers.auth import router as auth_router
 from app.routers import research_profile
 
+
+from app.routers import funding
+from app.routers import publication
+from app.routers import patent
+from app.routers import openalex
+from app.routers import grant_prediction
+from app.routers import orcid
+from app.routers import crossref
+from app.routers import dashboard
+from app.routers import trends
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -19,6 +30,15 @@ app.add_middleware(
 )
 app.include_router(auth_router)
 app.include_router(research_profile.router)
+app.include_router(funding.router)
+app.include_router(publication.router)
+app.include_router(patent.router)
+app.include_router(openalex.router)
+app.include_router(dashboard.router)
+app.include_router(grant_prediction.router)
+app.include_router(orcid.router)
+app.include_router(crossref.router)
+app.include_router(trends.router)
 
 @app.get("/")
 def home():

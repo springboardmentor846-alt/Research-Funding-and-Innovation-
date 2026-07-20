@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 
 from datetime import date
 
+
 class PublicationCreate(BaseModel):
     title: str = Field(
         min_length=2,
@@ -42,8 +43,38 @@ class PublicationCreate(BaseModel):
         max_length=5000
     )
 
+    # -------- New Fields --------
+
+    openalex_id: str | None = Field(
+        default=None,
+        max_length=255
+    )
+
+    citation_count: int = Field(
+        default=0,
+        ge=0
+    )
+
+    research_domain: str | None = Field(
+        default=None,
+        max_length=255
+    )
+
+    language: str | None = Field(
+        default=None,
+        max_length=50
+    )
+
+    source: str | None = Field(
+        default=None,
+        max_length=100
+    )
+
+    is_open_access: bool = False
+
 
 class PublicationUpdate(BaseModel):
+
     title: str | None = Field(
         default=None,
         min_length=2,
@@ -83,6 +114,37 @@ class PublicationUpdate(BaseModel):
         default=None,
         max_length=5000
     )
+
+    # -------- New Fields --------
+
+    openalex_id: str | None = Field(
+        default=None,
+        max_length=255
+    )
+
+    citation_count: int | None = Field(
+        default=None,
+        ge=0
+    )
+
+    research_domain: str | None = Field(
+        default=None,
+        max_length=255
+    )
+
+    language: str | None = Field(
+        default=None,
+        max_length=50
+    )
+
+    source: str | None = Field(
+        default=None,
+        max_length=100
+    )
+
+    is_open_access: bool | None = None
+
+
 
 class ResearchProfileCreate(BaseModel):
     bio: str | None = Field(

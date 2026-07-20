@@ -1,6 +1,15 @@
 from datetime import date, datetime
 
-from sqlalchemy import Date, DateTime, ForeignKey, String, Text, func
+from sqlalchemy import (
+    Boolean,
+    Date,
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database import Base
@@ -63,6 +72,41 @@ class Publication(Base):
     abstract: Mapped[str | None] = mapped_column(
         Text,
         nullable=True
+    )
+
+    # -------- AI & Research Intelligence --------
+
+    openalex_id: Mapped[str | None] = mapped_column(
+        String(255),
+        unique=True,
+        nullable=True
+    )
+
+    citation_count: Mapped[int] = mapped_column(
+        Integer,
+        default=0,
+        nullable=False
+    )
+
+    research_domain: Mapped[str | None] = mapped_column(
+        String(255),
+        nullable=True
+    )
+
+    language: Mapped[str | None] = mapped_column(
+        String(50),
+        nullable=True
+    )
+
+    source: Mapped[str | None] = mapped_column(
+        String(100),
+        nullable=True
+    )
+
+    is_open_access: Mapped[bool] = mapped_column(
+        Boolean,
+        default=False,
+        nullable=False
     )
 
     created_at: Mapped[datetime] = mapped_column(
