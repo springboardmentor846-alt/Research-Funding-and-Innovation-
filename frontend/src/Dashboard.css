@@ -357,7 +357,7 @@
 
 .score-number {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 600;
   line-height: 1;
 }
@@ -431,4 +431,64 @@
   font-size: 12px;
   color: var(--slate);
   text-align: right;
+}
+/* ===== COMMERCIALIZATION RECOMMENDATIONS ===== */
+.commercial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.commercial-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  background: var(--paper);
+}
+
+.commercial-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.commercial-type {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink-navy);
+}
+
+.priority-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.priority-badge.priority-high {
+  color: #fff;
+  background: var(--signal-teal);
+}
+
+.priority-badge.priority-medium {
+  color: #8a5a12;
+  background: var(--amber-light);
+}
+
+.priority-badge.priority-low {
+  color: var(--slate);
+  background: var(--paper-white);
+  border: 1px solid var(--border-light);
+}
+
+.commercial-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--graphite);
+  line-height: 1.6;
+  margin: 0;
 }

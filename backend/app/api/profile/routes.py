@@ -26,6 +26,7 @@ from app.crud.patent import (
 )
 from app.crud.technology import get_technology_intelligence
 from app.crud.innovation import get_innovation_score
+from app.crud.commercialization import get_commercialization_recommendations
 
 router = APIRouter()
 
@@ -168,3 +169,18 @@ def innovation_score(
         raise HTTPException(status_code=404, detail="Create your research profile first")
 
     return get_innovation_score(db, profile)
+
+
+@router.get("/commercialization-recommendations")
+def commercialization_recommendations(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    return get_commercialization_recommendations(db, profile)
