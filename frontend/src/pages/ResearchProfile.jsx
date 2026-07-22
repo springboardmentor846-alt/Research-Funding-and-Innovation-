@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { Link } from "react-router-dom";
 
 function ResearchProfile() {
   const [profile, setProfile] = useState(null);
@@ -153,6 +154,66 @@ function ResearchProfile() {
           {message}
         </div>
       )}
+
+      <div className="module-content-grid mb-4">
+
+  <Link
+    to="/profile/organization"
+    className="module-card"
+  >
+    <div className="module-icon">🏢</div>
+
+    <div className="module-card-content">
+      <h3>Organization</h3>
+      <p>
+        Manage university, department and institution details.
+      </p>
+    </div>
+  </Link>
+
+  <Link
+    to="/profile/domains"
+    className="module-card"
+  >
+    <div className="module-icon">🧪</div>
+
+    <div className="module-card-content">
+      <h3>Research Domains</h3>
+      <p>
+        Define your primary research fields.
+      </p>
+    </div>
+  </Link>
+
+  <Link
+    to="/profile/keywords"
+    className="module-card"
+  >
+    <div className="module-icon">🏷</div>
+
+    <div className="module-card-content">
+      <h3>Keywords</h3>
+      <p>
+        Add focused research interests.
+      </p>
+    </div>
+  </Link>
+
+  <Link
+    to="/profile/technology-areas"
+    className="module-card"
+  >
+    <div className="module-icon">💡</div>
+
+    <div className="module-card-content">
+      <h3>Technology Areas</h3>
+      <p>
+        Maintain technologies and technical expertise.
+      </p>
+    </div>
+  </Link>
+
+</div>
 
       <div className="module-content-grid">
         <div className="professional-form-card">

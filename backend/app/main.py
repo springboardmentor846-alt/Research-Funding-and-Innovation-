@@ -16,6 +16,8 @@ from app.routers import orcid
 from app.routers import crossref
 from app.routers import dashboard
 from app.routers import trends
+from app.routers import patent_landscape
+
 
 app = FastAPI()
 app.add_middleware(
@@ -39,6 +41,11 @@ app.include_router(grant_prediction.router)
 app.include_router(orcid.router)
 app.include_router(crossref.router)
 app.include_router(trends.router)
+app.include_router(
+    patent_landscape.router
+)
+
+
 
 @app.get("/")
 def home():

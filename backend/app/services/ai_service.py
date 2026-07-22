@@ -34,26 +34,40 @@ Technology Areas:
 
 
 def build_funding_text(funding):
-    """
-    Converts funding opportunity into text.
-    """
 
-    return f"""
-Title:
-{funding.title or ""}
+    parts = []
 
-Organization:
-{funding.organization or ""}
+    if funding.title:
+        parts.append(funding.title)
 
-Research Domain:
-{funding.research_domain or ""}
+    if funding.organization:
+        parts.append(funding.organization)
 
-Description:
-{funding.description or ""}
+    if funding.funding_type:
+        parts.append(funding.funding_type)
 
-Keywords:
-{funding.keywords or ""}
-"""
+    if funding.research_domain:
+        parts.append(funding.research_domain)
+
+    if funding.description:
+        parts.append(funding.description)
+
+    if funding.country:
+        parts.append(funding.country)
+
+    if funding.eligible_countries:
+        parts.append(funding.eligible_countries)
+
+    if funding.career_stage:
+        parts.append(funding.career_stage)
+
+    if funding.qualification:
+        parts.append(funding.qualification)
+
+    if funding.keywords:
+        parts.append(funding.keywords)
+
+    return " ".join(parts)
 
 
 def build_publication_text(publication):

@@ -37,6 +37,11 @@ function Login() {
         response.data.access_token
       );
 
+      localStorage.setItem(
+       "refresh_token",
+        response.data.refresh_token
+      );
+
       navigate("/dashboard");
     } catch (error) {
       setMessage(

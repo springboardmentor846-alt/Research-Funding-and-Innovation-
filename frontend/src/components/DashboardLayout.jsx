@@ -7,19 +7,102 @@ function DashboardLayout({ children, user }) {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     navigate("/login");
   };
 
-  const navItems = [
-    { path: "/dashboard", label: "Home", icon: "▦" },
-    { path: "/profile", label: "Research Profile", icon: "◉" },
-    { path: "/profile/domains", label: "Research Domains", icon: "◇" },
-    { path: "/profile/keywords", label: "Keywords", icon: "#" },
-    { path: "/profile/technology-areas", label: "Technology Areas", icon: "⌘" },
-    { path: "/profile/organization", label: "Organization", icon: "▣" },
-    { path: "/profile/publications", label: "Publications", icon: "▤" },
-    { path: "/profile/patents", label: "Patents", icon: "◆" },
-  ];
+
+const navItems = [
+  {
+    heading: "Workspace",
+    items: [
+      {
+        path: "/dashboard",
+        label: "Dashboard",
+        icon: "📊",
+      },
+    ],
+  },
+
+  {
+    heading: "Research",
+    items: [
+      {
+        path: "/profile",
+        label: "Research Profile",
+        icon: "👤",
+      },
+      {
+      path: "/profile/domains",
+      label: "Research Domains",
+      icon: "🧪",
+    },
+    {
+      path: "/profile/keywords",
+      label: "Keywords",
+      icon: "🏷️",
+    },
+    {
+      path: "/profile/technology-areas",
+      label: "Technology Areas",
+      icon: "💡",
+    },
+    {
+      path: "/profile/organization",
+      label: "Organization",
+      icon: "🏢",
+    },
+    ],
+  },
+
+  {
+    heading: "Research Assets",
+    items: [
+      {
+        path: "/profile/publications",
+        label: "Publications",
+        icon: "📚",
+      },
+      {
+        path: "/profile/patents",
+        label: "Patents",
+        icon: "📄",
+      },
+    ],
+  },
+
+  {
+    heading: "Funding",
+    items: [
+      {
+        path: "/funding",
+        label: "Funding Opportunities",
+        icon: "💰",
+      },
+      {
+        path: "/grant-prediction/1",
+        label: "Grant Prediction",
+        icon: "🎯",
+      },
+    ],
+  },
+
+  {
+    heading: "Analytics",
+    items: [
+      {
+        path: "/patent-landscape",
+        label: "Patent Landscape",
+        icon: "🌍",
+      },
+      {
+        path: "/research-trends",
+        label: "Research Trends",
+        icon: "📈",
+      },
+    ],
+  },
+];
 
   return (
     <div className={`app-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
@@ -41,25 +124,36 @@ function DashboardLayout({ children, user }) {
           </div>
         )}
 
-        <nav className="sidebar-nav">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path === "/dashboard"}
-              title={collapsed ? item.label : ""}
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""}`
-              }
-            >
-              <span className="sidebar-icon">
-                {item.icon}
-              </span>
+<nav className="sidebar-nav">
+  {navItems.map((group) => (
+    <div key={group.heading}>
+      {!collapsed && (
+        <div className="sidebar-section-label">
+          {group.heading}
+        </div>
+      )}
 
-              {!collapsed && <span>{item.label}</span>}
-            </NavLink>
-          ))}
-        </nav>
+      {group.items.map((item) => (
+        <NavLink
+          key={item.path}
+          to={item.path}
+          end={item.path === "/dashboard"}
+          className={({ isActive }) =>
+            `sidebar-link ${isActive ? "active" : ""}`
+          }
+        >
+          <span className="sidebar-icon">
+            {item.icon}
+          </span>
+
+          {!collapsed && (
+            <span>{item.label}</span>
+          )}
+        </NavLink>
+      ))}
+    </div>
+  ))}
+</nav>
 
         <div className="sidebar-user">
           <div className="user-avatar">

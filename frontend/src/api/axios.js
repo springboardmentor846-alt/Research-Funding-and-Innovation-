@@ -38,25 +38,72 @@ api.interceptors.request.use(
   or expired, so the user is logged out automatically.
 */
 api.interceptors.response.use(
+
   (response) => response,
 
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("access_token");
+  async (error) => {
 
-      const currentPath = window.location.pathname;
+    const originalRequest = error.config;
 
-      const isPublicPage =
-        currentPath === "/login" ||
-        currentPath === "/register";
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry
+    ) {
 
-      if (!isPublicPage) {
+      originalRequest._retry = true;
+
+      const refreshToken =
+        localStorage.getItem("refresh_token");
+
+      if (!refreshToken) {
+
+        localStorage.removeItem("access_token");
+
         window.location.replace("/login");
+
+        return Promise.reject(error);
+
       }
+
+      try {
+
+        const response = await axios.post(
+          "http://127.0.0.1:8000/auth/refresh",
+          {
+            refresh_token: refreshToken,
+          }
+        );
+
+        const newAccessToken =
+          response.data.access_token;
+
+        localStorage.setItem(
+          "access_token",
+          newAccessToken
+        );
+
+        originalRequest.headers.Authorization =
+          `Bearer ${newAccessToken}`;
+
+        return api(originalRequest);
+
+      }
+
+      catch {
+
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+
+        window.location.replace("/login");
+
+      }
+
     }
 
     return Promise.reject(error);
+
   }
+
 );
 
 export default api;

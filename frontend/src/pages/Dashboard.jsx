@@ -1,55 +1,54 @@
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import api from "../api/axios";
+import { getDashboard } from "../api/dashboard";
 
 function Dashboard() {
   const { user } = useOutletContext();
 
   const [stats, setStats] = useState({
-    domains: 0,
-    keywords: 0,
-    technologyAreas: 0,
-    publications: 0,
-    patents: 0,
-  });
+  domains: 0,
+  keywords: 0,
+  technologyAreas: 0,
+  publications: 0,
+  patents: 0,
+  funding: 0,
+  innovation: 0,
+});
 
-  const [statsLoading, setStatsLoading] = useState(true);
+const [dashboard, setDashboard] = useState(null);  
+const [statsLoading, setStatsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDashboardStats = async () => {
       try {
-        const [
-          domainsResponse,
-          keywordsResponse,
-          technologyResponse,
-          publicationsResponse,
-          patentsResponse,
-        ] = await Promise.all([
-          api.get("/research-profiles/me/domains"),
-          api.get("/research-profiles/me/keywords"),
-          api.get("/research-profiles/me/technology-areas"),
-          api.get("/research-profiles/me/publications"),
-          api.get("/research-profiles/me/patents"),
-        ]);
+        const dashboard = await getDashboard();
+setDashboard(dashboard);
+setStats({
 
-        setStats({
-          domains:
-            domainsResponse.data.domains?.length || 0,
+    domains:
+        dashboard.innovation.breakdown.domains,
 
-          keywords:
-            keywordsResponse.data.keywords?.length || 0,
+    keywords:
+        dashboard.innovation.breakdown.keywords,
 
-          technologyAreas:
-            technologyResponse.data.technology_areas
-              ?.length || 0,
+    technologyAreas:
+        dashboard.innovation.breakdown.technology_areas,
 
-          publications:
-            publicationsResponse.data.publications
-              ?.length || 0,
+    publications:
+        dashboard.statistics.publications,
 
-          patents:
-            patentsResponse.data.patents?.length || 0,
-        });
+    patents:
+        dashboard.statistics.patents,
+
+    funding:
+        dashboard.statistics.funding_opportunities,
+
+    innovation:
+        dashboard.innovation.innovation_score
+
+});
+        
       } catch (error) {
         console.error(
           "Failed to load dashboard statistics:",
@@ -67,41 +66,11 @@ function Dashboard() {
     {
       title: "Research Profile",
       description:
-        "Manage academic background, position, organization and ORCID.",
+        "Manage your complete research profile, organization, domains, keywords and technology expertise",
       path: "/profile",
       icon: "RP",
     },
-    {
-      title: "Research Domains",
-      description:
-        "Define your primary fields and areas of research.",
-      path: "/profile/domains",
-      icon: "RD",
-      count: stats.domains,
-    },
-    {
-      title: "Keywords",
-      description:
-        "Add focused research topics used for intelligent matching.",
-      path: "/profile/keywords",
-      icon: "KW",
-      count: stats.keywords,
-    },
-    {
-      title: "Technology Areas",
-      description:
-        "Maintain technologies, platforms and technical expertise.",
-      path: "/profile/technology-areas",
-      icon: "TA",
-      count: stats.technologyAreas,
-    },
-    {
-      title: "Organization",
-      description:
-        "Manage institutional and departmental information.",
-      path: "/profile/organization",
-      icon: "OR",
-    },
+    
     {
       title: "Publications",
       description:
@@ -118,6 +87,42 @@ function Dashboard() {
       icon: "PT",
       count: stats.patents,
     },
+
+    {
+  title: "Funding Opportunities",
+  description: "Browse government and international funding programs.",
+  path: "/funding",
+  icon: "💰",
+  count: stats.funding,
+},
+{
+  title: "Grant Prediction",
+  description: "Predict funding success using AI models.",
+  path: "/grant-prediction",
+  icon: "🎯",
+},
+{
+  title: "Patent Landscape",
+  description: "Analyze global patent trends and competitors.",
+  path: "/patent-landscape",
+  icon: "🌍",
+},
+
+{
+  title: "Innovation Score",
+  description:
+    "View your AI-generated innovation score and detailed breakdown.",
+  path: "/innovation-score",
+  icon: "⭐",
+  count: stats.innovation,
+},
+
+{
+  title: "Research Trends",
+  description: "Explore publication trends across research domains.",
+  path: "/research-trends",
+  icon: "📈",
+},
   ];
 
   const totalStructuredRecords =
@@ -165,73 +170,93 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="dashboard-stats">
-        <div className="stat-card">
-          <span className="stat-label">
-            Research Domains
-          </span>
+<div className="dashboard-stats">
 
-          <strong>
-            {statsLoading ? "..." : stats.domains}
-          </strong>
+  <div className="stat-card">
+    <span className="stat-label">
+      Research Domains
+    </span>
 
-          <small>
-            Broad research fields
-          </small>
-        </div>
+    <strong>
+      {statsLoading ? "..." : stats.domains}
+    </strong>
 
-        <div className="stat-card">
-          <span className="stat-label">
-            Publications
-          </span>
+    <small>Broad research fields</small>
+  </div>
 
-          <strong>
-            {statsLoading ? "..." : stats.publications}
-          </strong>
+  <div className="stat-card">
+    <span className="stat-label">
+      Publications
+    </span>
 
-          <small>
-            Scholarly research outputs
-          </small>
-        </div>
+    <strong>
+      {statsLoading ? "..." : stats.publications}
+    </strong>
 
-        <div className="stat-card">
-          <span className="stat-label">
-            Patents
-          </span>
+    <small>Scholarly research outputs</small>
+  </div>
 
-          <strong>
-            {statsLoading ? "..." : stats.patents}
-          </strong>
+  <div className="stat-card">
+    <span className="stat-label">
+      Patents
+    </span>
 
-          <small>
-            Intellectual property records
-          </small>
-        </div>
+    <strong>
+      {statsLoading ? "..." : stats.patents}
+    </strong>
 
-        <div className="stat-card">
-          <span className="stat-label">
-            Structured Records
-          </span>
+    <small>Intellectual property records</small>
+  </div>
 
-          <strong>
-            {statsLoading
-              ? "..."
-              : totalStructuredRecords}
-          </strong>
+  <div className="stat-card">
+    <span className="stat-label">
+      Innovation Score
+    </span>
 
-          <small className="positive-status">
-            ● Live profile data
-          </small>
-        </div>
-      </div>
+    <strong>
+      {statsLoading ? "..." : `${stats.innovation}/100`}
+    </strong>
+
+    <small>AI Calculated</small>
+  </div>
+
+  <div className="stat-card">
+    <span className="stat-label">
+      Profile Completion
+    </span>
+
+    <strong>
+      {statsLoading
+        ? "..."
+        : `${dashboard?.profile_completion || 0}%`}
+    </strong>
+
+    <small>Research Profile</small>
+  </div>
+
+  <div className="stat-card">
+    <span className="stat-label">
+      Structured Records
+    </span>
+
+    <strong>
+      {statsLoading
+        ? "..."
+        : totalStructuredRecords}
+    </strong>
+
+    <small className="positive-status">
+      ● Live profile data
+    </small>
+  </div>
+
+</div>
 
       <div className="dashboard-section-header">
         <div>
-          <h2>Research Profile Management</h2>
-
+<h2>Research Intelligence Dashboard</h2>
           <p>
-            Build a structured research identity for future
-            funding and innovation intelligence workflows.
+           Manage publications, patents, funding opportunities and AI-powered research intelligence from a unified platform.
           </p>
         </div>
       </div>
@@ -269,6 +294,50 @@ function Dashboard() {
           </Link>
         ))}
       </div>
+
+      <div className="dashboard-section-header">
+  <div>
+    <h2>Latest Publications</h2>
+    <p>Recently imported research publications.</p>
+  </div>
+</div>
+
+<div className="module-grid">
+  {dashboard?.latest_publications?.slice(0, 3).map((publication, index) => (
+    <div key={index} className="module-card">
+      <div className="module-card-content">
+        <h3>{publication.title}</h3>
+
+        <p>{publication.publisher}</p>
+
+        <small>{publication.doi}</small>
+      </div>
+    </div>
+  ))}
+</div>
+
+<div className="dashboard-section-header">
+  <div>
+    <h2>Latest Patents</h2>
+    <p>Your most recent patent records.</p>
+  </div>
+</div>
+
+<div className="module-grid">
+  {dashboard?.latest_patents?.map((patent, index) => (
+    <div key={index} className="module-card">
+      <div className="module-card-content">
+        <h3>{patent.title}</h3>
+
+        <p>{patent.patent_office}</p>
+
+        <span>{patent.status}</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+      
     </div>
   );
 }
