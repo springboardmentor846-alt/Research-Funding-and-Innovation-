@@ -1,228 +1,419 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PublicationTrend from "./PublicationTrend";
-import EmergingTopics from "./EmergingTopics";
-import ResearchHotspots from "./ResearchHotspots";
-import PatentTrend from "./PatentTrend";
-import CompetitorAnalysis from "./CompetitorAnalysis";
-import TechnologyClusters from "./TechnologyClusters";
-import TechnologyIntelligence from "./TechnologyIntelligence";
-import InnovationScore from "./InnovationScore";
-import CommercializationRecommendations from "./CommercializationRecommendations";
-import "./Dashboard.css";
+import "./App.css";
+import SummaryCards from "./components/SummaryCards";
+import Sidebar from "./components/Sidebar";
+import PublicationChart from "./components/PublicationChart";
+function Dashboard({ setLoggedIn }) {
 
-function Dashboard({ token, onLogout }) {
-  const [profile, setProfile] = useState(null);
-  const [error, setError] = useState("");
+  const [summary, setSummary] = useState({});
   const [funding, setFunding] = useState([]);
-  const [fundingError, setFundingError] = useState("");
-  const [activeTab, setActiveTab] = useState("overview");
-
+  const [domain, setDomain] = useState("");
+  const [generatedFunding, setGeneratedFunding] = useState([]);
+  const [publicationTrends, setPublicationTrends] = useState([]);
+  const [innovationScore, setInnovationScore] = useState(0);
+  const [patents, setPatents] = useState([]);
+  const [search, setSearch] = useState("");
+  const [activePage, setActivePage] = useState("dashboard");
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/auth/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setProfile(response.data);
-      } catch (err) {
-        setError("Could not load profile");
-      }
-    };
+    getSummary();
+    getFunding();
+    getPublicationTrends();
+    getInnovationScore();
+    getPatents();
+  }, []);
 
-    fetchProfile();
-  }, [token]);
-
-  useEffect(() => {
-    const fetchFunding = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/funding/recommended", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setFunding(response.data);
-      } catch (err) {
-        if (err.response && err.response.status === 404) {
-          setFundingError("Create your research profile to see recommendations.");
-        } else {
-          setFundingError("Could not load funding recommendations.");
-        }
-      }
-    };
-
-    fetchFunding();
-  }, [token]);
-
-  const formatRole = (role) => {
-    if (!role) return "";
-    return role.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
   };
 
-  const tabs = [
-    { id: "overview", label: "Overview" },
-    { id: "research", label: "Research" },
-    { id: "patents", label: "Patents" },
-    { id: "innovation", label: "Innovation" },
-    { id: "funding", label: "Funding" },
-  ];
+  const getSummary = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/dashboard-summary"
+      );
 
-  return (
-    <div className="dash-page">
-      {/* NAVBAR */}
-      <div className="dash-navbar">
-        <div className="dash-brand">
-          Research Funding &amp; <span className="highlight">Innovation Intelligence</span>
+      setSummary(response.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getFunding = async () => {
+
+    try {
+
+      const response = await axios.get("http://127.0.0.1:8000/funding");
+
+      setFunding(response.data.funding_opportunities);
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  };
+
+  const generateFunding = async () => {
+
+  if (domain.trim() === "") {
+    alert("Please enter a domain");
+    return;
+  }
+
+  try {
+
+    const response = await axios.get(
+      `http://127.0.0.1:8000/generate-funding/${domain}`
+    );
+
+    console.log(response.data);
+
+    setGeneratedFunding(response.data.generated_funding);
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
+
+  const getPublicationTrends = async () => {
+
+    try {
+
+      const response = await axios.get(
+        "http://127.0.0.1:8000/publication-trends"
+      );
+       console.log(response.data);
+      setPublicationTrends(response.data.publication_trends);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  const getInnovationScore = async () => {
+
+  try {
+
+    const response = await axios.get(
+      "http://127.0.0.1:8000/innovation-score"
+    );
+
+    setInnovationScore(response.data.innovation_score);
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
+
+const getPatents = async () => {
+
+  try {
+
+    const response = await axios.get(
+      "http://127.0.0.1:8000/patents"
+    );
+
+    setPatents(response.data.patents);
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
+
+   return (
+  <div className="container">
+
+    <Sidebar  activePage={activePage}
+  setActivePage={setActivePage} />
+
+    <div className="dashboard-box">
+
+      <div className="dashboard-header">
+
+        <div>
+
+          <h1>🚀 Research Funding Platform</h1>
+<p>AI Powered Research & Innovation Dashboard</p>
+
         </div>
-        <div className="dash-nav-right">
-          {profile && (
-            <span className="dash-role-badge">{formatRole(profile.role)}</span>
-          )}
-          <button className="dash-logout" onClick={onLogout}>
-            Logout
-          </button>
-        </div>
+
+        <button
+          className="logout-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+
       </div>
 
-      <div className="dash-body">
-        {/* SIDEBAR */}
-        <div className="dash-sidebar">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`sidebar-item ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+      <div className="menu">
 
-        {/* MAIN CONTENT */}
-        <div className="dash-main">
-          <div className="dash-welcome">
-            <h1>Welcome back{profile ? `, ${profile.email.split("@")[0]}` : ""}</h1>
-            <p>Here's what's happening across your funding, research and patent landscape.</p>
+        <button onClick={() => setActivePage("dashboard")}>
+          Dashboard
+        </button>
+
+        <button onClick={() => setActivePage("funding")}>
+          Funding
+        </button>
+
+        <button onClick={() => setActivePage("publication")}>
+          Publications
+        </button>
+
+        <button onClick={() => setActivePage("patent")}>
+          Patents
+        </button>
+
+      </div>
+
+      <hr />
+
+      {activePage === "dashboard" && (
+
+        <>
+
+          <h2 className="section-title">
+            Dashboard Summary
+          </h2>
+
+          <SummaryCards summary={summary} />
+
+          <hr />
+
+          <h2 className="section-title">
+            Innovation Score
+          </h2>
+
+          <div className="funding-card">
+
+            <h2>{innovationScore}</h2>
+
+            <p>Overall Research Innovation Score</p>
+
           </div>
 
-          {error && <p className="dash-error">{error}</p>}
+        </>
 
-          {/* OVERVIEW TAB */}
-          {activeTab === "overview" && (
-            <>
-              {profile && (
-                <div className="dash-card">
-                  <h3>Your Profile</h3>
-                  <p className="dash-card-subtitle">Account details</p>
-                  <p><strong>Email:</strong> {profile.email}</p>
-                  <p><strong>Role:</strong> {formatRole(profile.role)}</p>
-                </div>
-              )}
+      )}
 
-              <div className="dash-card">
-                <h3>Innovation Score</h3>
-                <p className="dash-card-subtitle">Your overall innovation potential, based on research, patents, technology and funding fit</p>
-                <InnovationScore token={token} />
-              </div>
-            </>
-          )}
+      {activePage === "funding" && (
 
-          {/* RESEARCH TAB */}
-          {activeTab === "research" && (
-            <>
-              <div className="dash-card">
-                <h3>Publication Trend</h3>
-                <p className="dash-card-subtitle">Your research output over time</p>
-                <PublicationTrend />
-              </div>
+        <>
 
-              <div className="dash-card">
-                <h3>Emerging Topics</h3>
-                <p className="dash-card-subtitle">Trending keywords from recent research</p>
-                <EmergingTopics />
-              </div>
+          <h2 className="section-title">
+            Funding Opportunities
+          </h2>
 
-              <div className="dash-card">
-                <h3>Research Hotspots</h3>
-                <p className="dash-card-subtitle">Most active research areas overall</p>
-                <ResearchHotspots />
-              </div>
-            </>
-          )}
+          <input
+            type="text"
+            placeholder="Search Funding..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
-          {/* PATENTS TAB */}
-          {activeTab === "patents" && (
-            <>
-              <div className="dash-card">
-                <h3>Patent Trend</h3>
-                <p className="dash-card-subtitle">Patent filings over time</p>
-                <PatentTrend />
+          {funding
+            .filter(
+              (item) =>
+                item.funding_name
+                  .toLowerCase()
+                  .includes(search.toLowerCase()) ||
+                item.domain
+                  .toLowerCase()
+                  .includes(search.toLowerCase())
+            )
+            .map((item) => (
+
+              <div
+                className="funding-card"
+                key={item.id}
+              >
+
+                <h3>{item.funding_name}</h3>
+
+                <p><b>Domain:</b> {item.domain}</p>
+
+                <p><b>Amount:</b> ₹ {item.amount}</p>
+
+                <p><b>Eligibility:</b> {item.eligibility}</p>
+
+                <p><b>Deadline:</b> {item.deadline}</p>
+
               </div>
 
-              <div className="dash-card">
-                <h3>Competitor Analysis</h3>
-                <p className="dash-card-subtitle">Most active patent holders</p>
-                <CompetitorAnalysis />
-              </div>
+          ))}
 
-              <div className="dash-card">
-                <h3>Technology Clusters</h3>
-                <p className="dash-card-subtitle">Innovation mapping from patent titles</p>
-                <TechnologyClusters />
-              </div>
-            </>
-          )}
+          <hr />
 
-          {/* INNOVATION TAB */}
-          {activeTab === "innovation" && (
-            <>
-              <div className="dash-card">
-                <h3>Technology Intelligence</h3>
-                <p className="dash-card-subtitle">Cross-domain technology maturity — research + patents combined</p>
-                <TechnologyIntelligence />
-              </div>
+          <h2 className="section-title">
+            Generate Funding
+          </h2>
 
-              <div className="dash-card">
-                <h3>Commercialization Recommendations</h3>
-                <p className="dash-card-subtitle">Actionable next steps based on your innovation profile</p>
-                <CommercializationRecommendations token={token} />
-              </div>
-            </>
-          )}
+          <input
+            type="text"
+            placeholder="Enter Domain"
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+          />
 
-          {/* FUNDING TAB */}
-          {activeTab === "funding" && (
-            <div className="dash-card">
-              <h3>Recommended Funding</h3>
-              <p className="dash-card-subtitle">Opportunities matched to your research profile</p>
+          <button onClick={generateFunding}>
+            Generate Funding
+          </button>
 
-              {fundingError && <p className="dash-empty">{fundingError}</p>}
+          <p>
+            Total Generated Funding :
+            {generatedFunding.length}
+          </p>
 
-              {!fundingError && funding.length === 0 && (
-                <p className="dash-empty">No matching funding opportunities right now.</p>
-              )}
+          {generatedFunding.map((item) => (
 
-              {funding.length > 0 && (
-                <div className="funding-grid">
-                  {funding.map((item) => (
-                    <div key={item.id} className="funding-item">
-                      <h4>{item.title}</h4>
-                      <div className="funding-meta">
-                        <span className="funding-tag">{item.source}</span>
-                        <span className="funding-amount">{item.amount}</span>
-                      </div>
-                      <p style={{ fontSize: "13px", color: "var(--slate)" }}>
-                        <strong>Deadline:</strong> {item.deadline}
-                      </p>
-                      <p className="funding-desc">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
+            <div
+              className="funding-card"
+              key={item.id}
+            >
+
+              <h3>{item.funding_name}</h3>
+
+              <p><b>Domain:</b> {item.domain}</p>
+
+              <p><b>Amount:</b> ₹ {item.amount}</p>
+
+              <p><b>Eligibility:</b> {item.eligibility}</p>
+
+              <p><b>Deadline:</b> {item.deadline}</p>
+
             </div>
-          )}
-        </div>
-      </div>
+
+          ))}
+
+        </>
+
+      )}
+
+            {activePage === "publication" && (
+
+        <>
+
+          <h2 className="section-title">
+            Publication Trends
+          </h2>
+
+          <table className="trend-table">
+
+            <thead>
+
+              <tr>
+
+                <th>Year</th>
+
+                <th>Total Publications</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              {publicationTrends.map((item, index) => (
+
+                <tr key={index}>
+
+                  <td>{item.year}</td>
+
+                  <td>{item.total_publications}</td>
+
+                </tr>
+
+              ))}
+
+            </tbody>
+
+          </table>
+
+          <hr />
+
+          <h2 className="section-title">
+            Publication Analytics
+          </h2>
+
+          <PublicationChart data={publicationTrends} />
+
+        </>
+
+      )}
+
+      {activePage === "patent" && (
+
+        <>
+
+          <h2 className="section-title">
+            Patents
+          </h2>
+
+          {patents.map((item) => (
+
+            <div className="funding-card" key={item.id}>
+
+              <h3>{item.patent_title}</h3>
+
+              <p><b>Patent Number:</b> {item.patent_number}</p>
+
+              <p><b>Technology:</b> {item.technology_domain}</p>
+
+              <p><b>Filing Date:</b> {item.filing_date}</p>
+
+            </div>
+
+          ))}
+
+        </>
+
+      )}
+
+
+      {activePage === "analytics" && (
+
+  <>
+
+    <h2 className="section-title">
+      Analytics
+    </h2>
+
+    <div className="funding-card">
+
+      <h3>Innovation Score</h3>
+
+      <h1>{innovationScore}</h1>
+
     </div>
-  );
+
+    <br />
+
+    <PublicationChart data={publicationTrends} />
+
+  </>
+
+)}
+
+    </div>
+
+  </div>
+
+);
+
 }
 
 export default Dashboard;
