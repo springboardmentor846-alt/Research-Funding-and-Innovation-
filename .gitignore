@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.venv/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Build files
+dist/
+build/
+
+# Node
+node_modules/
+
+# React/Vite
+frontend/node_modules/
+frontend/dist/
+
+# Python bytecode
+*.pyc
