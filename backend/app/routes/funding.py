@@ -1,0 +1,115 @@
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+from sqlalchemy import or_
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.core.dependencies import get_current_user, require_role
+from app.models.user import User, UserRole
+from app.models.funding import FundingOpportunity
+from app.models.research_profile import ResearchProfile
+from app.schemas.funding import (
+    FundingOpportunityCreate, FundingOpportunityResponse, FundingRecommendation,
+)
+from app.services import funding_reco
+
+router = APIRouter(prefix="/api/funding", tags=["Funding Discovery"])
+
+
+@router.get("", response_model=list[FundingOpportunityResponse])
+def list_opportunities(
+    source_type: str | None = Query(None, description="Filter by funding category"),
+    country: str | None = Query(None),
+    db: Session = Depends(get_db),
+    _user: User = Depends(get_current_user),
+):
+    query = db.query(FundingOpportunity)
+    if source_type:
+        query = query.filter(FundingOpportunity.source_type == source_type)
+    opportunities = query.order_by(FundingOpportunity.deadline.asc().nullslast()).all()
+    if country:
+        c = country.strip().lower()
+        opportunities = [
+            o for o in opportunities
+            if not o.countries
+            or "any" in [x.lower() for x in o.countries]
+            or c in [x.lower() for x in o.countries]
+        ]
+    return opportunities
+
+
+@router.get("/search", response_model=list[FundingOpportunityResponse])
+def search_opportunities(
+    q: str = Query(..., min_length=2, description="Search text"),
+    db: Session = Depends(get_db),
+    _user: User = Depends(get_current_user),
+):
+    like = f"%{q}%"
+    return (db.query(FundingOpportunity)
+            .filter(or_(
+                FundingOpportunity.title.ilike(like),
+                FundingOpportunity.agency.ilike(like),
+                FundingOpportunity.description.ilike(like),
+            ))
+            .all())
+
+
+@router.get("/recommendations", response_model=list[FundingRecommendation])
+def recommendations(
+    limit: int = Query(10, ge=1, le=50),
+    eligible_only: bool = Query(False),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    profile = db.query(ResearchProfile).filter(
+        ResearchProfile.user_id == current_user.id).first()
+    if profile is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Create your research profile first to get funding recommendations.",
+        )
+    opportunities = db.query(FundingOpportunity).all()
+    ranked = funding_reco.rank_opportunities(
+        profile=profile,
+        publications=profile.publications,
+        user_role=current_user.role.value,
+        user_country=profile.country,
+        opportunities=opportunities,
+    )
+    if eligible_only:
+        ranked = [r for r in ranked if r["eligible"]]
+    return ranked[:limit]
+
+
+@router.get("/{opp_id}", response_model=FundingOpportunityResponse)
+def get_opportunity(opp_id: int, db: Session = Depends(get_db),
+                    _user: User = Depends(get_current_user)):
+    opp = db.query(FundingOpportunity).filter(FundingOpportunity.id == opp_id).first()
+    if opp is None:
+        raise HTTPException(status_code=404, detail="Opportunity not found")
+    return opp
+
+
+@router.post("", response_model=FundingOpportunityResponse,
+             status_code=status.HTTP_201_CREATED)
+def create_opportunity(
+    data: FundingOpportunityCreate,
+    db: Session = Depends(get_db),
+    _admin: User = Depends(require_role(UserRole.ADMIN)),
+):
+    opp = FundingOpportunity(**data.model_dump())
+    db.add(opp)
+    db.commit()
+    db.refresh(opp)
+    return opp
+
+
+@router.delete("/{opp_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_opportunity(
+    opp_id: int,
+    db: Session = Depends(get_db),
+    _admin: User = Depends(require_role(UserRole.ADMIN)),
+):
+    opp = db.query(FundingOpportunity).filter(FundingOpportunity.id == opp_id).first()
+    if opp is None:
+        raise HTTPException(status_code=404, detail="Opportunity not found")
+    db.delete(opp)
+    db.commit()

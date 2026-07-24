@@ -1,0 +1,240 @@
+from datetime import date
+from app.core.database import SessionLocal, engine, Base
+from app.models.funding import FundingOpportunity, FundingSourceType
+
+Base.metadata.create_all(bind=engine)
+
+GOV = FundingSourceType.GOVERNMENT_GRANT.value
+COUNCIL = FundingSourceType.RESEARCH_COUNCIL.value
+INNOV = FundingSourceType.INNOVATION_FUND.value
+ACCEL = FundingSourceType.STARTUP_ACCELERATOR.value
+VENTURE = FundingSourceType.VENTURE_PROGRAM.value
+INTL = FundingSourceType.INTERNATIONAL_AGENCY.value
+
+R = ["researcher"]
+S = ["startup_founder"]
+RS = ["researcher", "startup_founder"]
+
+OPPORTUNITIES = [
+    # ---------------- Government Grants ----------------
+    dict(title="NSF CAREER Award", agency="National Science Foundation", source_type=GOV,
+         description="Prestigious award supporting early-career faculty as academic role models in research and education across all NSF-supported fields.",
+         domains=["computer science", "engineering", "physics", "materials science"],
+         keywords=["early career", "faculty", "fundamental research", "education"],
+         eligible_roles=R, countries=["USA"], amount_min=400000, amount_max=600000,
+         deadline=date(2026, 7, 27), url="https://www.nsf.gov/career"),
+    dict(title="NIH R01 Research Project Grant", agency="National Institutes of Health", source_type=GOV,
+         description="Support for a discrete, specified health-related research project in the biomedical and life sciences.",
+         domains=["biomedical", "health", "life sciences", "genomics"],
+         keywords=["clinical", "disease", "biology", "medical research"],
+         eligible_roles=R, countries=["USA"], amount_min=250000, amount_max=2500000,
+         deadline=date(2026, 10, 5), url="https://grants.nih.gov"),
+    dict(title="SBIR Phase I", agency="U.S. Small Business Administration", source_type=GOV,
+         description="Seed funding for small businesses to conduct feasibility-stage R&D with commercialization potential.",
+         domains=["deep tech", "engineering", "software", "hardware"],
+         keywords=["small business", "commercialization", "prototype", "R&D"],
+         eligible_roles=RS, countries=["USA"], amount_min=50000, amount_max=300000,
+         deadline=date(2026, 9, 1), url="https://www.sbir.gov"),
+    dict(title="DOE Office of Science FOA", agency="U.S. Department of Energy", source_type=GOV,
+         description="Funding opportunity announcements supporting basic energy sciences, clean energy and computing research.",
+         domains=["energy", "materials science", "physics", "computing"],
+         keywords=["clean energy", "batteries", "fusion", "renewable"],
+         eligible_roles=R, countries=["USA"], amount_min=150000, amount_max=1500000,
+         deadline=date(2026, 11, 15), url="https://science.osti.gov"),
+    dict(title="DARPA Young Faculty Award", agency="DARPA", source_type=GOV,
+         description="Supports rising research stars pursuing high-risk, high-payoff defense-relevant technologies.",
+         domains=["AI", "robotics", "materials science", "electronics"],
+         keywords=["defense", "high risk", "emerging technology", "national security"],
+         eligible_roles=R, countries=["USA"], amount_min=500000, amount_max=1000000,
+         deadline=date(2026, 8, 20), url="https://www.darpa.mil"),
+    dict(title="NASA Space Technology Research Grants", agency="NASA", source_type=GOV,
+         description="Funds early-stage research on space technologies with transformational potential for future missions.",
+         domains=["aerospace", "materials science", "robotics", "propulsion"],
+         keywords=["space", "spacecraft", "exploration", "technology"],
+         eligible_roles=R, countries=["USA"], amount_min=200000, amount_max=750000,
+         deadline=date(2026, 12, 1), url="https://www.nasa.gov/stmd"),
+
+    # ---------------- Research Councils ----------------
+    dict(title="ERC Starting Grant", agency="European Research Council", source_type=COUNCIL,
+         description="Frontier research funding for excellent early-career scientists to build their own teams.",
+         domains=["all disciplines", "AI", "physics", "life sciences"],
+         keywords=["frontier research", "early career", "excellence", "principal investigator"],
+         eligible_roles=R, countries=["Any"], amount_min=1500000, amount_max=2000000,
+         deadline=date(2026, 10, 22), url="https://erc.europa.eu"),
+    dict(title="UKRI Future Leaders Fellowship", agency="UK Research and Innovation", source_type=COUNCIL,
+         description="Supports early-career researchers and innovators with outstanding potential across disciplines.",
+         domains=["all disciplines", "engineering", "AI", "health"],
+         keywords=["fellowship", "leadership", "early career", "interdisciplinary"],
+         eligible_roles=R, countries=["UK"], amount_min=900000, amount_max=1500000,
+         deadline=date(2026, 9, 30), url="https://www.ukri.org"),
+    dict(title="DFG Individual Research Grants", agency="German Research Foundation", source_type=COUNCIL,
+         description="Enables researchers to pursue self-defined research projects on a specific topic.",
+         domains=["all disciplines", "chemistry", "physics", "engineering"],
+         keywords=["basic research", "project", "science", "grant"],
+         eligible_roles=R, countries=["Germany"], amount_min=200000, amount_max=800000,
+         deadline=date(2026, 11, 3), url="https://www.dfg.de"),
+    dict(title="SNSF Project Funding", agency="Swiss National Science Foundation", source_type=COUNCIL,
+         description="Grants for researchers to independently conduct projects with topics and goals of their own choice.",
+         domains=["all disciplines", "life sciences", "engineering"],
+         keywords=["project funding", "science", "switzerland"],
+         eligible_roles=R, countries=["Switzerland"], amount_min=300000, amount_max=1000000,
+         deadline=date(2026, 10, 1), url="https://www.snf.ch"),
+    dict(title="ARC Discovery Projects", agency="Australian Research Council", source_type=COUNCIL,
+         description="Supports fundamental research projects that generate new knowledge and expand Australia's capability.",
+         domains=["all disciplines", "physics", "biology", "engineering"],
+         keywords=["discovery", "fundamental", "australia", "research"],
+         eligible_roles=R, countries=["Australia"], amount_min=150000, amount_max=600000,
+         deadline=date(2026, 8, 15), url="https://www.arc.gov.au"),
+    dict(title="NSERC Discovery Grants", agency="Natural Sciences and Engineering Research Council of Canada",
+         source_type=COUNCIL,
+         description="Long-term support for ongoing programs of research in the natural sciences and engineering.",
+         domains=["engineering", "computer science", "chemistry", "physics"],
+         keywords=["discovery", "natural sciences", "canada", "research program"],
+         eligible_roles=R, countries=["Canada"], amount_min=100000, amount_max=500000,
+         deadline=date(2026, 11, 1), url="https://www.nserc-crsng.gc.ca"),
+
+    # ---------------- Innovation Funds ----------------
+    dict(title="EIC Pathfinder", agency="European Innovation Council", source_type=INNOV,
+         description="Funds visionary, high-risk research to develop breakthrough technologies and radical innovation.",
+         domains=["deep tech", "AI", "quantum", "biotech"],
+         keywords=["breakthrough", "high risk", "deep tech", "innovation"],
+         eligible_roles=RS, countries=["Any"], amount_min=3000000, amount_max=4000000,
+         deadline=date(2026, 10, 29), url="https://eic.ec.europa.eu"),
+    dict(title="Innovate UK Smart Grants", agency="Innovate UK", source_type=INNOV,
+         description="Funding for game-changing and commercially viable R&D innovation across any technology sector.",
+         domains=["software", "manufacturing", "clean tech", "health tech"],
+         keywords=["innovation", "commercial", "R&D", "disruptive"],
+         eligible_roles=RS, countries=["UK"], amount_min=100000, amount_max=500000,
+         deadline=date(2026, 9, 24), url="https://www.gov.uk/innovate-uk"),
+    dict(title="Gates Foundation Grand Challenges", agency="Bill & Melinda Gates Foundation", source_type=INNOV,
+         description="Funds bold ideas addressing persistent global health and development challenges.",
+         domains=["global health", "biomedical", "agriculture", "sanitation"],
+         keywords=["global health", "development", "bold ideas", "impact"],
+         eligible_roles=RS, countries=["Any"], amount_min=100000, amount_max=1000000,
+         deadline=date(2026, 8, 31), url="https://gcgh.grandchallenges.org"),
+    dict(title="Wellcome Innovator Awards", agency="Wellcome Trust", source_type=INNOV,
+         description="Supports researchers developing innovative approaches to major health challenges.",
+         domains=["health", "biomedical", "neuroscience", "infectious disease"],
+         keywords=["health innovation", "translational", "discovery"],
+         eligible_roles=R, countries=["Any"], amount_min=500000, amount_max=1500000,
+         deadline=date(2026, 12, 10), url="https://wellcome.org"),
+    dict(title="XPRIZE Competitions", agency="XPRIZE Foundation", source_type=INNOV,
+         description="Incentive prize competitions to crowdsource solutions to the world's grand challenges.",
+         domains=["climate", "AI", "space", "health"],
+         keywords=["prize", "competition", "grand challenge", "moonshot"],
+         eligible_roles=RS, countries=["Any"], amount_min=1000000, amount_max=10000000,
+         deadline=date(2026, 11, 20), url="https://www.xprize.org"),
+
+    # ---------------- Startup Accelerators ----------------
+    dict(title="Y Combinator", agency="Y Combinator", source_type=ACCEL,
+         description="Seed accelerator providing funding, mentorship and network to early-stage startups twice a year.",
+         domains=["software", "AI", "fintech", "biotech"],
+         keywords=["seed", "startup", "mentorship", "demo day"],
+         eligible_roles=S, countries=["Any"], amount_min=125000, amount_max=500000,
+         deadline=date(2026, 8, 11), url="https://www.ycombinator.com"),
+    dict(title="Techstars Accelerator", agency="Techstars", source_type=ACCEL,
+         description="Mentorship-driven accelerator program offering investment and access to a global network.",
+         domains=["software", "hardware", "AI", "climate"],
+         keywords=["accelerator", "mentorship", "seed", "network"],
+         eligible_roles=S, countries=["Any"], amount_min=20000, amount_max=120000,
+         deadline=date(2026, 9, 15), url="https://www.techstars.com"),
+    dict(title="500 Global Flagship Accelerator", agency="500 Global", source_type=ACCEL,
+         description="Four-month seed program for growth-stage startups focused on scaling and fundraising.",
+         domains=["software", "fintech", "marketplaces"],
+         keywords=["seed", "growth", "scaling", "fundraising"],
+         eligible_roles=S, countries=["Any"], amount_min=100000, amount_max=150000,
+         deadline=date(2026, 10, 10), url="https://500.co"),
+    dict(title="Startup Chile Seed", agency="Startup Chile (CORFO)", source_type=ACCEL,
+         description="Equity-free acceleration program for early-stage startups with global ambitions.",
+         domains=["software", "clean tech", "social impact"],
+         keywords=["equity-free", "acceleration", "global", "early stage"],
+         eligible_roles=S, countries=["Any"], amount_min=15000, amount_max=80000,
+         deadline=date(2026, 9, 5), url="https://startupchile.org"),
+    dict(title="Entrepreneur First", agency="Entrepreneur First", source_type=ACCEL,
+         description="Talent investor that helps individuals find co-founders and build deep-tech companies from scratch.",
+         domains=["deep tech", "AI", "hardware"],
+         keywords=["co-founder", "deep tech", "talent", "pre-seed"],
+         eligible_roles=S, countries=["Any"], amount_min=80000, amount_max=250000,
+         deadline=date(2026, 8, 25), url="https://www.joinef.com"),
+
+    # ---------------- Venture Programs ----------------
+    dict(title="NVIDIA Inception", agency="NVIDIA", source_type=VENTURE,
+         description="Program nurturing AI and data-science startups with technical support, credits and go-to-market help.",
+         domains=["AI", "machine learning", "data science", "robotics"],
+         keywords=["AI startup", "GPU", "compute credits", "deep learning"],
+         eligible_roles=S, countries=["Any"], amount_min=0, amount_max=100000,
+         deadline=None, url="https://www.nvidia.com/en-us/startups"),
+    dict(title="Microsoft for Startups Founders Hub", agency="Microsoft", source_type=VENTURE,
+         description="Provides startups with Azure credits, tools and mentorship to build and scale products.",
+         domains=["software", "AI", "cloud", "SaaS"],
+         keywords=["cloud credits", "azure", "startup", "tools"],
+         eligible_roles=S, countries=["Any"], amount_min=0, amount_max=150000,
+         deadline=None, url="https://www.microsoft.com/startups"),
+    dict(title="SOSV HAX", agency="SOSV", source_type=VENTURE,
+         description="Hard-tech venture program investing in and building early-stage hardware and deep-tech startups.",
+         domains=["hardware", "robotics", "materials science", "climate"],
+         keywords=["hard tech", "hardware", "deep tech", "venture"],
+         eligible_roles=S, countries=["Any"], amount_min=250000, amount_max=500000,
+         deadline=date(2026, 10, 18), url="https://sosv.com/hax"),
+    dict(title="a16z START", agency="Andreessen Horowitz", source_type=VENTURE,
+         description="Pre-seed program offering funding and support for founders building at the earliest stages.",
+         domains=["software", "AI", "fintech", "crypto"],
+         keywords=["pre-seed", "venture capital", "founder", "early stage"],
+         eligible_roles=S, countries=["Any"], amount_min=500000, amount_max=1000000,
+         deadline=date(2026, 11, 8), url="https://a16z.com"),
+    dict(title="Intel Ignite", agency="Intel", source_type=VENTURE,
+         description="Growth program for early-stage deep-tech startups, offering mentorship and industry access.",
+         domains=["deep tech", "AI", "semiconductors", "cybersecurity"],
+         keywords=["deep tech", "growth", "mentorship", "semiconductors"],
+         eligible_roles=S, countries=["Any"], amount_min=0, amount_max=100000,
+         deadline=date(2026, 9, 12), url="https://www.intel.com/ignite"),
+
+    # ---------------- International Agencies ----------------
+    dict(title="MSCA Postdoctoral Fellowships", agency="Marie Skłodowska-Curie Actions (EU)", source_type=INTL,
+         description="Fellowships supporting researchers' mobility and career development across borders and sectors.",
+         domains=["all disciplines", "AI", "life sciences", "engineering"],
+         keywords=["postdoc", "mobility", "fellowship", "international"],
+         eligible_roles=R, countries=["Any"], amount_min=150000, amount_max=300000,
+         deadline=date(2026, 9, 11), url="https://marie-sklodowska-curie-actions.ec.europa.eu"),
+    dict(title="Grand Challenges Canada", agency="Grand Challenges Canada", source_type=INTL,
+         description="Funds bold ideas with big impact in global health and humanitarian innovation.",
+         domains=["global health", "humanitarian", "biomedical"],
+         keywords=["global health", "impact", "low income", "innovation"],
+         eligible_roles=RS, countries=["Any"], amount_min=100000, amount_max=1000000,
+         deadline=date(2026, 10, 25), url="https://www.grandchallenges.ca"),
+    dict(title="UNDP Innovation Facility", agency="United Nations Development Programme", source_type=INTL,
+         description="Supports innovative approaches to sustainable development challenges worldwide.",
+         domains=["sustainability", "social impact", "climate", "governance"],
+         keywords=["SDG", "development", "sustainability", "innovation"],
+         eligible_roles=RS, countries=["Any"], amount_min=50000, amount_max=250000,
+         deadline=date(2026, 11, 30), url="https://www.undp.org"),
+    dict(title="World Bank Development Marketplace", agency="World Bank Group", source_type=INTL,
+         description="Competitive grant program identifying and scaling innovative development solutions.",
+         domains=["development", "agriculture", "energy access", "water"],
+         keywords=["development", "scaling", "grant", "emerging markets"],
+         eligible_roles=RS, countries=["Any"], amount_min=100000, amount_max=500000,
+         deadline=date(2026, 12, 5), url="https://www.worldbank.org"),
+    dict(title="Fulbright Scholar Program", agency="U.S. Department of State / Fulbright", source_type=INTL,
+         description="International educational exchange grants for scholars to research and teach abroad.",
+         domains=["all disciplines", "social sciences", "STEM"],
+         keywords=["exchange", "international", "scholar", "research abroad"],
+         eligible_roles=R, countries=["Any"], amount_min=20000, amount_max=60000,
+         deadline=date(2026, 9, 15), url="https://fulbrightscholars.org"),
+]
+
+
+def run():
+    db = SessionLocal()
+    try:
+        db.query(FundingOpportunity).delete()
+        for row in OPPORTUNITIES:
+            db.add(FundingOpportunity(currency="USD", **row))
+        db.commit()
+        count = db.query(FundingOpportunity).count()
+        print(f"Seeded {count} funding opportunities.")
+    finally:
+        db.close()
+
+
+if __name__ == "__main__":
+    run()
