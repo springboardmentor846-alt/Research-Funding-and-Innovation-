@@ -38,19 +38,13 @@ class InnovationPortfolio(Base):
 
     description = Column(Text, nullable=True)
 
-    technology_stack = Column(Text, nullable=True)
-
-    collaborators = Column(Text, nullable=True)
-
-    github_url = Column(String(255), nullable=True)
-
-    paper_url = Column(String(255), nullable=True)
-
-    patent_number = Column(String(100), nullable=True)
-
-    prototype_link = Column(String(255), nullable=True)
-
     status = Column(String(50), nullable=False)
+
+    visibility = Column(
+        String(20),
+        nullable=False,
+        default="Private"
+    )
 
     created_at = Column(
         DateTime(timezone=True),
@@ -64,3 +58,22 @@ class InnovationPortfolio(Base):
     )
 
     user = relationship("User")
+
+    project_detail = relationship(
+        "ProjectDetail",
+        back_populates="portfolio",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+    research_paper_detail = relationship(
+    "ResearchPaperDetail",
+    back_populates="portfolio",
+    uselist=False,
+    cascade="all, delete-orphan"
+)
+    patent_detail = relationship(
+    "PatentDetail",
+    back_populates="portfolio",
+    uselist=False,
+    cascade="all, delete-orphan"
+)

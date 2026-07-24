@@ -3,6 +3,7 @@ from sqlalchemy import (
     Integer,
     String,
     Text,
+    Date,
     DateTime,
     ForeignKey,
 )
@@ -12,8 +13,8 @@ from sqlalchemy.sql import func
 from app.database.db import Base
 
 
-class ProjectDetail(Base):
-    __tablename__ = "project_details"
+class PatentDetail(Base):
+    __tablename__ = "patent_details"
 
     id = Column(
         Integer,
@@ -31,28 +32,43 @@ class ProjectDetail(Base):
         unique=True
     )
 
-    github_url = Column(
+    patent_title = Column(
         String(255),
+        nullable=False
+    )
+
+    patent_number = Column(
+        String(100),
         nullable=True
     )
 
-    demo_url = Column(
-        String(255),
+    patent_status = Column(
+        String(100),
         nullable=True
     )
 
-    technology_stack = Column(
+    filing_date = Column(
+        Date,
+        nullable=True
+    )
+
+    publication_date = Column(
+        Date,
+        nullable=True
+    )
+
+    inventors = Column(
         Text,
         nullable=True
     )
 
-    team_size = Column(
-        Integer,
+    patent_url = Column(
+        String(255),
         nullable=True
     )
 
-    project_duration = Column(
-        String(100),
+    description = Column(
+        Text,
         nullable=True
     )
 
@@ -69,5 +85,5 @@ class ProjectDetail(Base):
 
     portfolio = relationship(
         "InnovationPortfolio",
-        back_populates="project_detail"
+        back_populates="patent_detail"
     )

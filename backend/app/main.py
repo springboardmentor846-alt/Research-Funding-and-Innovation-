@@ -6,7 +6,13 @@ from app.routes.research_routes import router as research_router
 from app.routes.dashboard_routes import router as dashboard_router
 from app.routes.user_profile_routes import router as user_profile_router
 from app.routes.innovation_portfolio_routes import router as innovation_portfolio_router
-app = FastAPI()
+from app.models.project_detail import ProjectDetail
+from app.routes.project_detail_routes import router as project_detail_router
+from app.routes.research_paper_detail_routes import router as research_paper_detail_router
+from app.models.research_paper_detail import ResearchPaperDetail
+from app.routes.patent_detail_routes import router as patent_detail_router
+from app.models.patent_detail import PatentDetail
+app = FastAPI(debug=True)
 
 app.include_router(auth_router)
 app.include_router(user_router)
@@ -16,6 +22,9 @@ app.include_router(
 )
 app.include_router(user_profile_router)
 app.include_router(innovation_portfolio_router)
+app.include_router(project_detail_router)
+app.include_router(research_paper_detail_router)
+app.include_router(patent_detail_router)
 from app.models.innovation_portfolio import InnovationPortfolio
 @app.get("/")
 def home():

@@ -12,8 +12,8 @@ from sqlalchemy.sql import func
 from app.database.db import Base
 
 
-class ProjectDetail(Base):
-    __tablename__ = "project_details"
+class ResearchPaperDetail(Base):
+    __tablename__ = "research_paper_details"
 
     id = Column(
         Integer,
@@ -31,28 +31,38 @@ class ProjectDetail(Base):
         unique=True
     )
 
-    github_url = Column(
+    paper_title = Column(
+        String(255),
+        nullable=False
+    )
+
+    journal_name = Column(
         String(255),
         nullable=True
     )
 
-    demo_url = Column(
-        String(255),
-        nullable=True
-    )
-
-    technology_stack = Column(
-        Text,
-        nullable=True
-    )
-
-    team_size = Column(
+    publication_year = Column(
         Integer,
         nullable=True
     )
 
-    project_duration = Column(
-        String(100),
+    doi = Column(
+        String(255),
+        nullable=True
+    )
+
+    paper_url = Column(
+        String(255),
+        nullable=True
+    )
+
+    authors = Column(
+        Text,
+        nullable=True
+    )
+
+    abstract = Column(
+        Text,
         nullable=True
     )
 
@@ -69,5 +79,5 @@ class ProjectDetail(Base):
 
     portfolio = relationship(
         "InnovationPortfolio",
-        back_populates="project_detail"
+        back_populates="research_paper_detail"
     )
