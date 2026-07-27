@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Diagram</title>
+    <style>
+        :root {
+            --border-color: #444;
+            --bg-light: #f9f9f9;
+            --accent-blue: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0e0e0;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        /* Layout Grid */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 150px 1fr 180px;
+            gap: 15px;
+        }
+
+        .box {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        /* Access Layer */
+        .layer-title {
+            text-align: center;
+            font-weight: bold;
+            background: #eee;
+            margin: -10px -10px 10px -10px;
+            padding: 5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .access-layer {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+            background: #f0f4f8;
+        }
+
+        /* Microservices Grid */
+        .microservices-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .service-card {
+            border: 1px solid #ccc;
+            padding: 8px;
+            background: #fff;
+        }
+
+        .service-card h4 {
+            margin: 0 0 5px 0;
+            font-size: 11px;
+            color: #d35400; /* Orange accent from image */
+        }
+
+        ul {
+            padding-left: 15px;
+            margin: 0;
+            list-style-type: square;
+        }
+
+        /* Sidebar Lists */
+        .sidebar-item {
+            margin-bottom: 8px;
+            padding: 5px;
+            background: #fdfdfd;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Bottom Layers */
+        .footer-layers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Research Funding & Innovation Intelligence Platform</h1>
+    <div class="subtitle">SYSTEM ARCHITECTURE DIAGRAM</div>
+
+    <div class="main-layout">
+        <!-- Users Sidebar -->
+        <div class="box">
+            <div class="layer-title">USERS</div>
+            <div class="sidebar-item">Researchers</div>
+            <div class="sidebar-item">Startup Founders</div>
+            <div class="sidebar-item">Innovation Managers</div>
+            <div class="sidebar-item">Universities</div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="center-col">
+            <!-- Access Layer -->
+            <div class="box access-layer">
+                <div>Web Portal</div>
+                <div>Mobile App</div>
+                <div>Admin Dashboard</div>
+                <div>API Clients</div>
+            </div>
+
+            <!-- Microservices -->
+            <div class="box">
+                <div class="layer-title">INNOVATION INTELLIGENCE MICROSERVICES</div>
+                <div class="microservices-grid">
+                    <div class="service-card">
+                        <h4>1. USER & PROFILE</h4>
+                        <ul>
+                            <li>User Management</li>
+                            <li>Role Management</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>2. FUNDING DISCOVERY</h4>
+                        <ul>
+                            <li>Grant Matching</li>
+                            <li>Eligibility Check</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>3. TREND ANALYSIS</h4>
+                        <ul>
+                            <li>Publication Analysis</li>
+                            <li>Topic Modeling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- External Sources Sidebar -->
+        <div class="box">
+            <div class="layer-title">EXTERNAL DATA</div>
+            <div class="sidebar-item">OpenAlex</div>
+            <div class="sidebar-item">Semantic Scholar</div>
+            <div class="sidebar-item">Google Patents</div>
+            <div class="sidebar-item">USPTO</div>
+        </div>
+    </div>
+
+    <!-- Infrastructure & Data Layers -->
+    <div class="footer-layers">
+        <div class="box">
+            <div class="layer-title">DATA LAYER</div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>PostgreSQL</span>
+                <span>MongoDB</span>
+                <span>Pinecone</span>
+            </div>
+        </div>
+        <div class="box">
+            <div class="layer-title">INFRASTRUCTURE & DEVOPS</div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>AWS / Azure</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <style>
+        /* CSS Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { padding: 20px; background-color: #f4f4f9; display: flex; flex-direction: column; align-items: center; }
+
+        /* Main Container */
+        .diagram-container {
+            width: 100%;
+            max-width: 1200px;
+            border: 2px solid #333;
+            background: white;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* Layer Titles & Blocks */
+        .layer-box {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            min-height: 100px;
+        }
+        
+        .full-width { grid-column: span 4; }
+        .half-width { grid-column: span 2; }
+
+        .layer-header {
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Sub-module Grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .module {
+            border: 1px dashed #aaa;
+            padding: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        /* Specific Layer Styling */
+        .integration-layer { background-color: #e8f4fd; }
+        .data-layer { background-color: #fef9e7; }
+        .ai-ml-layer { background-color: #f5eef8; }
+        .devops-layer { background-color: #eafaf1; }
+
+        /* Titles at bottom */
+        .title-section {
+            margin-top: 30px;
+            text-align: left;
+            width: 100%;
+            max-width: 1200px;
+        }
+        h1 { font-size: 2rem; color: #2c3e50; }
+        h2 { font-size: 1.5rem; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="diagram-container">
+        <!-- Integration & Communication Services -->
+        <div class="layer-box full-width integration-layer">
+            <div class="layer-header">INTEGRATION & COMMUNICATION SERVICES</div>
+            <div class="module-grid">
+                <div class="module">API Gateway</div>
+                <div class="module">Load Balancer</div>
+                <div class="module">Service Discovery</div>
+                <div class="module">Message Broker (Kafka/RabbitMQ)</div>
+                <div class="module">Event Streaming</div>
+            </div>
+        </div>
+
+        <!-- Data Layer -->
+        <div class="layer-box half-width data-layer">
+            <div class="layer-header">DATA LAYER</div>
+            <div class="module-grid">
+                <div class="module">Relational DB (MySQL)</div>
+                <div class="module">Document DB (MongoDB)</div>
+                <div class="module">Vector DB (Pinecone)</div>
+                <div class="module">Data Lake / Storage (AWS S3)</div>
+            </div>
+        </div>
+
+        <!-- AI/ML Layer -->
+        <div class="layer-box half-width ai-ml-layer">
+            <div class="layer-header">AI/ML & ANALYTICS LAYER</div>
+            <div class="module-grid">
+                <div class="module">ML Models</div>
+                <div class="module">NLP Services</div>
+                <div class="module">Analytics Engine</div>
+            </div>
+        </div>
+
+        <!-- Infrastructure & DevOps -->
+        <div class="layer-box full-width devops-layer">
+            <div class="layer-header">INFRASTRUCTURE & DEVOPS</div>
+            <div class="module-grid">
+                <div class="module">Docker Containerization</div>
+                <div class="module">Kubernetes Orchestration</div>
+                <div class="module">CI/CD Pipeline (GitHub Actions)</div>
+                <div class="module">Cloud Platform (AWS/Azure)</div>
+                <div class="module">Monitoring (Prometheus/Grafana)</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
