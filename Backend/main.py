@@ -7,7 +7,6 @@ from models import Base,User,Profile,Grant,Research
 from models import Patent
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
