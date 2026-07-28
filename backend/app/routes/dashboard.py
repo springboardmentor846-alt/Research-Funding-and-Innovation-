@@ -66,7 +66,7 @@ def researcher_dashboard(
     ).first()
 
     return {
-        "Researcher": user.name,
+        "Researcher": user.full_name,
         "Email": user.email,
 
         "Research Profiles": total_profiles,

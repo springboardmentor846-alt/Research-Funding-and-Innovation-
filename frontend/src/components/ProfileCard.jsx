@@ -1,63 +1,108 @@
 import {
-    Avatar,
     Card,
     CardContent,
+    Avatar,
     Typography,
-    Stack
+    TextField,
+    Button,
+    Grid
 } from "@mui/material";
 
-function ProfileCard({ profile }) {
+function ProfileCard({
+    profile,
+    setProfile,
+    onSave
+}) {
 
     return (
 
-        <Card
-            sx={{
-                borderRadius: 4,
-                p: 2
-            }}
-        >
+        <Card>
 
             <CardContent>
 
-                <Stack
-                    spacing={2}
-                    alignItems="center"
+                <Avatar
+                    sx={{
+                        width:70,
+                        height:70,
+                        mb:2,
+                        bgcolor:"#1565C0"
+                    }}
                 >
+                    {profile.full_name?.charAt(0)}
+                </Avatar>
 
-                    <Avatar
-                        sx={{
-                            width: 120,
-                            height: 120,
-                            fontSize: 40
-                        }}
-                    >
+                <Typography
+                    variant="h5"
+                    gutterBottom
+                >
+                    My Profile
+                </Typography>
 
-                        {profile.name?.charAt(0)}
+                <Grid container spacing={2}>
 
-                    </Avatar>
+                    <Grid item xs={12} md={6}>
 
-                    <Typography
-                        variant="h5"
-                        fontWeight="bold"
-                    >
+                        <TextField
+                            fullWidth
+                            label="Full Name"
+                            value={profile.full_name || ""}
+                            onChange={(e)=>
+                                setProfile({
+                                    ...profile,
+                                    full_name:e.target.value
+                                })
+                            }
+                        />
 
-                        {profile.name}
+                    </Grid>
 
-                    </Typography>
+                    <Grid item xs={12} md={6}>
 
-                    <Typography>
+                        <TextField
+                            fullWidth
+                            disabled
+                            label="Email"
+                            value={profile.email || ""}
+                        />
 
-                        {profile.organization}
+                    </Grid>
 
-                    </Typography>
+                    <Grid item xs={12} md={6}>
 
-                    <Typography>
+                        <TextField
+                            fullWidth
+                            label="Organization"
+                            value={profile.organization || ""}
+                            onChange={(e)=>
+                                setProfile({
+                                    ...profile,
+                                    organization:e.target.value
+                                })
+                            }
+                        />
 
-                        {profile.research_domain}
+                    </Grid>
 
-                    </Typography>
+                    <Grid item xs={12} md={6}>
 
-                </Stack>
+                        <TextField
+                            fullWidth
+                            disabled
+                            label="Role"
+                            value={profile.role || ""}
+                        />
+
+                    </Grid>
+
+                </Grid>
+
+                <Button
+                    variant="contained"
+                    sx={{mt:3}}
+                    onClick={onSave}
+                >
+                    Save Changes
+                </Button>
 
             </CardContent>
 

@@ -10,6 +10,8 @@ import Papers from "./pages/Papers";
 import Collaboration from "./pages/Collaboration";
 import TechnologyAI from "./pages/TechnologyAI";
 import Patent from "./pages/Patent";
+import Settings from "./pages/Settings";
+import ResearchIntelligence from "./pages/ResearchIntelligence";
 import Commercialization from "./pages/Commercialization";
 
 function App() {
@@ -70,6 +72,14 @@ function App() {
                 path="/commercialization"
                 element={<Commercialization />}
             />
+            <Route
+    path="/research-intelligence"
+    element={<ResearchIntelligence />}
+/>
+<Route
+    path="/settings"
+    element={<Settings />}
+/>
 
         </Routes>
     );

@@ -27,6 +27,7 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import LogoutIcon from "@mui/icons-material/Logout";
+import InsightsIcon from "@mui/icons-material/Insights";
 
 const drawerWidth = 260;
 
@@ -50,16 +51,17 @@ const menuItems = [
         path: "/funding"
     },
 
+    // NEW RESEARCH INTELLIGENCE PAGE
     {
         text: "Research Intelligence",
-        icon: <SchoolIcon />,
-        path: "/technology-ai"
+        icon: <InsightsIcon />,
+        path: "/research-intelligence"
     },
 
     {
         text: "Patent Analytics",
         icon: <DescriptionIcon />,
-        path: "/papers"
+        path: "/patents"
     },
 
     {
@@ -75,15 +77,17 @@ const menuItems = [
     },
 
     {
-    text: "Commercialization",
-    icon: <RocketLaunchIcon />,
-    path: "/commercialization"
-},
-{
-    text: "Innovation",
-    icon: <AutoAwesomeIcon />,
-    path: "/innovation"
-},
+        text: "Commercialization",
+        icon: <RocketLaunchIcon />,
+        path: "/commercialization"
+    },
+
+    {
+        text: "Innovation",
+        icon: <AutoAwesomeIcon />,
+        path: "/innovation"
+    },
+
     {
         text: "Organization Ranking",
         icon: <BusinessIcon />,
@@ -111,7 +115,6 @@ function Sidebar() {
     const handleLogout = () => {
 
         localStorage.removeItem("token");
-
         localStorage.removeItem("email");
 
         navigate("/login");
@@ -129,11 +132,8 @@ function Sidebar() {
                 "& .MuiDrawer-paper": {
 
                     width: drawerWidth,
-
                     boxSizing: "border-box",
-
                     background: "#13294B",
-
                     color: "white"
 
                 }
@@ -149,17 +149,11 @@ function Sidebar() {
                         variant="h6"
                         fontWeight="bold"
                     >
-
                         RFI Platform
-
                     </Typography>
 
-                    <Typography
-                        variant="caption"
-                    >
-
+                    <Typography variant="caption">
                         Innovation Intelligence
-
                     </Typography>
 
                 </Box>
@@ -181,9 +175,7 @@ function Sidebar() {
                             <ListItemIcon
                                 sx={{ color: "white" }}
                             >
-
                                 {item.icon}
-
                             </ListItemIcon>
 
                             <ListItemText
@@ -209,9 +201,7 @@ function Sidebar() {
                     <ListItemIcon
                         sx={{ color: "white" }}
                     >
-
                         <LogoutIcon />
-
                     </ListItemIcon>
 
                     <ListItemText

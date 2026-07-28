@@ -28,7 +28,7 @@ def startup_dashboard(
     funding_count = db.query(FundingOpportunity).count()
 
     return {
-        "Startup Founder": user.name,
+        "Startup Founder": user.full_name,
         "Organization": user.organization,
         "Email": user.email,
         "Available Funding": funding_count,

@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { Typography, Grid, Box } from "@mui/material";
+import {
+    Typography,
+    Grid,
+    Box,
+    Paper
+} from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 
@@ -17,6 +24,8 @@ import TRLChart from "../components/TRLChart";
 function Dashboard() {
 
     const [data, setData] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -114,7 +123,6 @@ function Dashboard() {
                         title="Average TRL"
                         value={data.overview.average_trl}
                         color="#7C3AED"
-                        
                     />
 
                 </Grid>
@@ -126,6 +134,57 @@ function Dashboard() {
                         value={data.overview.total_funding}
                         color="#dbea0c"
                     />
+
+                </Grid>
+
+            </Grid>
+
+            {/* NEW QUICK ACCESS SECTION */}
+
+            <Grid
+                container
+                spacing={3}
+                mt={3}
+            >
+
+                <Grid size={{ xs: 12, md: 4 }}>
+
+                    <Paper
+                        elevation={4}
+                        sx={{
+                            p: 3,
+                            cursor: "pointer",
+                            borderRadius: 3,
+                            transition: "0.3s",
+                            "&:hover": {
+                                transform: "translateY(-5px)",
+                                boxShadow: 8
+                            }
+                        }}
+                        onClick={() => navigate("/research-intelligence")}
+                    >
+
+                        <Typography
+                            variant="h6"
+                            fontWeight="bold"
+                        >
+
+                            Research Intelligence
+
+                        </Typography>
+
+                        <Typography
+                            mt={1}
+                            color="text.secondary"
+                        >
+
+                            View Research Impact, Technology Readiness,
+                            Commercial Viability and Funding
+                            Attractiveness Analytics.
+
+                        </Typography>
+
+                    </Paper>
 
                 </Grid>
 

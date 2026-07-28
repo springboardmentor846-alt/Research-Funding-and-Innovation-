@@ -3,25 +3,24 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.auth import (
-    verify_token,
-    hash_password,
-    verify_password,
-    create_access_token,
-)
 from app.models.user import User
-from app.schemas.user import (
-    UserRegister,
-    UserLogin,
-    UserUpdate,
-    PasswordUpdate,
-)
 from app.models.research_profile import ResearchProfile
 from app.models.proposal import Proposal
 
-router = APIRouter(
-    tags=["Authentication"]
+from app.schemas.user import (
+    UserCreate,
+    UserLogin,
+    UserResponse
 )
+
+from app.auth import (
+    hash_password,
+    verify_password,
+    create_access_token,
+    verify_token
+)
+
+router = APIRouter(tags=["Authentication"])
 
 
 @router.get("/")
@@ -31,28 +30,25 @@ def home():
     }
 
 
-@router.post("/register")
-def register(
-    user: UserRegister,
-    db: Session = Depends(get_db)
-):
+# ---------------- REGISTER ---------------- #
 
-    existing_user = db.query(User).filter(
+@router.post("/register")
+def register(user: UserCreate, db: Session = Depends(get_db)):
+
+    existing = db.query(User).filter(
         User.email == user.email
     ).first()
 
-    if existing_user:
+    if existing:
         raise HTTPException(
             status_code=400,
             detail="Email already registered"
         )
 
-    hashed_password = hash_password(user.password)
-
     new_user = User(
         full_name=user.full_name,
         email=user.email,
-        password=hashed_password,
+        password=hash_password(user.password),
         organization=user.organization,
         role=user.role
     )
@@ -63,9 +59,17 @@ def register(
 
     return {
         "message": "User Registered Successfully",
-        "user_id": new_user.id
+        "user": {
+            "id": new_user.id,
+            "name": new_user.full_name,
+            "email": new_user.email,
+            "organization": new_user.organization,
+            "role": new_user.role
+        }
     }
 
+
+# ---------------- LOGIN ---------------- #
 
 @router.post("/login")
 def login(
@@ -73,11 +77,11 @@ def login(
     db: Session = Depends(get_db)
 ):
 
-    db_user = db.query(User).filter(
+    user = db.query(User).filter(
         User.email == form_data.username
     ).first()
 
-    if not db_user:
+    if not user:
         raise HTTPException(
             status_code=401,
             detail="Invalid Email"
@@ -85,122 +89,142 @@ def login(
 
     if not verify_password(
         form_data.password,
-        db_user.password
+        user.password
     ):
         raise HTTPException(
             status_code=401,
             detail="Invalid Password"
         )
 
-    access_token = create_access_token(
-        {
-            "sub": db_user.email,
-            "role": db_user.role
-        }
-    )
+    token = create_access_token({
+        "sub": user.email,
+        "role": user.role
+    })
 
     return {
-        "access_token": access_token,
+        "access_token": token,
         "token_type": "bearer"
     }
 
 
+# ---------------- PROFILE ---------------- #
+
 @router.get("/profile")
-def profile(
-    token: dict = Depends(verify_token)
-):
-
-    return {
-        "message": "Profile Access Granted",
-        "user": token
-    }
-
-
-@router.put("/profile")
-def update_profile(
-    profile: UserUpdate,
-    db: Session = Depends(get_db),
-    token: dict = Depends(verify_token)
+def get_profile(
+    token: dict = Depends(verify_token),
+    db: Session = Depends(get_db)
 ):
 
     user = db.query(User).filter(
         User.email == token["sub"]
     ).first()
 
-    if user is None:
+    if not user:
         raise HTTPException(
             status_code=404,
-            detail="User Not Found"
+            detail="User not found"
         )
 
-    user.full_name = profile.full_name
-    user.organization = profile.organization
+    return {
+        "full_name": user.full_name,
+        "email": user.email,
+        "organization": user.organization,
+        "role": user.role
+    }
+
+
+# ---------------- UPDATE PROFILE ---------------- #
+
+@router.put("/profile")
+def update_profile(
+    profile: dict,
+    token: dict = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+
+    user = db.query(User).filter(
+        User.email == token["sub"]
+    ).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+
+    user.full_name = profile.get(
+        "full_name",
+        user.full_name
+    )
+
+    user.organization = profile.get(
+        "organization",
+        user.organization
+    )
 
     db.commit()
     db.refresh(user)
 
     return {
-        "message": "Profile Updated Successfully",
-        "user": {
-            "full_name": user.full_name,
-            "email": user.email,
-            "organization": user.organization,
-            "role": user.role
-        }
+        "message": "Profile Updated Successfully"
     }
 
 
+# ---------------- CHANGE PASSWORD ---------------- #
+
 @router.put("/profile/password")
 def change_password(
-    password: PasswordUpdate,
-    db: Session = Depends(get_db),
-    token: dict = Depends(verify_token)
+    passwords: dict,
+    token: dict = Depends(verify_token),
+    db: Session = Depends(get_db)
 ):
 
     user = db.query(User).filter(
         User.email == token["sub"]
     ).first()
 
-    if user is None:
+    if not user:
         raise HTTPException(
             status_code=404,
-            detail="User Not Found"
+            detail="User not found"
         )
 
     if not verify_password(
-        password.old_password,
+        passwords["old_password"],
         user.password
     ):
         raise HTTPException(
             status_code=400,
-            detail="Old Password is Incorrect"
+            detail="Current Password Incorrect"
         )
 
     user.password = hash_password(
-        password.new_password
+        passwords["new_password"]
     )
 
     db.commit()
 
     return {
-        "message": "Password Changed Successfully"
+        "message": "Password Updated Successfully"
     }
 
 
+# ---------------- DELETE ACCOUNT ---------------- #
+
 @router.delete("/profile")
 def delete_profile(
-    db: Session = Depends(get_db),
-    token: dict = Depends(verify_token)
+    token: dict = Depends(verify_token),
+    db: Session = Depends(get_db)
 ):
 
     user = db.query(User).filter(
         User.email == token["sub"]
     ).first()
 
-    if user is None:
+    if not user:
         raise HTTPException(
             status_code=404,
-            detail="User Not Found"
+            detail="User not found"
         )
 
     db.query(ResearchProfile).filter(
