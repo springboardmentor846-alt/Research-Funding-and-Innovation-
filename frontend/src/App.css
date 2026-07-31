@@ -182,3 +182,1368 @@
     border-right-color: var(--border);
   }
 }
+
+.publication-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.summary-card span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.summary-card p {
+  margin-bottom: 18px;
+}
+
+.publication-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin: 0 0 6px;
+}
+
+.section-heading p {
+  margin: 0;
+}
+
+.discover-grid,
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d9e0ea;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font: inherit;
+  background: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.primary-button,
+.secondary-button,
+.summary-card button,
+.publication-card button {
+  cursor: pointer;
+  border-radius: 7px;
+  padding: 10px 16px;
+  font: inherit;
+}
+
+.primary-button {
+  border: none;
+  background: #2563eb;
+  color: white;
+}
+
+.primary-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.secondary-button,
+.summary-card button,
+.publication-card button {
+  background: white;
+  border: 1px solid #cbd5e1;
+}
+
+.publication-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.publication-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.publication-card h3 {
+  margin: 10px 0;
+}
+
+.publication-type {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eff6ff;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.danger-button {
+  border: 1px solid #fecaca !important;
+}
+
+.empty-state {
+  background: white;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+}
+
+.alert {
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.alert.success {
+  border: 1px solid #bbf7d0;
+}
+
+.alert.error {
+  border: 1px solid #fecaca;
+}
+
+@media (max-width: 900px) {
+
+  .publication-summary-grid,
+  .discover-grid,
+  .form-grid,
+  .publication-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   MY PUBLICATIONS PAGE
+   ============================================================ */
+
+.my-publications-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.my-publications-topbar h1 {
+  margin: 8px 0 6px;
+  font-size: 32px;
+  letter-spacing: -0.7px;
+}
+
+.my-publications-topbar p {
+  margin: 0;
+  color: #64748b;
+  max-width: 650px;
+}
+
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+.back-link-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 24px;
+  color: #315fd4;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-link-button:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   PUBLICATION COUNT
+   ============================================================ */
+
+.publication-count-box {
+  min-width: 150px;
+  padding: 18px 22px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.publication-count-box span {
+  display: block;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.publication-count-box strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 30px;
+  color: #0f172a;
+}
+
+
+/* ============================================================
+   PUBLICATION GRID
+   ============================================================ */
+
+.my-publication-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+
+/* ============================================================
+   PUBLICATION CARD
+   ============================================================ */
+
+.my-publication-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 24px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.my-publication-card:hover {
+  border-color: #cbd5e1;
+
+  box-shadow:
+    0 8px 24px
+    rgba(15, 23, 42, 0.06);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* ============================================================
+   CARD TOP
+   ============================================================ */
+
+.publication-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+
+/* ============================================================
+   PUBLICATION TYPE
+   ============================================================ */
+
+.publication-type {
+  display: inline-flex;
+  padding: 5px 9px;
+  background: #eef4ff;
+  border-radius: 6px;
+  color: #315fd4;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   PDF STATUS
+   ============================================================ */
+
+.pdf-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.pdf-status.available {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.pdf-status.unavailable {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   TITLE / AUTHORS
+   ============================================================ */
+
+.publication-card-title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.publication-authors {
+  margin: 0 0 20px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   DETAILS
+   ============================================================ */
+
+.publication-details {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  padding: 18px 0;
+
+  border-top:
+    1px solid #f1f5f9;
+
+  border-bottom:
+    1px solid #f1f5f9;
+}
+
+.publication-detail span {
+  display: block;
+  margin-bottom: 5px;
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.publication-detail strong {
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   ABSTRACT
+   ============================================================ */
+
+.publication-abstract {
+  padding: 18px 0 0;
+}
+
+.publication-abstract > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.publication-abstract p {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.65;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   PDF PANEL
+   ============================================================ */
+
+.publication-pdf-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  margin-top: 20px;
+
+  padding: 14px 16px;
+
+  background: #f8fafc;
+
+  border:
+    1px solid #e2e8f0;
+
+  border-radius: 9px;
+}
+
+.publication-pdf-panel.has-pdf {
+  background: #f8fbff;
+  border-color: #dbeafe;
+}
+
+.publication-pdf-panel strong {
+  display: block;
+  color: #1e293b;
+  font-size: 12px;
+}
+
+.publication-pdf-panel p {
+  margin: 3px 0 0;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.pdf-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   CARD FOOTER
+   ============================================================ */
+
+.publication-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 18px;
+  padding-top: 16px;
+
+  border-top:
+    1px solid #f1f5f9;
+}
+
+
+/* ============================================================
+   TEXT ACTION
+   ============================================================ */
+
+.text-action-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #315fd4;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.text-action-button:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   SMALL BUTTONS
+   ============================================================ */
+
+.primary-button.small,
+.secondary-button.small {
+  padding: 8px 12px;
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.publications-empty-state {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 50px;
+  text-align: center;
+
+  background: white;
+
+  border:
+    1px solid #e2e8f0;
+
+  border-radius: 14px;
+}
+
+.empty-document-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  margin:
+    0 auto 18px;
+
+  background: #eef4ff;
+  border-radius: 12px;
+
+  color: #315fd4;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.publications-empty-state h2 {
+  margin-bottom: 8px;
+}
+
+.publications-empty-state p {
+  margin-bottom: 22px;
+  color: #64748b;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.publications-loading {
+  padding: 80px 20px;
+  text-align: center;
+  color: #64748b;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+  .my-publication-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .my-publications-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .publication-count-box {
+    text-align: left;
+  }
+
+  .publication-details {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-pdf-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pdf-buttons {
+    flex-direction: column;
+  }
+
+  .publication-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
+
+/* ============================================================
+   PUBLICATIONS MODULE
+   FINAL VERSION
+   ============================================================ */
+
+/* Main page container */
+
+.publications-page {
+  width: min(100% - 48px, 1120px);
+  margin: 0 auto;
+  padding: 38px 0 64px;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.publications-header {
+  margin: 0 0 26px;
+}
+
+.publications-eyebrow {
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.publications-header h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 34px;
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+}
+
+.publications-header p {
+  max-width: 720px;
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+.publication-alert {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.publication-alert.success {
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.publication-alert.error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+
+.publication-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.publication-stat-card {
+  position: relative;
+  min-width: 0;
+  padding: 24px 25px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(15, 23, 42, 0.045);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.publication-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #6366f1);
+}
+
+.publication-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+.publication-stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.publication-stat-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.publication-stat-card h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 34px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.publication-stat-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 11px;
+  font-size: 18px;
+}
+
+.publication-stat-card > p {
+  min-height: 40px;
+  margin: 14px 0 18px;
+  color: #64748b;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   MAIN CARDS
+   ============================================================ */
+
+.publication-section {
+  width: 100%;
+  margin: 0 0 22px;
+  padding: 26px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(15, 23, 42, 0.04);
+}
+
+.publication-section-header {
+  margin-bottom: 22px;
+}
+
+.publication-section-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: #2563eb;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.publication-section-header h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 720;
+  line-height: 1.25;
+  letter-spacing: -0.25px;
+}
+
+.publication-section-header p {
+  max-width: 720px;
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   OPENALEX DISCOVERY
+   ============================================================ */
+
+.publication-discovery-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.75fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.publication-discovery-action {
+  display: flex;
+  align-items: center;
+  margin-top: 17px;
+}
+
+
+/* ============================================================
+   PUBLICATION FORM
+   ============================================================ */
+
+.publication-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.publication-form-group {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* IMPORTANT: matches your JSX */
+.publication-full-width {
+  grid-column: 1 / -1;
+}
+
+.publication-form-group label {
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.required {
+  margin-left: 2px;
+  color: #dc2626;
+}
+
+.optional-label {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 7px;
+  padding: 2px 6px;
+  color: #64748b;
+  background: #f1f5f9;
+  border-radius: 10px;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.publication-form-group input,
+.publication-form-group select,
+.publication-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 12.5px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.publication-form-group input,
+.publication-form-group select {
+  min-height: 42px;
+}
+
+.publication-form-group textarea {
+  min-height: 115px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.publication-form-group input:hover,
+.publication-form-group select:hover,
+.publication-form-group textarea:hover {
+  border-color: #94a3b8;
+}
+
+.publication-form-group input:focus,
+.publication-form-group select:focus,
+.publication-form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+.publication-form-group input::placeholder,
+.publication-form-group textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   PDF UPLOAD
+   ============================================================ */
+
+.publication-pdf-upload {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 17px 18px;
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+  border-radius: 10px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.publication-pdf-upload:hover {
+  background: #f8fbff;
+  border-color: #2563eb;
+}
+
+.publication-pdf-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #1d4ed8;
+  background: #dbeafe;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.publication-pdf-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.publication-pdf-content > strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #1e293b;
+  font-size: 12px;
+}
+
+.publication-pdf-content > p {
+  margin: 0 0 10px;
+  color: #64748b;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+.publication-pdf-content input[type="file"] {
+  min-height: auto;
+  padding: 7px;
+  background: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.publication-selected-file {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+  color: #475569;
+  font-size: 10px;
+}
+
+.publication-selected-file strong {
+  color: #166534;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.publication-primary-button,
+.publication-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.publication-primary-button {
+  min-height: 42px;
+  padding: 0 18px;
+  color: #ffffff;
+  font-size: 12px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  border: 1px solid #2563eb;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.publication-primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+.publication-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.publication-secondary-button {
+  min-height: 39px;
+  padding: 0 15px;
+  color: #1d4ed8;
+  font-size: 11.5px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.publication-secondary-button:hover {
+  transform: translateY(-1px);
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.publication-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+
+/* ============================================================
+   MY PUBLICATIONS PAGE
+   ============================================================ */
+
+.my-publications-page,
+.research-library-page {
+  width: min(100% - 48px, 1120px);
+  margin: 0 auto;
+  padding: 38px 0 64px;
+  box-sizing: border-box;
+}
+
+.my-publications-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.my-publications-count {
+  padding: 7px 12px;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 700;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+}
+
+
+/* ============================================================
+   PUBLICATION LIST
+   ============================================================ */
+
+.publication-list,
+.research-library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.publication-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 220px;
+  padding: 22px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+}
+
+.publication-type {
+  align-self: flex-start;
+  margin-bottom: 11px;
+  padding: 5px 9px;
+  color: #1d4ed8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+}
+
+.publication-card h3 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.publication-card p {
+  margin: 4px 0;
+  color: #64748b;
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.publication-card p strong {
+  color: #334155;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 17px;
+}
+
+.card-actions button,
+.publication-pdf-button {
+  min-height: 35px;
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.card-actions button {
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.card-actions button:hover {
+  background: #dbeafe;
+}
+
+.card-actions .danger-button {
+  color: #b91c1c;
+  background: #ffffff;
+  border-color: #fecaca;
+}
+
+.card-actions .danger-button:hover {
+  background: #fef2f2;
+}
+
+.publication-pdf-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+
+.publication-pdf-button:hover {
+  background: #d1fae5;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.empty-state {
+  padding: 55px 30px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.empty-state p {
+  max-width: 470px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   IMPORTANT:
+   We DO NOT control sidebar width or dashboard margin here.
+   DashboardLayout handles that.
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .publications-page,
+  .my-publications-page,
+  .research-library-page {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 900px) {
+  .publication-discovery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-list,
+  .research-library-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .publications-page,
+  .my-publications-page,
+  .research-library-page {
+    width: calc(100% - 28px);
+    padding-top: 28px;
+    padding-bottom: 45px;
+  }
+
+  .publications-header h1 {
+    font-size: 29px;
+  }
+
+  .publication-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-full-width,
+  .publication-form-actions {
+    grid-column: auto;
+  }
+
+  .publication-section {
+    padding: 20px;
+  }
+
+  .publication-pdf-upload {
+    align-items: flex-start;
+  }
+
+  .publication-form-actions {
+    justify-content: stretch;
+  }
+
+  .publication-form-actions .publication-primary-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .publication-pdf-upload {
+    flex-direction: column;
+  }
+
+  .publication-stat-card {
+    padding: 21px;
+  }
+
+  .publication-section {
+    padding: 18px;
+  }
+}

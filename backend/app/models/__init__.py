@@ -10,3 +10,7 @@ from app.models.publication import Publication
 from app.models.patent import Patent
 
 from app.models.funding import FundingOpportunity
+
+from app.models.researcher_imported_publication import (
+    ResearcherImportedPublication,
+)

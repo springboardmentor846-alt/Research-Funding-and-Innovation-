@@ -23,9 +23,22 @@ class Publication(Base):
         index=True
     )
 
-    research_profile_id: Mapped[int] = mapped_column(
-        ForeignKey("research_profiles.id"),
-        nullable=False
+    # ---------------------------------------------------------
+    # OWN PUBLICATION
+    # ---------------------------------------------------------
+    # If this has a value, the publication belongs to that
+    # researcher's personal publication list.
+    #
+    # External OpenAlex publications MUST keep this NULL.
+    # ---------------------------------------------------------
+
+    research_profile_id: Mapped[int | None] = mapped_column(
+        ForeignKey(
+            "research_profiles.id",
+            ondelete="CASCADE"
+        ),
+        nullable=True,
+        index=True
     )
 
     title: Mapped[str] = mapped_column(
@@ -74,7 +87,16 @@ class Publication(Base):
         nullable=True
     )
 
-    # -------- AI & Research Intelligence --------
+    # -------- Uploaded Publication Document --------
+
+    pdf_path: Mapped[str | None] = mapped_column(
+        String(1000),
+        nullable=True
+    )
+
+    # ---------------------------------------------------------
+    # EXTERNAL / RESEARCH INTELLIGENCE DATA
+    # ---------------------------------------------------------
 
     openalex_id: Mapped[str | None] = mapped_column(
         String(255),

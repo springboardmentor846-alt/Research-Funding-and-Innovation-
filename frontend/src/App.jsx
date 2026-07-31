@@ -7,29 +7,41 @@ import {
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
 import Dashboard from "./pages/Dashboard";
+
 import ResearchProfile from "./pages/ResearchProfile";
 import ResearchDomains from "./pages/ResearchDomains";
 import ResearchKeywords from "./pages/ResearchKeywords";
 import TechnologyAreas from "./pages/TechnologyAreas";
 import OrganizationInformation from "./pages/OrganizationInformation";
+
 import Publications from "./pages/Publications";
+import MyPublications from "./pages/MyPublications";
+import ResearchLibrary from "./pages/ResearchLibrary";
+
 import Patents from "./pages/Patents";
+
 import Funding from "./pages/Funding";
 import GrantPrediction from "./pages/GrantPrediction";
+
 import PatentLandscape from "./pages/PatentLandscape";
 import ResearchTrends from "./pages/ResearchTrends";
-
-
 
 import ProtectedLayout from "./components/ProtectedLayout";
 import RoleProtectedRoute from "./components/RoleProtectedRoute";
 
+
 function App() {
   return (
     <BrowserRouter>
+
       <Routes>
-        {/* Root route */}
+
+        {/* =====================================================
+            ROOT
+        ===================================================== */}
+
         <Route
           path="/"
           element={
@@ -44,7 +56,11 @@ function App() {
           }
         />
 
-        {/* Public routes */}
+
+        {/* =====================================================
+            PUBLIC ROUTES
+        ===================================================== */}
+
         <Route
           path="/login"
           element={<Login />}
@@ -55,69 +71,121 @@ function App() {
           element={<Register />}
         />
 
-        {/* Authenticated routes */}
-<Route element={<ProtectedLayout />}>
-  <Route
-    path="/dashboard"
-    element={<Dashboard />}
-  />
 
-  <Route
-    element={
-      <RoleProtectedRoute
-        allowedRoles={["researcher"]}
-      />
-    }
-  >
+        {/* =====================================================
+            AUTHENTICATED ROUTES
+        ===================================================== */}
 
-    <Route path="/profile" element={<ResearchProfile />} />
-    <Route path="/profile/domains" element={<ResearchDomains />} />
-    <Route path="/profile/keywords" element={<ResearchKeywords />} />
-    <Route path="/profile/technology-areas" element={<TechnologyAreas />} />
-    <Route path="/profile/organization" element={<OrganizationInformation />} />
-    <Route path="/profile/publications" element={<Publications />} />
-    <Route path="/profile/patents" element={<Patents />} />
+        <Route element={<ProtectedLayout />}>
 
-    {/* NEW ROUTES */}
+          {/* Dashboard */}
 
-    <Route
-      path="/funding"
-      element={<Funding />}
-    />
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
 
-    <Route
-      path="/grant-prediction/:fundingId"
-      element={<GrantPrediction />}
-    />
 
-    <Route
-      path="/patent-landscape"
-      element={<PatentLandscape />}
-    />
+          {/* =================================================
+              RESEARCHER ROUTES
+          ================================================= */}
 
-    <Route
-      path="/research-trends"
-      element={<ResearchTrends />}
-    />
+          <Route
+            element={
+              <RoleProtectedRoute
+                allowedRoles={["researcher"]}
+              />
+            }
+          >
 
-  </Route>
-</Route>
+            {/* ---------------- PROFILE ---------------- */}
 
-<Route
-  path="*"
-  element={
-    <Navigate
-      to={
-        localStorage.getItem("access_token")
-          ? "/dashboard"
-          : "/login"
-      }
-      replace
-    />
-  }
-/>
+            <Route
+              path="/profile"
+              element={<ResearchProfile />}
+            />
 
-        {/* Unknown routes */}
+            <Route
+              path="/profile/domains"
+              element={<ResearchDomains />}
+            />
+
+            <Route
+              path="/profile/keywords"
+              element={<ResearchKeywords />}
+            />
+
+            <Route
+              path="/profile/technology-areas"
+              element={<TechnologyAreas />}
+            />
+
+            <Route
+              path="/profile/organization"
+              element={<OrganizationInformation />}
+            />
+
+
+            {/* ---------------- PUBLICATIONS ---------------- */}
+
+            <Route
+              path="/profile/publications"
+              element={<Publications />}
+            />
+
+            <Route
+              path="/profile/publications/mine"
+              element={<MyPublications />}
+            />
+
+            <Route
+              path="/profile/publications/library"
+              element={<ResearchLibrary />}
+            />
+
+
+            {/* ---------------- PATENTS ---------------- */}
+
+            <Route
+              path="/profile/patents"
+              element={<Patents />}
+            />
+
+
+            {/* ---------------- FUNDING ---------------- */}
+
+            <Route
+              path="/funding"
+              element={<Funding />}
+            />
+
+            <Route
+              path="/grant-prediction/:fundingId"
+              element={<GrantPrediction />}
+            />
+
+
+            {/* ---------------- ANALYTICS ---------------- */}
+
+            <Route
+              path="/patent-landscape"
+              element={<PatentLandscape />}
+            />
+
+            <Route
+              path="/research-trends"
+              element={<ResearchTrends />}
+            />
+
+          </Route>
+
+        </Route>
+
+
+        {/* =====================================================
+            UNKNOWN ROUTE
+        ===================================================== */}
+
         <Route
           path="*"
           element={
@@ -132,28 +200,11 @@ function App() {
           }
         />
 
-        <Route
-    path="/funding"
-    element={<Funding />}
-/>
-
-<Route
-    path="/grant-prediction/:fundingId"
-    element={<GrantPrediction />}
-/>
-
-<Route
-    path="/patent-landscape"
-    element={<PatentLandscape />}
-/>
-
-<Route
-    path="/research-trends"
-    element={<ResearchTrends />}
-/>
       </Routes>
+
     </BrowserRouter>
   );
 }
+
 
 export default App;
