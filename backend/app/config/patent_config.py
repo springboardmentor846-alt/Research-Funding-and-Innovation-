@@ -1,0 +1,1 @@
+PATENTSVIEW_BASE_URL = "https://search.patentsview.org/api/v1"

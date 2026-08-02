@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from app.database.base import Base
-
+from sqlalchemy.orm import relationship, Session
 class User(Base):
     __tablename__ = "users"
 
@@ -15,3 +15,8 @@ class User(Base):
     role = Column(String, nullable=False)
 
     is_verified = Column(Boolean, default=False)
+    vault_files = relationship(
+    "InnovationVault",
+    back_populates="user",
+    cascade="all, delete-orphan"
+)

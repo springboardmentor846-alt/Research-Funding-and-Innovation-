@@ -12,6 +12,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from app.database.db import Base
+from sqlalchemy.orm import relationship
 
 
 class PortfolioCategory(str, Enum):
@@ -75,5 +76,16 @@ class InnovationPortfolio(Base):
     "PatentDetail",
     back_populates="portfolio",
     uselist=False,
+    cascade="all, delete-orphan"
+)
+    prototype_detail = relationship(
+    "PrototypeDetail",
+    back_populates="portfolio",
+    uselist=False,
+    cascade="all, delete-orphan"
+)
+    vault_files = relationship(
+    "InnovationVault",
+    back_populates="portfolio",
     cascade="all, delete-orphan"
 )

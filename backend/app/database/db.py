@@ -22,4 +22,16 @@ def get_db():
         yield db
     finally:
         db.close()
+        # Import all models
+from app.models.user import User
+from app.models.innovation_portfolio import InnovationPortfolio
+from app.models.project_detail import ProjectDetail
+from app.models.research_paper_detail import ResearchPaperDetail
+from app.models.patent_detail import PatentDetail
+from app.models.prototype_detail import PrototypeDetail
+from app.models.innovation_vault import InnovationVault
+from app.models.patent_bookmark import PatentBookmark
+
+# Create all database tables
+Base.metadata.create_all(bind=engine)
        
