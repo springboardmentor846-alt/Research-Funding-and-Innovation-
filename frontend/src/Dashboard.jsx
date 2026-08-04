@@ -22,8 +22,7 @@ function Dashboard({ token, onLogout }) {
   const [allFunding, setAllFunding] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [profileDomains, setProfileDomains] = useState("");
-  const [pubCount, setPubCount] = useState(null);
-  const [patentCount, setPatentCount] = useState(null);
+  const [openGroups, setOpenGroups] = useState(["workspace", "research-group", "patents-group", "insights-group"]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -87,28 +86,6 @@ function Dashboard({ token, onLogout }) {
     fetchProfileDomains();
   }, [token, funding]);
 
-  useEffect(() => {
-    const fetchCounts = async () => {
-      try {
-        const pubRes = await axios.get("http://127.0.0.1:8000/api/profile/publications", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setPubCount(pubRes.data.length);
-      } catch (err) {
-        setPubCount(0);
-      }
-      try {
-        const patRes = await axios.get("http://127.0.0.1:8000/api/profile/patents", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setPatentCount(patRes.data.length);
-      } catch (err) {
-        setPatentCount(0);
-      }
-    };
-    fetchCounts();
-  }, [token]);
-
   const getMatchInfo = (fundingItem) => {
     if (!profileDomains || !fundingItem.domains) return null;
     const userKw = profileDomains
@@ -152,61 +129,122 @@ function Dashboard({ token, onLogout }) {
     return role.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
-  const tabs = [
+  const tabGroups = [
     {
-      id: "overview",
-      label: "Overview",
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="3" width="7" height="9" rx="1.5" />
-          <rect x="14" y="3" width="7" height="5" rx="1.5" />
-          <rect x="14" y="12" width="7" height="9" rx="1.5" />
-          <rect x="3" y="16" width="7" height="5" rx="1.5" />
-        </svg>
-      ),
+      id: "workspace",
+      label: "Workspace",
+      items: [
+        {
+          id: "overview",
+          label: "Overview",
+          color: "#2E5EAA",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="3" width="7" height="9" rx="1.5" />
+              <rect x="14" y="3" width="7" height="5" rx="1.5" />
+              <rect x="14" y="12" width="7" height="9" rx="1.5" />
+              <rect x="3" y="16" width="7" height="5" rx="1.5" />
+            </svg>
+          ),
+        },
+      ],
     },
     {
-      id: "research",
+      id: "research-group",
       label: "Research",
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-        </svg>
-      ),
+      items: [
+        {
+          id: "research-profile",
+          label: "Profile",
+          color: "#1C8C7A",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          ),
+        },
+        {
+          id: "research-trends",
+          label: "Trends",
+          color: "#1C8C7A",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 17l6-6 4 4 8-8" />
+              <path d="M15 7h6v6" />
+            </svg>
+          ),
+        },
+      ],
     },
     {
-      id: "patents",
+      id: "patents-group",
       label: "Patents",
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <path d="M14 2v6h6" />
-        </svg>
-      ),
+      items: [
+        {
+          id: "patents",
+          label: "Landscape",
+          color: "#C9862B",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+            </svg>
+          ),
+        },
+      ],
     },
     {
-      id: "innovation",
-      label: "Innovation",
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M9 18h6" />
-          <path d="M10 22h4" />
-          <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-2.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" />
-        </svg>
-      ),
-    },
-    {
-      id: "funding",
-      label: "Funding",
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.2 2.5-2.2s2.5.8 2.5 2c0 1.5-1.3 1.9-2.5 2.3-1.3.4-2.5.9-2.5 2.4 0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2.2" />
-        </svg>
-      ),
+      id: "insights-group",
+      label: "Insights",
+      items: [
+        {
+          id: "tech-intelligence",
+          label: "Technology",
+          color: "#B0479B",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18h6" />
+              <path d="M10 22h4" />
+              <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-2.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" />
+            </svg>
+          ),
+        },
+        {
+          id: "commercialization",
+          label: "Commercialization",
+          color: "#B0479B",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 3v18h18" />
+              <path d="M18 9l-5 5-4-4-4 4" />
+            </svg>
+          ),
+        },
+        {
+          id: "funding",
+          label: "Funding",
+          color: "#2E5EAA",
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.2 2.5-2.2s2.5.8 2.5 2c0 1.5-1.3 1.9-2.5 2.3-1.3.4-2.5.9-2.5 2.4 0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2.2" />
+            </svg>
+          ),
+        },
+      ],
     },
   ];
+
+  const handleGroupClick = (groupId) => {
+    setOpenGroups((prev) =>
+      prev.includes(groupId) ? prev.filter((g) => g !== groupId) : [...prev, groupId]
+    );
+  };
+
+  const handleItemClick = (groupId, itemId) => {
+    setActiveTab(itemId);
+  };
 
   return (
     <div className="dash-page">
@@ -226,16 +264,54 @@ function Dashboard({ token, onLogout }) {
 
       <div className="dash-body">
         <div className="dash-sidebar">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`sidebar-item ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <span className="sidebar-icon">{tab.icon}</span>
-              {tab.label}
-            </button>
-          ))}
+          <div className="sidebar-groups-wrap">
+            {tabGroups.map((group) => {
+              const isOpen = openGroups.includes(group.id);
+              const hasActiveChild = group.items.some((item) => item.id === activeTab);
+              return (
+                <div className="sidebar-group" key={group.id}>
+                  <button
+                    className={`sidebar-group-header ${isOpen ? "open" : ""} ${hasActiveChild ? "has-active" : ""}`}
+                    onClick={() => handleGroupClick(group.id)}
+                  >
+                    <span>{group.label}</span>
+                    <span className={`sidebar-chevron ${isOpen ? "rotated" : ""}`}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <div className={`sidebar-group-items ${isOpen ? "expanded" : "collapsed"}`}>
+                    {group.items.map((item) => (
+                      <button
+                        key={item.id}
+                        className={`sidebar-item ${activeTab === item.id ? "active" : ""}`}
+                        onClick={() => handleItemClick(group.id, item.id)}
+                      >
+                        <span className="sidebar-icon" style={{ color: item.color }}>
+                          {item.icon}
+                        </span>
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {profile && (
+            <div className="sidebar-footer">
+              <div className="sidebar-footer-avatar">
+                {profile.email.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <div className="sidebar-footer-name">{profile.email.split("@")[0]}</div>
+                <div className="sidebar-footer-role">{formatRole(profile.role)}</div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="dash-main">
@@ -248,32 +324,10 @@ function Dashboard({ token, onLogout }) {
 
           {activeTab === "overview" && (
             <>
-              <div className="stats-strip">
-                <div className="stat-box">
-                  <span className="stat-number">{pubCount === null ? "—" : pubCount}</span>
-                  <span className="stat-label">Publications</span>
-                </div>
-                <div className="stat-box">
-                  <span className="stat-number">{patentCount === null ? "—" : patentCount}</span>
-                  <span className="stat-label">Patents</span>
-                </div>
-                <div className="stat-box">
-                  <span className="stat-number">{funding.length}</span>
-                  <span className="stat-label">Funding Matches</span>
-                </div>
-              </div>
-
               {profile && (
                 <div className="dash-card">
-                  <div className="profile-header-row">
-                    <div className="profile-avatar">
-                      {profile.email.charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                      <h3 style={{ marginBottom: "2px" }}>Your Profile</h3>
-                      <p className="dash-card-subtitle" style={{ marginBottom: 0 }}>Account details</p>
-                    </div>
-                  </div>
+                  <h3>Your Profile</h3>
+                  <p className="dash-card-subtitle">Account details</p>
                   <p><strong>Email:</strong> {profile.email}</p>
                   <p><strong>Role:</strong> {formatRole(profile.role)}</p>
                 </div>
@@ -287,10 +341,12 @@ function Dashboard({ token, onLogout }) {
             </>
           )}
 
-          {activeTab === "research" && (
-            <>
-              <ResearchProfileForm token={token} onProfileSaved={fetchFunding} />
+          {activeTab === "research-profile" && (
+            <ResearchProfileForm token={token} onProfileSaved={fetchFunding} />
+          )}
 
+          {activeTab === "research-trends" && (
+            <>
               <div className="dash-card">
                 <h3>Publication Trend</h3>
                 <p className="dash-card-subtitle">Your research output over time</p>
@@ -333,20 +389,20 @@ function Dashboard({ token, onLogout }) {
             </>
           )}
 
-          {activeTab === "innovation" && (
-            <>
-              <div className="dash-card">
-                <h3>Technology Intelligence</h3>
-                <p className="dash-card-subtitle">Cross-domain technology maturity — research + patents combined</p>
-                <TechnologyIntelligence />
-              </div>
+          {activeTab === "tech-intelligence" && (
+            <div className="dash-card">
+              <h3>Technology Intelligence</h3>
+              <p className="dash-card-subtitle">Cross-domain technology maturity — research + patents combined</p>
+              <TechnologyIntelligence />
+            </div>
+          )}
 
-              <div className="dash-card">
-                <h3>Commercialization Recommendations</h3>
-                <p className="dash-card-subtitle">Actionable next steps based on your innovation profile</p>
-                <CommercializationRecommendations token={token} />
-              </div>
-            </>
+          {activeTab === "commercialization" && (
+            <div className="dash-card">
+              <h3>Commercialization Recommendations</h3>
+              <p className="dash-card-subtitle">Actionable next steps based on your innovation profile</p>
+              <CommercializationRecommendations token={token} />
+            </div>
           )}
 
           {activeTab === "funding" && (
