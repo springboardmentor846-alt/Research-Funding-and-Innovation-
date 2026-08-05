@@ -14,3 +14,5 @@ from app.models.funding import FundingOpportunity
 from app.models.researcher_imported_publication import (
     ResearcherImportedPublication,
 )
+
+from .startup import Startup

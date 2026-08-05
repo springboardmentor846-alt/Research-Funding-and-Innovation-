@@ -16,6 +16,9 @@ from app.routers import crossref
 from app.routers import dashboard
 from app.routers import trends
 from app.routers import patent_landscape
+from app.routers import research_trends
+from app.routers import startup
+
 
 
 app = FastAPI()
@@ -42,7 +45,8 @@ app.include_router(trends.router)
 app.include_router(
     patent_landscape.router
 )
-
+app.include_router(research_trends.router)
+app.include_router(startup.router)
 
 
 @app.get("/")

@@ -6,10 +6,11 @@ function Register() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    full_name: "",
-    email: "",
-    password: "",
-  });
+  full_name: "",
+  email: "",
+  password: "",
+  role: "researcher",
+});
 
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -168,103 +169,147 @@ function Register() {
             </div>
           )}
 
-          <form
-            onSubmit={handleSubmit}
-            className="auth-professional-form"
-          >
-            <div className="auth-field">
-              <label htmlFor="full_name">
-                Full name
-              </label>
+<form
+  onSubmit={handleSubmit}
+  className="auth-professional-form"
+>
+  {/* Full Name */}
 
-              <div className="auth-input-wrapper">
-                <span className="auth-input-symbol">
-                  N
-                </span>
+  <div className="auth-field">
+    <label htmlFor="full_name">
+      Full name
+    </label>
 
-                <input
-                  id="full_name"
-                  type="text"
-                  name="full_name"
-                  placeholder="Enter your full name"
-                  value={formData.full_name}
-                  onChange={handleChange}
-                  autoComplete="name"
-                  minLength="2"
-                  required
-                />
-              </div>
-            </div>
+    <div className="auth-input-wrapper">
+      <span className="auth-input-symbol">
+        N
+      </span>
 
-            <div className="auth-field">
-              <label htmlFor="email">
-                Email address
-              </label>
+      <input
+        id="full_name"
+        type="text"
+        name="full_name"
+        placeholder="Enter your full name"
+        value={formData.full_name}
+        onChange={handleChange}
+        autoComplete="name"
+        minLength="2"
+        required
+      />
+    </div>
+  </div>
 
-              <div className="auth-input-wrapper">
-                <span className="auth-input-symbol">
-                  @
-                </span>
+  {/* Email */}
 
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="name@organization.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  autoComplete="email"
-                  required
-                />
-              </div>
-            </div>
+  <div className="auth-field">
+    <label htmlFor="email">
+      Email address
+    </label>
 
-            <div className="auth-field">
-              <label htmlFor="password">
-                Password
-              </label>
+    <div className="auth-input-wrapper">
+      <span className="auth-input-symbol">
+        @
+      </span>
 
-              <div className="auth-input-wrapper">
-                <span className="auth-input-symbol">
-                  •
-                </span>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="name@organization.com"
+        value={formData.email}
+        onChange={handleChange}
+        autoComplete="email"
+        required
+      />
+    </div>
+  </div>
 
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Create a secure password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  autoComplete="new-password"
-                  minLength="8"
-                  required
-                />
-              </div>
+  {/* Password */}
 
-              <span className="auth-field-help">
-                Use at least 8 characters.
-              </span>
-            </div>
+  <div className="auth-field">
+    <label htmlFor="password">
+      Password
+    </label>
 
-            <button
-              type="submit"
-              className="auth-submit-btn"
-              disabled={loading}
-            >
-              <span>
-                {loading
-                  ? "Creating account..."
-                  : "Create researcher account"}
-              </span>
+    <div className="auth-input-wrapper">
+      <span className="auth-input-symbol">
+        •
+      </span>
 
-              {!loading && (
-                <span className="auth-button-arrow">
-                  →
-                </span>
-              )}
-            </button>
-          </form>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Create a secure password"
+        value={formData.password}
+        onChange={handleChange}
+        autoComplete="new-password"
+        minLength="8"
+        required
+      />
+    </div>
+
+    <span className="auth-field-help">
+      Use at least 8 characters.
+    </span>
+  </div>
+
+  {/* Role */}
+
+  <div className="auth-field">
+    <label htmlFor="role">
+      Register As
+    </label>
+
+    <div className="auth-input-wrapper auth-select-wrapper">
+
+      <span className="auth-input-symbol">
+        👤
+      </span>
+
+      <select
+        id="role"
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+        className="auth-select"
+        required
+      >
+        <option value="researcher">
+          Researcher
+        </option>
+
+        <option value="startup_founder">
+          Startup Founder
+        </option>
+
+        <option value="innovation_manager">
+          Innovation Manager
+        </option>
+
+      </select>
+
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    className="auth-submit-btn"
+    disabled={loading}
+  >
+    <span>
+      {loading
+        ? "Creating account..."
+        : "Create Account"}
+    </span>
+
+    {!loading && (
+      <span className="auth-button-arrow">
+        →
+      </span>
+    )}
+  </button>
+</form>
 
           <div className="auth-divider">
             <span>Already registered?</span>

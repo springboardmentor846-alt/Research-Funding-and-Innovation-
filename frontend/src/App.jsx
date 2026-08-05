@@ -5,61 +5,92 @@ import {
   Navigate,
 } from "react-router-dom";
 
+// Public
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-import Dashboard from "./pages/Dashboard";
+// Shared
+import ProtectedLayout from "./components/shared/ProtectedLayout";
+import RoleProtectedRoute from "./components/shared/RoleProtectedRoute";
 
-import ResearchProfile from "./pages/ResearchProfile";
-import ResearchDomains from "./pages/ResearchDomains";
-import ResearchKeywords from "./pages/ResearchKeywords";
-import TechnologyAreas from "./pages/TechnologyAreas";
-import OrganizationInformation from "./pages/OrganizationInformation";
+// Layouts
+import ResearcherLayout from "./components/researcher/ResearcherLayout";
+import StartupLayout from "./components/startup/StartupLayout";
+import ManagerLayout from "./components/manager/ManagerLayout";
 
-import Publications from "./pages/Publications";
-import MyPublications from "./pages/MyPublications";
-import ResearchLibrary from "./pages/ResearchLibrary";
+// ================= RESEARCHER =================
 
-import Patents from "./pages/Patents";
+import Dashboard from "./pages/researcher/Dashboard";
 
-import Funding from "./pages/Funding";
-import GrantPrediction from "./pages/GrantPrediction";
+import ResearchProfile from "./pages/researcher/ResearchProfile";
+import ResearchDomains from "./pages/researcher/ResearchDomains";
+import ResearchKeywords from "./pages/researcher/ResearchKeywords";
+import TechnologyAreas from "./pages/researcher/TechnologyAreas";
+import OrganizationInformation from "./pages/researcher/OrganizationInformation";
 
-import PatentLandscape from "./pages/PatentLandscape";
-import ResearchTrends from "./pages/ResearchTrends";
+import Publications from "./pages/researcher/Publications";
+import MyPublications from "./pages/researcher/MyPublications";
+import ResearchLibrary from "./pages/researcher/ResearchLibrary";
 
-import ProtectedLayout from "./components/ProtectedLayout";
-import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import Patents from "./pages/researcher/Patents";
 
+import Funding from "./pages/researcher/Funding";
+import GrantPrediction from "./pages/researcher/GrantPrediction";
+
+import PatentLandscape from "./pages/researcher/PatentLandscape";
+import ResearchTrends from "./pages/researcher/ResearchTrends";
+
+// ================= STARTUP =================
+
+import StartupDashboard from "./pages/startup/StartupDashboard";
+import StartupProfile from "./pages/startup/StartupProfile";
+
+import FindResearchers from "./pages/startup/FindResearchers";
+import CollaborationRequests from "./pages/startup/CollaborationRequests";
+import StartupFunding from "./pages/startup/Funding";
+import InnovationScore from "./pages/startup/InnovationScore";
+
+// ================= MANAGER =================
+
+import InnovationManagerDashboard from "./pages/manager/InnovationManagerDashboard";
 
 function App() {
+
+  const token = localStorage.getItem("access_token");
+  const role = localStorage.getItem("role");
+
+  const defaultRoute = () => {
+
+    if (!token) return "/login";
+
+    switch (role) {
+
+      case "researcher":
+        return "/dashboard";
+
+      case "startup_founder":
+        return "/startup/dashboard";
+
+      case "innovation_manager":
+        return "/manager/dashboard";
+
+      default:
+        return "/login";
+    }
+  };
+
   return (
+
     <BrowserRouter>
 
       <Routes>
 
-        {/* =====================================================
-            ROOT
-        ===================================================== */}
+        {/* ---------------- PUBLIC ---------------- */}
 
         <Route
           path="/"
-          element={
-            <Navigate
-              to={
-                localStorage.getItem("access_token")
-                  ? "/dashboard"
-                  : "/login"
-              }
-              replace
-            />
-          }
+          element={<Navigate to={defaultRoute()} replace />}
         />
-
-
-        {/* =====================================================
-            PUBLIC ROUTES
-        ===================================================== */}
 
         <Route
           path="/login"
@@ -71,24 +102,15 @@ function App() {
           element={<Register />}
         />
 
-
         {/* =====================================================
-            AUTHENTICATED ROUTES
+                AUTHENTICATED
         ===================================================== */}
 
         <Route element={<ProtectedLayout />}>
 
-          {/* Dashboard */}
-
-          <Route
-            path="/dashboard"
-            element={<Dashboard />}
-          />
-
-
-          {/* =================================================
-              RESEARCHER ROUTES
-          ================================================= */}
+          {/* =====================================================
+                      RESEARCHER
+          ===================================================== */}
 
           <Route
             element={
@@ -98,113 +120,171 @@ function App() {
             }
           >
 
-            {/* ---------------- PROFILE ---------------- */}
+            <Route element={<ResearcherLayout />}>
 
-            <Route
-              path="/profile"
-              element={<ResearchProfile />}
-            />
+              <Route
+                path="/dashboard"
+                element={<Dashboard />}
+              />
 
-            <Route
-              path="/profile/domains"
-              element={<ResearchDomains />}
-            />
+              <Route
+                path="/profile"
+                element={<ResearchProfile />}
+              />
 
-            <Route
-              path="/profile/keywords"
-              element={<ResearchKeywords />}
-            />
+              <Route
+                path="/profile/domains"
+                element={<ResearchDomains />}
+              />
 
-            <Route
-              path="/profile/technology-areas"
-              element={<TechnologyAreas />}
-            />
+              <Route
+                path="/profile/keywords"
+                element={<ResearchKeywords />}
+              />
 
-            <Route
-              path="/profile/organization"
-              element={<OrganizationInformation />}
-            />
+              <Route
+                path="/profile/technology-areas"
+                element={<TechnologyAreas />}
+              />
 
+              <Route
+                path="/profile/organization"
+                element={<OrganizationInformation />}
+              />
 
-            {/* ---------------- PUBLICATIONS ---------------- */}
+              <Route
+                path="/profile/publications"
+                element={<Publications />}
+              />
 
-            <Route
-              path="/profile/publications"
-              element={<Publications />}
-            />
+              <Route
+                path="/profile/publications/mine"
+                element={<MyPublications />}
+              />
 
-            <Route
-              path="/profile/publications/mine"
-              element={<MyPublications />}
-            />
+              <Route
+                path="/profile/publications/library"
+                element={<ResearchLibrary />}
+              />
 
-            <Route
-              path="/profile/publications/library"
-              element={<ResearchLibrary />}
-            />
+              <Route
+                path="/profile/patents"
+                element={<Patents />}
+              />
 
+              <Route
+                path="/funding"
+                element={<Funding />}
+              />
 
-            {/* ---------------- PATENTS ---------------- */}
+              <Route
+                path="/grant-prediction/:fundingId"
+                element={<GrantPrediction />}
+              />
 
-            <Route
-              path="/profile/patents"
-              element={<Patents />}
-            />
+              <Route
+                path="/patent-landscape"
+                element={<PatentLandscape />}
+              />
 
+              <Route
+                path="/research-trends"
+                element={<ResearchTrends />}
+              />
 
-            {/* ---------------- FUNDING ---------------- */}
+            </Route>
 
-            <Route
-              path="/funding"
-              element={<Funding />}
-            />
+          </Route>
 
-            <Route
-              path="/grant-prediction/:fundingId"
-              element={<GrantPrediction />}
-            />
+{/* =====================================================
+            STARTUP
+===================================================== */}
 
+{/* =====================================================
+                    STARTUP
+===================================================== */}
 
-            {/* ---------------- ANALYTICS ---------------- */}
+<Route
+  element={
+    <RoleProtectedRoute
+      allowedRoles={["startup_founder"]}
+    />
+  }
+>
 
-            <Route
-              path="/patent-landscape"
-              element={<PatentLandscape />}
-            />
+  <Route element={<StartupLayout />}>
 
-            <Route
-              path="/research-trends"
-              element={<ResearchTrends />}
-            />
+    <Route
+      path="/startup/dashboard"
+      element={<StartupDashboard />}
+    />
+
+    <Route
+      path="/startup/profile"
+      element={<StartupProfile />}
+    />
+
+    <Route
+      path="/startup/researchers"
+      element={<FindResearchers />}
+    />
+
+    <Route
+      path="/startup/requests"
+      element={<CollaborationRequests />}
+    />
+
+    <Route
+      path="/startup/funding"
+      element={<StartupFunding />}
+    />
+
+    <Route
+      path="/startup/innovation-score"
+      element={<InnovationScore />}
+    />
+
+  </Route>
+
+</Route>
+
+          {/* =====================================================
+                      MANAGER
+          ===================================================== */}
+
+          <Route
+            element={
+              <RoleProtectedRoute
+                allowedRoles={["innovation_manager"]}
+              />
+            }
+          >
+
+            <Route element={<ManagerLayout />}>
+
+              <Route
+                path="/manager/dashboard"
+                element={<InnovationManagerDashboard />}
+              />
+
+            </Route>
 
           </Route>
 
         </Route>
 
-
-        {/* =====================================================
-            UNKNOWN ROUTE
-        ===================================================== */}
+        {/* ---------------- UNKNOWN ---------------- */}
 
         <Route
           path="*"
-          element={
-            <Navigate
-              to={
-                localStorage.getItem("access_token")
-                  ? "/dashboard"
-                  : "/login"
-              }
-              replace
-            />
-          }
+          element={<Navigate to={defaultRoute()} replace />}
         />
 
       </Routes>
 
     </BrowserRouter>
+
   );
 }
-
 
 export default App;

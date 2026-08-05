@@ -20,38 +20,73 @@ function Login() {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    try {
-      setLoading(true);
-      setMessage("");
+  try {
+    setLoading(true);
+    setMessage("");
 
-      const response = await api.post(
-        "/auth/login",
-        formData
-      );
+    const loginResponse = await api.post(
+      "/auth/login",
+      formData
+    );
 
-      localStorage.setItem(
-        "access_token",
-        response.data.access_token
-      );
+    localStorage.setItem(
+      "access_token",
+      loginResponse.data.access_token
+    );
 
-      localStorage.setItem(
-       "refresh_token",
-        response.data.refresh_token
-      );
+    localStorage.setItem(
+      "refresh_token",
+      loginResponse.data.refresh_token
+    );
 
-      navigate("/dashboard");
-    } catch (error) {
-      setMessage(
-        error.response?.data?.detail ||
-          "Unable to sign in. Please check your credentials."
-      );
-    } finally {
-      setLoading(false);
+    const me = await api.get("/auth/me", {
+      headers: {
+        Authorization: `Bearer ${loginResponse.data.access_token}`,
+      },
+    });
+
+    const role = me.data.role;
+
+    localStorage.setItem("role", role);
+    localStorage.setItem("full_name", me.data.full_name);
+
+    switch (role) {
+      case "researcher":
+        navigate("/dashboard");
+        break;
+
+      case "startup_founder":
+        navigate("/startup/dashboard");
+        break;
+
+      case "innovation_manager":
+        navigate("/manager/dashboard");
+        break;
+
+      default:
+        navigate("/dashboard");
     }
-  };
+
+  } catch (error) {
+
+    const detail = error.response?.data?.detail;
+
+    if (Array.isArray(detail)) {
+      setMessage(detail.map((item) => item.msg).join(" "));
+    } else {
+      setMessage(
+        detail ||
+        "Unable to sign in. Please check your credentials."
+      );
+    }
+
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="auth-page">
