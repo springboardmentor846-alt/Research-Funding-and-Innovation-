@@ -95,7 +95,7 @@ def export_pdf(
 
     story.append(Paragraph("Research Funding Platform Report", styles["Heading1"]))
 
-    story.append(Paragraph(f"User : {user.name}", styles["Normal"]))
+    story.append(Paragraph(f"User : {user.full_name}", styles["Normal"]))
 
     story.append(Paragraph(f"Email : {user.email}", styles["Normal"]))
 

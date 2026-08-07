@@ -34,7 +34,7 @@ def innovation_dashboard(
     ).count()
 
     return {
-        "Innovation Manager": user.name,
+        "Innovation Manager": user.full_name,
         "Organization": user.organization,
         "Total Users": total_users,
         "Funding Opportunities": total_funding,

@@ -41,11 +41,14 @@ from app.routes.proposal import router as proposal_router
 from app.models.user import User
 from app.models.research_profile import ResearchProfile
 
+from app.routes import research_intelligence
+
 # Import Routers
 from app.routes.auth import router as auth_router
 from app.routes.research import router as research_router
 from app.routes.system import router as system_router
-
+from app.routes import funding_recommendation
+from app.routes import publication_analysis
 # Create Tables
 Base.metadata.create_all(bind=engine)
 
@@ -93,3 +96,14 @@ async def startup():
     scheduler.start()
 
     print("Background Scheduler Started")
+
+app.include_router(
+    funding_recommendation.router
+)
+
+app.include_router(
+    publication_analysis.router
+)
+app.include_router(
+    research_intelligence.router
+)

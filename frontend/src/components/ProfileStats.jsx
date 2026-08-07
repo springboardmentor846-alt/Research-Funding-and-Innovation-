@@ -1,115 +1,76 @@
-import {
-    Card,
-    CardContent,
-    Avatar,
-    Typography,
-    TextField,
-    Button,
-    Grid
-} from "@mui/material";
+import { Grid } from "@mui/material";
 
-function ProfileCard({
-    profile,
-    setProfile,
-    onSave
-}) {
+import StatCard from "./StatCard";
+
+function ProfileStats({ profile }) {
 
     return (
 
-        <Card>
+        <Grid
+            container
+            spacing={3}
+        >
 
-            <CardContent>
+            <Grid size={{ xs: 12, md: 3 }}>
 
-                <Avatar
-                    sx={{
-                        width:70,
-                        height:70,
-                        mb:2,
-                        bgcolor:"#1565C0"
-                    }}
-                >
-                    {profile.full_name?.charAt(0)}
-                </Avatar>
+                <StatCard
 
-                <Typography
-                    variant="h5"
-                    gutterBottom
-                >
-                    My Profile
-                </Typography>
+                    title="Publications"
 
-                <Grid container spacing={2}>
+                    value={profile.publications}
 
-                    <Grid item xs={12} md={6}>
+                    color="#2563EB"
 
-                        <TextField
-                            fullWidth
-                            label="Full Name"
-                            value={profile.full_name || ""}
-                            onChange={(e)=>
-                                setProfile({
-                                    ...profile,
-                                    full_name:e.target.value
-                                })
-                            }
-                        />
+                />
 
-                    </Grid>
+            </Grid>
 
-                    <Grid item xs={12} md={6}>
+            <Grid size={{ xs: 12, md: 3 }}>
 
-                        <TextField
-                            fullWidth
-                            disabled
-                            label="Email"
-                            value={profile.email || ""}
-                        />
+                <StatCard
 
-                    </Grid>
+                    title="Patents"
 
-                    <Grid item xs={12} md={6}>
+                    value={profile.patents}
 
-                        <TextField
-                            fullWidth
-                            label="Organization"
-                            value={profile.organization || ""}
-                            onChange={(e)=>
-                                setProfile({
-                                    ...profile,
-                                    organization:e.target.value
-                                })
-                            }
-                        />
+                    color="#16A34A"
 
-                    </Grid>
+                />
 
-                    <Grid item xs={12} md={6}>
+            </Grid>
 
-                        <TextField
-                            fullWidth
-                            disabled
-                            label="Role"
-                            value={profile.role || ""}
-                        />
+            <Grid size={{ xs: 12, md: 3 }}>
 
-                    </Grid>
+                <StatCard
 
-                </Grid>
+                    title="Experience"
 
-                <Button
-                    variant="contained"
-                    sx={{mt:3}}
-                    onClick={onSave}
-                >
-                    Save Changes
-                </Button>
+                    value={profile.experience}
 
-            </CardContent>
+                    color="#EA580C"
 
-        </Card>
+                />
+
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 3 }}>
+
+                <StatCard
+
+                    title="TRL"
+
+                    value={profile.trl_level}
+
+                    color="#7C3AED"
+
+                />
+
+            </Grid>
+
+        </Grid>
 
     );
 
 }
 
-export default ProfileCard;
+export default ProfileStats;

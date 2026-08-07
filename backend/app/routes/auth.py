@@ -188,7 +188,13 @@ def change_password(
             status_code=404,
             detail="User not found"
         )
-
+    print("=" * 50)
+    print("Username :", form_data.username)
+    print("Password :", form_data.password)
+    print("Password Length :", len(form_data.password))
+    print("Stored Hash :", user.password)
+    print("Stored Hash Length :", len(user.password))
+    print("=" * 50)
     if not verify_password(
         passwords["old_password"],
         user.password
