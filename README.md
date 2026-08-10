@@ -48,10 +48,7 @@ The project plan defines Milestones 1–3 around core setup, funding/research in
 | **Backend**        | Python, FastAPI                      |
 | **Database**       | PostgreSQL, MongoDB                  |
 | **Authentication** | JWT                                  |
-| **AI/ML**          | Scikit-learn, XGBoost                |
-| **Research Data**  | OpenAlex, CrossRef, Semantic Scholar |
-| **Patent Data**    | Google Patents, The Lens, USPTO      |
-| **Tools**          | Git, GitHub, Postman, Docker         |
+| **AI/ML**          | Scikit-learn|
 
 ## Quick Start
 
