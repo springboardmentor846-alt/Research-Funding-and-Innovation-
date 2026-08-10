@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 function Sidebar() {
   return (
     <div
@@ -52,12 +51,28 @@ function Sidebar() {
         <Link to="/patents" style={menuStyle}>
           📄 Patents
         </Link>
+        <Link to="/patent-analytics" style={menuStyle} > 📊 Patent Analytics</Link>
+        <Link to="/add-technology"  style={menuStyle}>➕ Add Technology</Link>
+        <Link to="/technology-intelligence" style={menuStyle} >
+  🧠 Technology Intelligence</Link>
+   <Link to="/add-innovation" style={menuStyle}>➕ Add Innovation</Link>
+         <Link to="/innovation-scoring" style={menuStyle} >
+  💡 Innovation Scoring
+</Link>
+<Link to="/add-commercialization" style={menuStyle}>
+  ➕ Add Commercialization
+</Link>
+         <Link to="/commercialization-recommendations" style={menuStyle}>
+  🚀 Commercialization
+</Link>
+<Link to="/innovation-dashboard" style={menuStyle} >
+  📈 Innovation Dashboard
+</Link>
         <Link to="/profile" style={menuStyle}>👤 Profile</Link>
       </nav>
     </div>
   );
 }
-
 const menuStyle = {
   color: "white",
   textDecoration: "none",

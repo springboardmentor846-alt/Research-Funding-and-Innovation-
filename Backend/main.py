@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import sessionmaker
 from database import engine
 from models import Base,User,Profile,Grant,Research
-from models import Patent
+from models import Patent,Technology,Innovation,Commercialization
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 app.add_middleware(
@@ -46,6 +46,19 @@ class PatentData(BaseModel):
     inventor: str
     patent_id: str
     status: str
+class TechnologyData(BaseModel):
+    name: str
+    patents: int
+class InnovationData(BaseModel):
+    title: str
+    patents:int
+    trend: str
+    market_potential: str
+class CommercializationData(BaseModel):
+    title: str
+    industry: str
+    market_potential: str
+
 @app.get("/")
 def home():
     return {"message": "Backend is running"}
@@ -107,40 +120,12 @@ def get_publications():
             "year": 2023
         }
     ]
-@app.post("/patent")
-def add_patent(data: PatentData):
-    db = SessionLocal()
-
-    patent = Patent(
-        title=data.title,
-        inventor=data.inventor,
-        status=data.status
-    )
-
-    db.add(patent)
-    db.commit()
-    db.close()
-
-    return {"message": "Patent Added Successfully"}
 @app.get("/patent")
 def get_patents():
     db = SessionLocal()
     patents = db.query(Patent).all()
     db.close()
     return patents
-@app.delete("/patent/{patent_id}")
-def delete_patent(patent_id: int):
-    db = SessionLocal()
-
-    patent = db.query(Patent).filter(Patent.id == patent_id).first()
-
-    if patent:
-        db.delete(patent)
-        db.commit()
-
-    db.close()
-
-    return {"message": "Patent Deleted Successfully"}
 @app.post("/grant")
 def add_grant(data: GrantData):
     db = SessionLocal()
@@ -332,3 +317,196 @@ def delete_profile(profile_id: int):
     db.close()
 
     return {"message": "Profile Deleted Successfully"}
+@app.post("/technology")
+def add_technology(data: TechnologyData):
+    db = SessionLocal()
+
+    # Dynamic trend calculation
+    if data.patents >= 10:
+        trend = "Growing"
+    elif data.patents >= 5:
+        trend = "Stable"
+    else:
+        trend = "Declining"
+
+    technology = Technology(
+        name=data.name,
+        patents=data.patents,
+        trend=trend
+    )
+
+    db.add(technology)
+    db.commit()
+    db.refresh(technology)
+    db.close()
+
+    return {
+        "message": "Technology Added Successfully",
+        "trend": trend
+    }
+@app.get("/technology")
+def get_technology():
+    db = SessionLocal()
+
+    technologies = db.query(Technology).all()
+
+    db.close()
+
+    return technologies
+@app.delete("/technology/{id}")
+def delete_technology(id: int):
+    db = SessionLocal()
+
+    technology = db.query(Technology).filter(Technology.id == id).first()
+
+    if technology:
+        db.delete(technology)
+        db.commit()
+
+    db.close()
+
+    return {"message": "Technology Deleted Successfully"}
+@app.post("/innovation")
+def add_innovation(data: InnovationData):
+    db = SessionLocal()
+
+    score = 0
+
+    # Patent score
+    if data.patents >= 10:
+        score += 40
+    elif data.patents >= 5:
+        score += 30
+    else:
+        score += 20
+
+    # Technology trend score
+    if data.trend.lower() == "growing":
+        score += 30
+    elif data.trend.lower() == "stable":
+        score += 20
+    else:
+        score += 10
+
+    # Market potential score
+    if data.market_potential.lower() == "high":
+        score += 30
+    elif data.market_potential.lower() == "medium":
+        score += 20
+    else:
+        score += 10
+
+    # Automatic level
+    if score >= 80:
+        level = "High"
+    elif score >= 60:
+        level = "Medium"
+    else:
+        level = "Low"
+
+    innovation = Innovation(
+        title=data.title,
+        score=score,
+        level=level
+    )
+
+    db.add(innovation)
+    db.commit()
+    db.refresh(innovation)
+    db.close()
+
+    return {
+        "message": "Innovation Added Successfully",
+        "score": score,
+        "level": level
+    }
+@app.get("/innovation")
+def get_innovation():
+    db = SessionLocal()
+
+    innovations = db.query(Innovation).all()
+
+    db.close()
+
+    return innovations
+@app.delete("/innovation/{id}")
+def delete_innovation(id: int):
+    db = SessionLocal()
+
+    innovation = db.query(Innovation).filter(
+        Innovation.id == id
+    ).first()
+
+    if innovation:
+        db.delete(innovation)
+        db.commit()
+
+    db.close()
+
+    return {"message": "Innovation Deleted Successfully"}
+@app.post("/commercialization")
+def add_commercialization(data: CommercializationData):
+    db = SessionLocal()
+
+    # Dynamic recommendation
+    if data.market_potential.lower() == "high":
+        recommendation = "Launch / Commercialize"
+    elif data.market_potential.lower() == "medium":
+        recommendation = "Pilot Testing"
+    else:
+        recommendation = "Further Research"
+
+    commercialization = Commercialization(
+        title=data.title,
+        industry=data.industry,
+        market_potential=data.market_potential,
+        recommendation=recommendation
+    )
+
+    db.add(commercialization)
+    db.commit()
+    db.refresh(commercialization)
+    db.close()
+
+    return {
+        "message": "Commercialization Added Successfully",
+        "recommendation": recommendation
+    }
+@app.get("/commercialization")
+def get_commercialization():
+    db = SessionLocal()
+
+    commercialization = db.query(Commercialization).all()
+
+    db.close()
+
+    return commercialization
+@app.delete("/commercialization/{id}")
+def delete_commercialization(id: int):
+    db = SessionLocal()
+
+    commercialization = db.query(Commercialization).filter(
+        Commercialization.id == id
+    ).first()
+
+    if commercialization:
+        db.delete(commercialization)
+        db.commit()
+
+    db.close()
+
+    return {"message": "Commercialization Deleted Successfully"}
+@app.get("/innovation-dashboard")
+def innovation_dashboard():
+    db = SessionLocal()
+
+    data = {
+        "patents": db.query(Patent).count(),
+        "technologies": db.query(Technology).count(),
+        "innovations": db.query(Innovation).count(),
+        "commercialization": db.query(Commercialization).count()
+    }
+
+    db.close()
+
+    return data

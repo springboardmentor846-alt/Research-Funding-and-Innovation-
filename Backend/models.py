@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String,Float
 from sqlalchemy.orm import declarative_base
 from database import engine
-
 Base = declarative_base()
 
 class User(Base):
@@ -46,4 +45,26 @@ class Patent(Base):
     inventor = Column(String)
     patent_id = Column(String)
     status = Column(String)
+class Technology(Base):
+    __tablename__ = "technology"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    patents = Column(Integer)
+    trend = Column(String)
+class Innovation(Base):
+    __tablename__ = "innovation"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String)
+    score = Column(Integer)
+    level = Column(String)
+class Commercialization(Base):
+    __tablename__ = "commercialization"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String)
+    industry = Column(String)
+    market_potential = Column(String)
+    recommendation = Column(String)
 Base.metadata.create_all(bind=engine)

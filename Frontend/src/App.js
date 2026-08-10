@@ -14,6 +14,14 @@ import Patents from "./pages/Patents";
 import PatentDetails from "./pages/PatentDetails"; 
 import AddResearch from "./pages/AddResearch";
 import AddPatent from "./pages/AddPatent";
+import PatentAnalytics from "./pages/PatentAnalytics";
+import TechnologyIntelligence from "./pages/TechnologyIntelligence";
+import InnovationScoring from "./pages/InnovationScoring";
+import CommercializationRecommendations from "./pages/CommercializationRecommendations";
+import InnovationDashboard from "./pages/InnovationDashboard";
+import AddTechnology from "./pages/AddTechnology";
+import AddInnovation from "./pages/AddInnovation";
+import AddCommercialization from "./pages/AddCommercialization";
 function App() {
   return (
     <BrowserRouter>
@@ -34,8 +42,16 @@ function App() {
         <Route path="/research-details" element={<ResearchDetails/>}/>
         <Route path="/patents" element={<Patents/>}/>
         <Route path="/patents/:id" element={<PatentDetails/>}/>
-      <Route path="/add-research" element={<AddResearch />} />
-      <Route path="/add-patent" element={<AddPatent/>}/>
+        <Route path="/add-research" element={<AddResearch />} />
+        <Route path="/add-patent" element={<AddPatent/>}/>
+        <Route path="/patent-analytics" element={<PatentAnalytics/>}/>
+        <Route path="/technology-intelligence" element={<TechnologyIntelligence/>}/>
+        <Route path="/innovation-scoring" element={<InnovationScoring/>}/>
+        <Route path="/commercialization-recommendations" element={<CommercializationRecommendations/>}/>
+        <Route path="/innovation-dashboard" element={<InnovationDashboard/>}/>
+        <Route path="/add-technology" element={<AddTechnology />} />
+        <Route path="/add-innovation" element={<AddInnovation />} />
+        <Route path="/add-commercialization" element={<AddCommercialization/>}/>
       </Routes>
       </div>
       </div>
