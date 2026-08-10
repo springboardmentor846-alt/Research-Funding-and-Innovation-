@@ -1,9 +1,44 @@
-﻿__pycache__/
-*.pyc
-.env
-.vscode/
-node_modules/
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.venv/
 venv/
-backend/venv/
-backend/test.db
-backend/seed_data.py
+env/
+.pytest_cache/
+.coverage
+
+# Node
+node_modules/
+dist/
+.npm
+.yarn
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Env
+.env
+.env.local
+
+# Data
+data/
+*.db
+*.sqlite3
