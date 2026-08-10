@@ -25,6 +25,9 @@ ChartJS.register(
 export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [trends, setTrends] = useState([]);
+  const [patentTrends, setPatentTrends] = useState([]);
+  const [technologyDomains, setTechnologyDomains] = useState([]);
+  const [innovationScore, setInnovationScore] = useState(0);
 
   useEffect(() => {
     loadDashboard();
@@ -32,13 +35,25 @@ export default function Dashboard() {
 
   const loadDashboard = async () => {
     try {
-      const [summaryRes, trendRes] = await Promise.all([
+      const [
+        summaryRes,
+        trendRes,
+        patentTrendRes,
+        technologyRes,
+        innovationRes,
+      ] = await Promise.all([
         api.get("/analytics/dashboard-summary"),
         api.get("/analytics/publication-trends"),
+        api.get("/analytics/patent-trends"),
+        api.get("/analytics/technology-domains"),
+        api.get("/analytics/innovation-score"),
       ]);
 
       setSummary(summaryRes.data);
       setTrends(trendRes.data);
+      setPatentTrends(patentTrendRes.data);
+      setTechnologyDomains(technologyRes.data);
+      setInnovationScore(innovationRes.data.innovation_score);
     } catch (err) {
       console.error(err);
     }
@@ -49,6 +64,7 @@ export default function Dashboard() {
     ["Publications", summary?.publications ?? 0, "journal-text"],
     ["Patents", summary?.patents ?? 0, "lightbulb"],
     ["Funding", summary?.funding_opportunities ?? 0, "cash-stack"],
+    ["Innovation Score", innovationScore, "award"],
   ];
 
   return (
@@ -78,7 +94,14 @@ export default function Dashboard() {
         ))}
       </div>
 
-      <div className="dashboard-charts">
+      <div
+          className="dashboard-charts"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(420px,1fr))",
+            gap: "24px",
+            }}
+            >
         <article className="dashboard-chart-card">
           <h2>Publication Trend</h2>
 
@@ -128,6 +151,58 @@ export default function Dashboard() {
             />
           </div>
         </article>
+        <article className="dashboard-chart-card">
+  <h2>Patent Trend</h2>
+
+  <div className="dashboard-chart">
+    <Bar
+      data={{
+        labels: patentTrends.map((t) => t.year),
+        datasets: [
+          {
+            label: "Patents",
+            data: patentTrends.map((t) => t.count),
+            backgroundColor: "#28b48c",
+            borderRadius: 8,
+          },
+        ],
+      }}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+      }}
+    />
+  </div>
+</article>
+
+<article className="dashboard-chart-card">
+  <h2>Technology Distribution</h2>
+
+  <div className="dashboard-chart">
+    <Doughnut
+      data={{
+        labels: technologyDomains.map((t) => t.domain),
+        datasets: [
+          {
+            data: technologyDomains.map((t) => t.count),
+            backgroundColor: [
+              "#5b5ce2",
+              "#28b48c",
+              "#f4a261",
+              "#ef476f",
+              "#06d6a0",
+              "#118ab2",
+            ],
+          },
+        ],
+      }}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+      }}
+    />
+  </div>
+</article>
       </div>
     </section>
   );

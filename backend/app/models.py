@@ -36,20 +36,20 @@ class ResearchProfile(Base):
         "User",
         back_populates="profile"
     )
+
     publications = relationship(
-    "Publication",
-    back_populates="research_profile",
-    cascade="all, delete-orphan"
+        "Publication",
+        back_populates="research_profile",
+        cascade="all, delete-orphan"
     )
-    
-    
-    
+
     patent_list = relationship(
-    "Patent",
-    back_populates="research_profile",
-    cascade="all, delete-orphan"
-)
-    
+        "Patent",
+        back_populates="research_profile",
+        cascade="all, delete-orphan"
+    )
+
+
 class Publication(Base):
     __tablename__ = "publications"
 
@@ -74,17 +74,29 @@ class Publication(Base):
         "ResearchProfile",
         back_populates="publications"
     )
-    
-    
+
+
 class Patent(Base):
     __tablename__ = "patents"
 
     id = Column(Integer, primary_key=True, index=True)
+
     title = Column(String, nullable=False)
+
     assignee = Column(String, nullable=False)
+
     filing_date = Column(String, nullable=False)
-    patent_number = Column(String, unique=True, nullable=False)
-    technology_domain = Column(String, nullable=False)
+
+    patent_number = Column(
+        String,
+        unique=True,
+        nullable=False
+    )
+
+    technology_domain = Column(
+        String,
+        nullable=False
+    )
 
     research_profile_id = Column(
         Integer,
@@ -94,21 +106,30 @@ class Patent(Base):
     research_profile = relationship(
         "ResearchProfile",
         back_populates="patent_list"
-    )    
+    )
 
-          
-    
+
 class FundingOpportunity(Base):
     __tablename__ = "funding_opportunities"
 
     id = Column(Integer, primary_key=True, index=True)
+
     title = Column(String, nullable=False)
+
     funding_agency = Column(String, nullable=False)
+
     research_domain = Column(String, nullable=False)
+
     technology_area = Column(String, nullable=False)
+
     keywords = Column(String, nullable=False)
+
     amount = Column(String, nullable=False)
+
     deadline = Column(String, nullable=False)
+
     eligibility = Column(String, nullable=False)
+
     description = Column(String)
-    link = Column(String)    
+
+    link = Column(String)

@@ -608,3 +608,80 @@ def publication_trends(db):
         }
         for year, count in trends
     ]
+    
+from collections import Counter
+
+
+def patent_trends(db):
+
+    patents = db.query(models.Patent).all()
+
+    trend = {}
+
+    for patent in patents:
+        year = int(patent.filing_date.split("-")[-1])
+        trend[year] = trend.get(year, 0) + 1
+
+    return [
+        {
+            "year": year,
+            "count": trend[year]
+        }
+        for year in sorted(trend.keys())
+    ]
+
+
+def technology_domain_analysis(db):
+
+    result = (
+        db.query(
+            models.Patent.technology_domain,
+            func.count(models.Patent.id)
+        )
+        .group_by(models.Patent.technology_domain)
+        .all()
+    )
+
+    return [
+        {
+            "domain": domain,
+            "count": count
+        }
+        for domain, count in result
+    ]
+
+
+def top_assignees(db):
+
+    assignees = (
+        db.query(models.Patent.assignee)
+        .all()
+    )
+
+    counter = Counter([a[0] for a in assignees])
+
+    return [
+        {
+            "assignee": name,
+            "count": count
+        }
+        for name, count in counter.most_common(10)
+    ]
+
+
+def innovation_score(db):
+
+    patents = db.query(models.Patent).count()
+
+    publications = db.query(models.Publication).count()
+
+    score = patents * 10 + publications * 5
+
+    if score > 100:
+        score = 100
+
+    return {
+        "innovation_score": score,
+        "patents": patents,
+        "publications": publications
+    }    

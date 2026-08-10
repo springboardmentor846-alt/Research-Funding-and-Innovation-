@@ -1,5 +1,10 @@
 from pydantic import BaseModel, EmailStr
 
+
+# ==========================
+# User
+# ==========================
+
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
@@ -25,10 +30,22 @@ class UserLogin(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
-    
-    
-    
+
+
+# ==========================
+# Research Profile
+# ==========================
+
 class ResearchProfileCreate(BaseModel):
+    organization: str
+    research_domain: str
+    technology_area: str
+    keywords: str
+    publication_count: int
+    patents: int
+
+
+class ResearchProfileUpdate(BaseModel):
     organization: str
     research_domain: str
     technology_area: str
@@ -50,15 +67,10 @@ class ResearchProfileResponse(BaseModel):
         from_attributes = True
 
 
-class ResearchProfileUpdate(BaseModel):
-    organization: str
-    research_domain: str
-    technology_area: str
-    keywords: str
-    publication_count: int
-    patents: int    
-    
-    
+# ==========================
+# Publications
+# ==========================
+
 class PublicationCreate(BaseModel):
     title: str
     authors: str
@@ -84,10 +96,13 @@ class PublicationResponse(BaseModel):
     doi: str
 
     class Config:
-        from_attributes = True    
-        
-        
-        
+        from_attributes = True
+
+
+# ==========================
+# Patents
+# ==========================
+
 class PatentCreate(BaseModel):
     title: str
     assignee: str
@@ -113,15 +128,23 @@ class PatentResponse(BaseModel):
     technology_domain: str
 
     class Config:
-        from_attributes = True 
-        
-        
+        from_attributes = True
+
+
+# ==========================
+# Dashboard
+# ==========================
+
 class DashboardSummary(BaseModel):
     research_profiles: int
     publications: int
     patents: int
     funding_opportunities: int
-    
+
+
+# ==========================
+# Funding
+# ==========================
 
 class FundingOpportunityCreate(BaseModel):
     title: str
@@ -161,23 +184,58 @@ class FundingOpportunityResponse(BaseModel):
     eligibility: str
     description: str | None = None
     link: str | None = None
-    
+
     score: int | None = None
     reason: list[str] | None = None
 
     class Config:
-        from_attributes = True    
-        
+        from_attributes = True
+
+
+# ==========================
+# Grant Matching
+# ==========================
+
 class GrantMatchResponse(BaseModel):
     title: str
     funding_agency: str
     research_domain: str
     technology_area: str
-    match_score: int            
-  
+    match_score: int
+
+
+# ==========================
+# Publication Analytics
+# ==========================
+
 class PublicationTrend(BaseModel):
     year: int
     count: int
 
     class Config:
-        from_attributes = True    
+        from_attributes = True
+
+
+# ==========================
+# Patent Analytics
+# ==========================
+
+class PatentTrendResponse(BaseModel):
+    year: int
+    count: int
+
+
+class TechnologyDomainResponse(BaseModel):
+    domain: str
+    count: int
+
+
+class TopAssigneeResponse(BaseModel):
+    assignee: str
+    count: int
+
+
+class InnovationScoreResponse(BaseModel):
+    innovation_score: int
+    patents: int
+    publications: int

@@ -9,6 +9,10 @@ from app.routers import patents
 from app.routers import dashboard
 from app.routers import funding
 from app.routers import analytics
+from app.routers import patent_intelligence
+from app.routers import technology
+from app.routers import innovation
+from app.routers import commercialization
 
 
 Base.metadata.create_all(bind=engine)
@@ -42,6 +46,10 @@ app.include_router(patents.router)
 app.include_router(dashboard.router)
 app.include_router(funding.router)
 app.include_router(analytics.router)
+app.include_router(patent_intelligence.router)
+app.include_router(technology.router)
+app.include_router(innovation.router)
+app.include_router(commercialization.router)
 
 @app.get("/")
 def home():
