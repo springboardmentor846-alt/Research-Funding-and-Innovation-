@@ -9,7 +9,7 @@ function FundingSearch() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/funding/search", {
+      const response = await axios.get("http://127.0.0.1:8000/api/v1/funding/search", {
         params: { query },
       });
       setResults(response.data);

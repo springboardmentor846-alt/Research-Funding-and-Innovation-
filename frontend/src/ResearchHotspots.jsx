@@ -9,7 +9,7 @@ function ResearchHotspots() {
     const fetchHotspots = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profile/publications/research-hotspots"
+          "http://127.0.0.1:8000/api/v1/profile/publications/research-hotspots"
         );
         setHotspots(response.data);
       } catch (err) {

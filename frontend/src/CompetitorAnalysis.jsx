@@ -9,7 +9,7 @@ function CompetitorAnalysis() {
     const fetchCompetitors = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profile/patents/competitor-analysis"
+          "http://127.0.0.1:8000/api/v1/profile/patents/competitor-analysis"
         );
         setCompetitors(response.data);
       } catch (err) {

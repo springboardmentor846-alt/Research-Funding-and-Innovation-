@@ -23,22 +23,22 @@ app.add_middleware(
 
 app.include_router(
     auth_routes.router,
-    prefix="/api/auth",
+    prefix="/api/v1/auth",
     tags=["Auth"]
 )
 app.include_router(
     profile_routes.router,
-    prefix="/api/profile",
+    prefix="/api/v1/profile",
     tags=["Profile"]
 )
 app.include_router(
     funding_routes.router,
-    prefix="/api/funding",
+    prefix="/api/v1/funding",
     tags=["Funding"]
 )
 app.include_router(
     admin_routes.router,
-    prefix="/api/admin",
+    prefix="/api/v1/admin",
     tags=["Admin"]
 )
 

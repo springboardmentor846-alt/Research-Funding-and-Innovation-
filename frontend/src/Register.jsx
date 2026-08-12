@@ -15,7 +15,7 @@ function Register({ onSwitchToLogin }) {
     setMessage("");
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/auth/register", {
+      const response = await axios.post("http://127.0.0.1:8000/api/v1/auth/register", {
         name,
         email,
         password,

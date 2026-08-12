@@ -30,7 +30,7 @@ function Dashboard({ token, onLogout }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/auth/me", {
+        const response = await axios.get("http://127.0.0.1:8000/api/v1/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfile(response.data);
@@ -51,7 +51,7 @@ function Dashboard({ token, onLogout }) {
 
   const fetchFunding = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/funding/recommended", {
+      const response = await axios.get("http://127.0.0.1:8000/api/v1/funding/recommended", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFunding(response.data);
@@ -73,7 +73,7 @@ function Dashboard({ token, onLogout }) {
   useEffect(() => {
     const fetchAllFunding = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/funding/");
+        const response = await axios.get("http://127.0.0.1:8000/api/v1/funding/");
         setAllFunding(response.data);
       } catch (err) {
         setAllFunding([]);
@@ -85,7 +85,7 @@ function Dashboard({ token, onLogout }) {
   useEffect(() => {
     const fetchProfileDomains = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/profile/", {
+        const response = await axios.get("http://127.0.0.1:8000/api/v1/profile/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfileDomains(response.data.research_domains || "");

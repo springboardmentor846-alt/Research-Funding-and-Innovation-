@@ -11,8 +11,8 @@ function Reports({ token }) {
     try {
       const endpoint =
         type === "pdf"
-          ? "http://127.0.0.1:8000/api/profile/reports/pdf"
-          : "http://127.0.0.1:8000/api/profile/reports/excel";
+          ? "http://127.0.0.1:8000/api/v1/profile/reports/pdf"
+          : "http://127.0.0.1:8000/api/v1/profile/reports/excel";
 
       const response = await axios.get(endpoint, {
         headers: { Authorization: `Bearer ${token}` },

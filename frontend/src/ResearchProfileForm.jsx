@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE = "http://127.0.0.1:8000/api/profile";
+const API_BASE = "http://127.0.0.1:8000/api/v1/profile";
 
 function ResearchProfileForm({ token, onProfileSaved }) {
   const authHeaders = { headers: { Authorization: `Bearer ${token}` } };

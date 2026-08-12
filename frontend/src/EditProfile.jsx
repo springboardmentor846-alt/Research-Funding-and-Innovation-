@@ -31,7 +31,7 @@ function EditProfile({ token, profile, onUpdated }) {
     setMessage("");
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/profile/",
+        "http://127.0.0.1:8000/api/v1/profile/",
         { ...formData, publications: "", patents: "" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

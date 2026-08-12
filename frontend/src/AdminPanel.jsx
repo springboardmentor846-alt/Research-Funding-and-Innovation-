@@ -11,14 +11,14 @@ function AdminPanel({ token, view }) {
 
     if (view === "users") {
       axios
-        .get("http://127.0.0.1:8000/api/admin/users", { headers })
+        .get("http://127.0.0.1:8000/api/v1/admin/users", { headers })
         .then((res) => setUsers(res.data))
         .catch(() => setError("Could not load users."));
     }
 
     if (view === "stats") {
       axios
-        .get("http://127.0.0.1:8000/api/admin/stats", { headers })
+        .get("http://127.0.0.1:8000/api/v1/admin/stats", { headers })
         .then((res) => setStats(res.data))
         .catch(() => setError("Could not load platform stats."));
     }

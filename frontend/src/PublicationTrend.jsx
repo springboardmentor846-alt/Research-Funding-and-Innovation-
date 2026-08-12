@@ -10,7 +10,7 @@ function PublicationTrend() {
     const fetchTrend = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profile/publications/trend"
+          "http://127.0.0.1:8000/api/v1/profile/publications/trend"
         );
         setData(response.data);
       } catch (err) {

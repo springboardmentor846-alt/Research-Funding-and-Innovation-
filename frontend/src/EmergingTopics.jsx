@@ -9,7 +9,7 @@ function EmergingTopics() {
     const fetchTopics = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profile/publications/emerging-topics"
+          "http://127.0.0.1:8000/api/v1/profile/publications/emerging-topics"
         );
         setTopics(response.data);
       } catch (err) {

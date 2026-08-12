@@ -9,7 +9,7 @@ function InnovationScore({ token }) {
     const fetchScore = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/profile/innovation-score",
+          "http://127.0.0.1:8000/api/v1/profile/innovation-score",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setData(response.data);
