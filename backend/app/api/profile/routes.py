@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from typing import List
 import requests
@@ -29,6 +30,8 @@ from app.crud.technology import get_technology_intelligence
 from app.crud.innovation import get_innovation_score
 from app.crud.commercialization import get_commercialization_recommendations
 from app.services.openalex_service import search_author, extract_publications
+from app.crud.funding import get_recommended_funding
+from app.services.report_service import generate_pdf_report, generate_excel_report
 
 router = APIRouter()
 
@@ -247,3 +250,126 @@ def openalex_import_publications(
         imported += 1
 
     return {"imported": imported, "total": len(publications)}
+
+
+# ---------------- Notifications (computed live from real data) ----------------
+
+@router.get("/notifications")
+def get_notifications(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    notifications = []
+
+    if not profile:
+        notifications.append(
+            {
+                "id": "no-profile",
+                "type": "profile",
+                "message": "Create your research profile to unlock funding matches and your innovation score.",
+            }
+        )
+        return {"count": len(notifications), "notifications": notifications}
+
+    matched_funding = get_recommended_funding(db, profile.research_domains, db_user.role)
+    if matched_funding:
+        for f in matched_funding[:3]:
+            notifications.append(
+                {
+                    "id": f"funding-{f.id}",
+                    "type": "funding",
+                    "message": f"New funding match: \"{f.title}\" ({f.amount})",
+                }
+            )
+
+    publications = get_publications_by_profile(db, profile.id)
+    for p in sorted(publications, key=lambda x: x.id, reverse=True)[:2]:
+        notifications.append(
+            {
+                "id": f"publication-{p.id}",
+                "type": "publication",
+                "message": f"Publication on record: \"{p.title}\"",
+            }
+        )
+
+    patents = get_patents_by_profile(db, profile.id)
+    for pt in sorted(patents, key=lambda x: x.id, reverse=True)[:2]:
+        notifications.append(
+            {
+                "id": f"patent-{pt.id}",
+                "type": "patent",
+                "message": f"Patent on record: \"{pt.title}\" ({pt.assignee})",
+            }
+        )
+
+    score_data = get_innovation_score(db, profile)
+    notifications.append(
+        {
+            "id": "innovation-score",
+            "type": "innovation",
+            "message": f"Your Innovation Score is {score_data['innovation_score']} — {score_data['rating']}",
+        }
+    )
+
+    return {"count": len(notifications), "notifications": notifications}
+
+
+# ---------------- Reports & Export (PDF / Excel) ----------------
+
+def _gather_report_data(db: Session, current_user: dict):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    score_data = get_innovation_score(db, profile)
+    publications = get_publications_by_profile(db, profile.id)
+    patents = get_patents_by_profile(db, profile.id)
+    funding_matches = get_recommended_funding(db, profile.research_domains, db_user.role)
+    commercialization = get_commercialization_recommendations(db, profile)
+
+    return profile, score_data, publications, patents, funding_matches, commercialization
+
+
+@router.get("/reports/pdf")
+def download_pdf_report(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile, score_data, publications, patents, funding_matches, commercialization = _gather_report_data(
+        db, current_user
+    )
+
+    buffer = generate_pdf_report(
+        profile, score_data, publications, patents, funding_matches, commercialization
+    )
+
+    return StreamingResponse(
+        buffer,
+        media_type="application/pdf",
+        headers={"Content-Disposition": "attachment; filename=innovation_report.pdf"},
+    )
+
+
+@router.get("/reports/excel")
+def download_excel_report(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile, score_data, publications, patents, funding_matches, commercialization = _gather_report_data(
+        db, current_user
+    )
+
+    buffer = generate_excel_report(profile, score_data, publications, patents, funding_matches)
+
+    return StreamingResponse(
+        buffer,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=innovation_report.xlsx"},
+    )

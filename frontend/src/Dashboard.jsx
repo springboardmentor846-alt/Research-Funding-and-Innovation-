@@ -11,6 +11,9 @@ import InnovationScore from "./InnovationScore";
 import CommercializationRecommendations from "./CommercializationRecommendations";
 import ResearchProfileForm from "./ResearchProfileForm";
 import LiveGrantsSearch from "./LiveGrantsSearch";
+import AdminPanel from "./AdminPanel";
+import NotificationBell from "./NotificationBell";
+import Reports from "./Reports";
 import "./Dashboard.css";
 
 function Dashboard({ token, onLogout }) {
@@ -38,6 +41,13 @@ function Dashboard({ token, onLogout }) {
 
     fetchProfile();
   }, [token]);
+
+  useEffect(() => {
+    if (profile?.role === "admin") {
+      setActiveTab("admin-stats");
+      setOpenGroups(["admin-group"]);
+    }
+  }, [profile]);
 
   const fetchFunding = async () => {
     try {
@@ -129,15 +139,19 @@ function Dashboard({ token, onLogout }) {
     return role.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
+  const currentRole = profile?.role || "researcher";
+
   const tabGroups = [
     {
       id: "workspace",
       label: "Workspace",
+      roles: ["researcher", "startup_founder", "innovation_manager"],
       items: [
         {
           id: "overview",
           label: "Overview",
           color: "#2E5EAA",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="3" width="7" height="9" rx="1.5" />
@@ -152,11 +166,13 @@ function Dashboard({ token, onLogout }) {
     {
       id: "research-group",
       label: "Research",
+      roles: ["researcher", "startup_founder", "innovation_manager"],
       items: [
         {
           id: "research-profile",
           label: "Profile",
           color: "#1C8C7A",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="8" r="4" />
@@ -168,6 +184,7 @@ function Dashboard({ token, onLogout }) {
           id: "research-trends",
           label: "Trends",
           color: "#1C8C7A",
+          roles: ["researcher"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 17l6-6 4 4 8-8" />
@@ -180,11 +197,13 @@ function Dashboard({ token, onLogout }) {
     {
       id: "patents-group",
       label: "Patents",
+      roles: ["researcher", "startup_founder", "innovation_manager"],
       items: [
         {
           id: "patents",
           label: "Landscape",
           color: "#C9862B",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -197,11 +216,13 @@ function Dashboard({ token, onLogout }) {
     {
       id: "insights-group",
       label: "Insights",
+      roles: ["researcher", "startup_founder", "innovation_manager"],
       items: [
         {
           id: "tech-intelligence",
           label: "Technology",
           color: "#B0479B",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 18h6" />
@@ -214,6 +235,7 @@ function Dashboard({ token, onLogout }) {
           id: "commercialization",
           label: "Commercialization",
           color: "#B0479B",
+          roles: ["researcher", "startup_founder"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 3v18h18" />
@@ -225,6 +247,7 @@ function Dashboard({ token, onLogout }) {
           id: "funding",
           label: "Funding",
           color: "#2E5EAA",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
           icon: (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="9" />
@@ -232,9 +255,59 @@ function Dashboard({ token, onLogout }) {
             </svg>
           ),
         },
+        {
+          id: "reports",
+          label: "Reports",
+          color: "#B0479B",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M9 13h6M9 17h6" />
+            </svg>
+          ),
+        },
       ],
     },
-  ];
+    {
+      id: "admin-group",
+      label: "Admin",
+      roles: ["admin"],
+      items: [
+        {
+          id: "admin-stats",
+          label: "Platform Analytics",
+          color: "#2E5EAA",
+          roles: ["admin"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 19h16M7 19V9M12 19V5M17 19v-7" />
+            </svg>
+          ),
+        },
+        {
+          id: "admin-users",
+          label: "User Management",
+          color: "#C9862B",
+          roles: ["admin"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="9" cy="8" r="3.5" />
+              <path d="M2.5 20c0-3.5 2.9-6 6.5-6s6.5 2.5 6.5 6" />
+              <circle cx="18" cy="9" r="2.5" />
+              <path d="M15.5 14c2.6.3 4.5 2.2 4.5 5" />
+            </svg>
+          ),
+        },
+      ],
+    },
+  ]
+    .filter((group) => group.roles.includes(currentRole))
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => item.roles && item.roles.includes(currentRole)),
+    }));
 
   const handleGroupClick = (groupId) => {
     setOpenGroups((prev) =>
@@ -253,6 +326,7 @@ function Dashboard({ token, onLogout }) {
           Research Funding &amp; <span className="highlight">Innovation Intelligence</span>
         </div>
         <div className="dash-nav-right">
+          <NotificationBell token={token} />
           {profile && (
             <span className="dash-role-badge">{formatRole(profile.role)}</span>
           )}
@@ -525,6 +599,29 @@ function Dashboard({ token, onLogout }) {
                 )}
               </div>
             </>
+          )}
+          {activeTab === "reports" && (
+            <div className="dash-card">
+              <h3>Reports & Export</h3>
+              <p className="dash-card-subtitle">Download your full innovation intelligence report</p>
+              <Reports token={token} />
+            </div>
+          )}
+
+          {activeTab === "admin-stats" && (
+            <div className="dash-card">
+              <h3>Platform Analytics</h3>
+              <p className="dash-card-subtitle">Overall usage across the platform</p>
+              <AdminPanel token={token} view="stats" />
+            </div>
+          )}
+
+          {activeTab === "admin-users" && (
+            <div className="dash-card">
+              <h3>User Management</h3>
+              <p className="dash-card-subtitle">All registered users on the platform</p>
+              <AdminPanel token={token} view="users" />
+            </div>
           )}
         </div>
       </div>
