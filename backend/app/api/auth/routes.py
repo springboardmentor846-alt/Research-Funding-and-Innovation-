@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.db.database import get_db
 from app.schemas.user import UserRegister, UserLogin
 from app.crud.user import create_user, get_user_by_email
-from app.core.security import verify_password, create_access_token, get_current_user, require_role
+from app.core.security import verify_password, create_access_token, create_refresh_token, decode_access_token, get_current_user, require_role
 
 router = APIRouter()
 
@@ -42,12 +42,36 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     access_token = create_access_token(
         data={"sub": db_user.email, "role": db_user.role}
     )
+    refresh_token = create_refresh_token(
+        data={"sub": db_user.email, "role": db_user.role}
+    )
 
     return {
         "access_token": access_token,
+        "refresh_token": refresh_token,
         "token_type": "bearer",
         "email": db_user.email,
         "role": db_user.role
+    }
+
+
+@router.post("/refresh")
+def refresh_token(payload: dict):
+    token = payload.get("refresh_token")
+    if not token:
+        raise HTTPException(status_code=400, detail="Refresh token required")
+
+    decoded = decode_access_token(token)
+    if decoded is None or decoded.get("type") != "refresh":
+        raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
+
+    new_access_token = create_access_token(
+        data={"sub": decoded.get("sub"), "role": decoded.get("role")}
+    )
+
+    return {
+        "access_token": new_access_token,
+        "token_type": "bearer"
     }
 
 
@@ -57,6 +81,7 @@ def get_me(current_user: dict = Depends(get_current_user)):
         "email": current_user.get("sub"),
         "role": current_user.get("role")
     }
+
 
 @router.get("/researcher-only")
 def researcher_route(current_user: dict = Depends(require_role(["researcher"]))):
