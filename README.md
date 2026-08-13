@@ -1,54 +1,139 @@
 # Research Funding & Innovation Intelligence Platform
 
-This project is a web-based platform for researchers, startups, universities, and innovation teams.
+An AI-powered platform that helps researchers, startups, and innovation managers discover funding opportunities, track research trends, analyze patent landscapes, and receive commercialization recommendations — all from a single dashboard.
 
-The platform helps users discover funding opportunities, analyze research trends, check patent-related information, and understand innovation potential.
+## Overview
 
-## Milestone 1 Work
+This platform combines four core intelligence layers:
+- **Funding Discovery** — matches researchers to relevant grants based on domain and eligibility
+- **Research Intelligence** — tracks publication trends and emerging research topics
+- **Patent Analytics** — analyzes patent landscapes, competitors, and technology clusters
+- **Innovation Scoring** — generates a weighted innovation score and commercialization recommendations
 
-- Login page
-- Dashboard prototype
-- Research profile page
-- Module planning
-- Sample Python API server
+## Tech Stack
 
-## Milestone 2 Work
+**Backend**
+- Python, FastAPI
+- PostgreSQL (via Docker) + SQLAlchemy ORM
+- JWT authentication with refresh tokens
+- Role-based access control (Researcher, Startup Founder, Innovation Manager, Admin)
 
-For Milestone 2, the focus is on Funding Discovery and Research Trend Intelligence.
+**Frontend**
+- React (Vite)
+- Recharts for data visualization
+- Axios for API communication
 
-Implemented prototype features:
+**External Data Sources**
+- OpenAlex API — live research publication search
+- Grants.gov API — live U.S. federal funding search
+- Verified real USPTO patent records
 
-- Funding recommendation page
-- Match percentage for funding opportunities
-- Eligibility details
-- Funding amount
-- Deadline
-- Reason for recommendation
-- Research trend cards
-- Growth level
-- Relevance score
-- Paper count
-- Short insight for each trend
+## Architecture
 
-## Tech Stack Used
+```
+Client (React / Swagger UI)
+        |
+        v
+FastAPI Backend (Uvicorn)
+        |
+   +----+----+----------+
+   v         v          v
+ Auth      Profile    Funding
+ Module    Module     Module
+   |         |          |
+   +----+----+----------+
+        v
+  PostgreSQL (Docker)
+```
 
-- HTML
-- CSS
-- JavaScript
-- Python
+## Features
 
-## Project Structure
+- User registration & login with JWT (access + refresh tokens)
+- Role-based access control on protected routes
+- Research profile management (domains, keywords, publications, patents)
+- Funding recommendation engine with domain + eligibility matching
+- Live search of real U.S. federal grants (Grants.gov)
+- Live import of real published research papers (OpenAlex)
+- Publication trend analysis and emerging topic detection
+- Patent landscape analysis, competitor analysis, and technology clustering
+- Innovation scoring engine with weighted formula
+- Commercialization recommendations
+- Notifications and PDF/Excel report export
+- API versioning (`/api/v1/`)
+- Request-ID tracing middleware for request logging
 
-- frontend/index.html
-- frontend/styles.css
-- frontend/app.js
-- backend/server.py
+## Getting Started
 
-## How To Run
+### Prerequisites
 
-1. Download or clone the repository.
-2. Open the backend folder.
-3. Run:
+- Python 3.12+
+- Node.js 18+
+- Docker Desktop
 
-```bash
-python server.py
+### Backend Setup
+
+```
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Create a `.env` file in the `backend` folder (see `.env.example`).
+
+Start PostgreSQL:
+
+```
+cd infra
+docker compose up -d
+```
+
+Run the backend:
+
+```
+cd backend
+uvicorn app.main:app --reload
+```
+
+Backend runs at `http://127.0.0.1:8000` — interactive API docs at `http://127.0.0.1:8000/docs`.
+
+### Frontend Setup
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs at `http://localhost:5173`.
+
+## API Overview
+
+All endpoints are versioned under `/api/v1/`.
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/v1/auth/register` | POST | Create a new account |
+| `/api/v1/auth/login` | POST | Login, returns access + refresh tokens |
+| `/api/v1/auth/refresh` | POST | Get a new access token |
+| `/api/v1/auth/me` | GET | Get current user info |
+| `/api/v1/profile/` | GET/POST | Manage research profile |
+| `/api/v1/profile/publications` | GET/POST | Manage publications |
+| `/api/v1/profile/patents` | GET/POST | Manage patents |
+| `/api/v1/funding/` | GET/POST | List / add funding opportunities |
+| `/api/v1/funding/recommended` | GET | Get personalized funding matches |
+
+Full interactive documentation available at `/docs` when the server is running.
+
+## Project Status
+
+This project is being built in milestones as part of a mentorship program:
+
+- Milestone 1 — Authentication, role-based access, research profiles (Complete)
+- Milestone 2 — Funding discovery, research intelligence, trend analysis (Complete)
+- Milestone 3 — Patent analytics, technology intelligence, innovation scoring (Complete)
+- Milestone 4 — Testing, CI/CD, deployment (In Progress)
+
+## Author
+
+Upendra
