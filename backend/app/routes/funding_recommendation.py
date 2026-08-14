@@ -12,12 +12,12 @@ from app.models.funding import FundingOpportunity
 from app.services.recommendation_engine import generate_recommendations
 
 router = APIRouter(
-    prefix="/funding-recommendation",
-    tags=["Funding Recommendation"]
+    prefix="/funding",
+    tags=["Funding Discovery"]
 )
 
 
-@router.get("/")
+@router.get("/recommendations")
 def funding_recommendation(
 
     token: dict = Depends(verify_token),

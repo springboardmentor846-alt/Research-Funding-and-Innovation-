@@ -12,12 +12,12 @@ from app.models.funding import FundingOpportunity
 from app.services.grant_matching import calculate_match
 
 router = APIRouter(
-    prefix="/grant-matching",
-    tags=["Grant Matching"]
+    prefix="/funding",
+    tags=["Funding"]
 )
 
 
-@router.get("/")
+@router.get("/grant-matching")
 def grant_matching(
 
     token: dict = Depends(verify_token),
