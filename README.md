@@ -14,7 +14,8 @@ This platform combines four core intelligence layers:
 
 **Backend**
 - Python, FastAPI
-- PostgreSQL (via Docker) + SQLAlchemy ORM
+- SQLite (local development) + SQLAlchemy ORM
+- Alembic for database migrations
 - JWT authentication with refresh tokens
 - Role-based access control (Researcher, Startup Founder, Innovation Manager, Admin)
 
