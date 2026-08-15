@@ -52,7 +52,7 @@ real_patents = [
 
 print("Logging in...")
 login_res = requests.post(
-    f"{BASE_URL}/api/auth/login",
+    f"{BASE_URL}/api/v1/auth/login",
     json={"email": EMAIL, "password": PASSWORD},
 )
 login_res.raise_for_status()
@@ -62,7 +62,7 @@ print("Logged in successfully.")
 
 added = 0
 for patent in real_patents:
-    res = requests.post(f"{BASE_URL}/api/profile/patents", json=patent, headers=headers)
+    res = requests.post(f"{BASE_URL}/api/v1/profile/patents", json=patent, headers=headers)
     if res.status_code == 200:
         print(f"Added: {patent['title'][:60]}...")
         added += 1
