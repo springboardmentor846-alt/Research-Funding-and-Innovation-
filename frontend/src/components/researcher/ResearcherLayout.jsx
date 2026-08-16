@@ -145,7 +145,10 @@ const navItems = [
         <NavLink
           key={item.path}
           to={item.path}
-          end={item.path === "/dashboard"}
+          end={
+            item.path === "/dashboard" ||
+            item.path === "/profile"
+          }
           className={({ isActive }) =>
             `sidebar-link ${isActive ? "active" : ""}`
           }

@@ -4,7 +4,6 @@ from app.config import settings
 
 BASE_URL = "https://api.lens.org/patent/search"
 
-
 def search_patents(query: str, size: int = 25):
 
     headers = {
@@ -31,3 +30,4 @@ def search_patents(query: str, size: int = 25):
     response.raise_for_status()
 
     return response.json()
+

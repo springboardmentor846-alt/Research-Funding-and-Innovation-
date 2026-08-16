@@ -9,7 +9,6 @@ import {
 
 import {
   getFundingRecommendations,
-  searchFunding,
   getFundingAlerts
 } from "../../api/researcher/funding";
 
@@ -24,17 +23,14 @@ function Funding() {
   const [alerts, setAlerts] =
     useState([]);
 
-  const [searchQuery, setSearchQuery] =
-    useState("");
-
   const [loading, setLoading] =
     useState(true);
 
+  const [lastUpdated, setLastUpdated] =
+    useState(null);
+
   const [error, setError] =
     useState("");
-
-  const [searchMode, setSearchMode] =
-    useState(false);
 
 
   // ==========================================================
@@ -59,7 +55,6 @@ function Funding() {
 
       setLoading(true);
       setError("");
-      setSearchMode(false);
 
       const data =
         await getFundingRecommendations();
@@ -67,6 +62,8 @@ function Funding() {
       setFunding(
         data.recommendations || []
       );
+
+      setLastUpdated(new Date());
 
     } catch (error) {
 
@@ -109,65 +106,6 @@ function Funding() {
       );
 
     }
-
-  }
-
-
-  // ==========================================================
-  // SEARCH
-  // ==========================================================
-
-  async function handleSearch() {
-
-    if (!searchQuery.trim()) {
-
-      await loadRecommendations();
-      return;
-
-    }
-
-    try {
-
-      setLoading(true);
-      setError("");
-      setSearchMode(true);
-
-      const data =
-        await searchFunding({
-          query: searchQuery.trim()
-        });
-
-      setFunding(
-        data.funding_opportunities || []
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-      setError(
-        error.response?.data?.detail ||
-        "Failed to search funding opportunities."
-      );
-
-    } finally {
-
-      setLoading(false);
-
-    }
-
-  }
-
-
-  // ==========================================================
-  // RESET TO PERSONALIZED RECOMMENDATIONS
-  // ==========================================================
-
-  async function showRecommendations() {
-
-    setSearchQuery("");
-
-    await loadRecommendations();
 
   }
 
@@ -272,73 +210,109 @@ function Funding() {
 
 
       {/* ======================================================
-          SEARCH
+          LIVE FUNDING SOURCES
       ====================================================== */}
 
       <div className="card shadow-sm mb-4">
 
         <div className="card-body">
 
-          <label className="form-label">
+          <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-            Search Funding Opportunities
+            <div>
 
-          </label>
+              <h5 className="mb-1">
 
-          <div className="input-group">
+                Live Funding Discovery
 
-            <input
+              </h5>
 
-              type="text"
+              <p className="text-muted mb-2">
 
-              className="form-control"
+                Current opportunities are fetched from multiple
+                Indian and international funding sources and ranked
+                according to your research profile.
 
-              placeholder=
-                "Search AI, machine learning, healthcare..."
+              </p>
 
-              value={searchQuery}
+              {lastUpdated && (
 
-              onChange={(event) =>
-                setSearchQuery(
-                  event.target.value
-                )
-              }
+                <div className="small text-muted mb-2">
 
-              onKeyDown={(event) => {
+                  Last refreshed: {lastUpdated.toLocaleTimeString()}
 
-                if (
-                  event.key === "Enter"
-                ) {
+                </div>
 
-                  handleSearch();
+              )}
 
-                }
+              <div className="d-flex flex-wrap gap-2">
 
+                <span className="badge bg-light text-dark border">
+
+                  🇮🇳 ANRF
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇮🇳 DBT
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇮🇳 ICMR
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇮🇳 BIRAC
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇺🇸 Grants.gov
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇪🇺 Horizon Europe
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🇬🇧 UKRI
+
+                </span>
+
+                <span className="badge bg-light text-dark border">
+
+                  🌍 Wellcome
+
+                </span>
+
+              </div>
+
+            </div>
+
+            <button
+
+              className="btn btn-outline-primary"
+
+              onClick={() => {
+                loadRecommendations();
+                loadAlerts();
               }}
 
-            />
-
-            <button
-
-              className="btn btn-primary"
-
-              onClick={handleSearch}
+              disabled={loading}
 
             >
 
-              Search
-
-            </button>
-
-            <button
-
-              className="btn btn-outline-secondary"
-
-              onClick={showRecommendations}
-
-            >
-
-              My Recommendations
+              ↻ Refresh Opportunities
 
             </button>
 
@@ -465,19 +439,23 @@ function Funding() {
 
 
       {/* ======================================================
-          MODE TITLE
+          RECOMMENDATIONS TITLE
       ====================================================== */}
 
       <div className="mb-3">
 
         <h4>
 
-          {searchMode
-            ? `Search Results for "${searchQuery}"`
-            : "Personalized Recommendations"
-          }
+          Personalized Recommendations
 
         </h4>
+
+        <p className="text-muted mb-0">
+
+          Ranked using your research domains, keywords,
+          technology areas and profile details.
+
+        </p>
 
       </div>
 
@@ -522,12 +500,7 @@ function Funding() {
             "alert alert-info"
         >
 
-          {searchMode
-
-            ? "No funding opportunities matched your search."
-
-            : "No funding recommendations are currently available."
-          }
+          No funding recommendations are currently available.
 
         </div>
 
@@ -565,8 +538,7 @@ function Funding() {
                       RELEVANCE
                   ========================================== */}
 
-                  {!searchMode &&
-                   item.relevance_level && (
+                  {item.relevance_level && (
 
                     <div
                       className=
@@ -790,8 +762,7 @@ function Funding() {
                       ELIGIBILITY
                   ========================================== */}
 
-                  {!searchMode &&
-                   item.eligibility && (
+                  {item.eligibility && (
 
                     <div className="mb-3">
 
@@ -831,8 +802,7 @@ function Funding() {
                       ELIGIBILITY WARNINGS
                   ========================================== */}
 
-                  {!searchMode &&
-                   item.eligibility
+                  {item.eligibility
                      ?.warnings
                      ?.length > 0 && (
 
@@ -872,8 +842,7 @@ function Funding() {
                       NOT ELIGIBLE REASONS
                   ========================================== */}
 
-                  {!searchMode &&
-                   item.eligibility
+                  {item.eligibility
                      ?.reasons
                      ?.length > 0 && (
 

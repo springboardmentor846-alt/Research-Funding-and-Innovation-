@@ -290,6 +290,81 @@ def calculate_similarity(
         return 0.0
 
 
+
+# =========================================================
+# SIMPLE TOPIC EXTRACTION
+# =========================================================
+
+TOPIC_STOPWORDS = {
+    "the", "and", "for", "with", "from", "that", "this", "using",
+    "based", "method", "system", "apparatus", "device", "process",
+    "data", "information", "technology", "application", "applications",
+    "one", "new", "provided", "configured", "including", "thereof",
+    "into", "over", "under", "between", "through", "such", "may",
+    "can", "are", "was", "were", "has", "have", "having", "their",
+    "which", "where", "patent", "invention", "embodiment", "embodiments",
+    "present", "disclosed", "methodology", "according", "claim", "claims",
+}
+
+def extract_top_topics(patents, limit=10):
+    """Simple explainable topic counts from patent titles and abstracts."""
+    import re
+
+    counter = Counter()
+    for patent in patents or []:
+        biblio = patent.get("biblio") or {}
+        title_data = biblio.get("invention_title") or patent.get("title") or ""
+        abstract_data = biblio.get("abstract") or patent.get("abstract") or ""
+
+        parts = []
+        if isinstance(title_data, list):
+            for item in title_data:
+                if isinstance(item, dict):
+                    value = item.get("text") or item.get("value")
+                    if value and (item.get("lang") == "en" or item.get("language") == "en"):
+                        parts.append(str(value))
+            if not parts:
+                for item in title_data:
+                    if isinstance(item, dict):
+                        value = item.get("text") or item.get("value")
+                        if value:
+                            parts.append(str(value))
+                            break
+        elif isinstance(title_data, dict):
+            parts.append(str(title_data.get("text") or title_data.get("value") or ""))
+        else:
+            parts.append(str(title_data))
+
+        if isinstance(abstract_data, list):
+            for item in abstract_data:
+                if isinstance(item, dict):
+                    value = item.get("text") or item.get("value")
+                    if value and (item.get("lang") == "en" or item.get("language") == "en"):
+                        parts.append(str(value))
+                        break
+            if len(parts) == 1:
+                for item in abstract_data:
+                    if isinstance(item, dict):
+                        value = item.get("text") or item.get("value")
+                        if value:
+                            parts.append(str(value))
+                            break
+        elif isinstance(abstract_data, dict):
+            parts.append(str(abstract_data.get("text") or abstract_data.get("value") or ""))
+        else:
+            parts.append(str(abstract_data))
+
+        text = " ".join(parts).lower()
+        words = re.findall(r"[a-z][a-z0-9+#.-]{2,}", text)
+        for word in words:
+            word = word.strip(".-")
+            if len(word) < 3 or word in TOPIC_STOPWORDS or word.isdigit():
+                continue
+            counter[word] += 1
+
+    return [{"topic": word.replace("-", " "), "count": count}
+            for word, count in counter.most_common(limit)]
+
 # =========================================================
 # MAIN PATENT LANDSCAPE SERVICE
 # =========================================================
@@ -1356,7 +1431,14 @@ def patent_landscape(
 
 
     # =====================================================
-    # 10. API RESPONSE
+    # 10. TOP TOPICS
+    # =====================================================
+
+    top_topics = extract_top_topics(patents)
+
+
+    # =====================================================
+    # 11. API RESPONSE
     # =====================================================
 
     return {
@@ -1509,6 +1591,15 @@ def patent_landscape(
         "innovation_map":
 
             innovation_map,
+
+
+        # -------------------------------------------------
+        # Top topics
+        # -------------------------------------------------
+
+        "top_topics":
+
+            top_topics,
 
 
         # -------------------------------------------------

@@ -1,6 +1,34 @@
 import { useState } from "react";
 import { getPatentLandscape } from "../../api/researcher/patentLandscape";
 
+function HorizontalBars({ items, valueKey = "count", labelKey = "label", maxItems = 8 }) {
+
+  const values = (items || []).slice(0, maxItems);
+  const max = Math.max(...values.map((item) => Number(item[valueKey]) || 0), 1);
+
+  return (
+    <div>
+      {values.map((item, index) => {
+        const value = Number(item[valueKey]) || 0;
+        const label = item[labelKey] ?? "Unknown";
+        const width = (value / max) * 100;
+
+        return (
+          <div key={`${label}-${index}`} className="mb-3">
+            <div className="d-flex justify-content-between mb-1">
+              <span className="text-truncate me-3" title={label}>{label}</span>
+              <strong>{value}</strong>
+            </div>
+            <div className="progress" style={{ height: "10px" }}>
+              <div className="progress-bar" style={{ width: `${width}%` }} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function PatentLandscape() {
 
   const [query, setQuery] = useState("");
@@ -51,7 +79,7 @@ function PatentLandscape() {
           <p>
             Analyze worldwide patent activity,
             leading organizations,
-            technology classes and AI-generated insights.
+            technology classes and key insights from the retrieved patent data.
           </p>
 
         </div>
@@ -324,7 +352,7 @@ function PatentLandscape() {
 
             <div className="card-body">
 
-              <h4>🤖 AI Insights</h4>
+              <h4>🤖 Key Insights</h4>
 
               <ul>
 

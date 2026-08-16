@@ -16,7 +16,7 @@ function GrantPrediction() {
 
     try {
 
-      const data = await getGrantPrediction(Number(fundingId));
+      const data = await getGrantPrediction(fundingId);
 
 setPrediction(data);
     } catch (error) {

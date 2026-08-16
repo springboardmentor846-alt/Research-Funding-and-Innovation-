@@ -1,1246 +1,248 @@
 from datetime import date, timedelta
 
-from fastapi import (
-    APIRouter,
-    Depends,
-    HTTPException,
-    Query,
-    status,
-)
-
-from sqlalchemy import (
-    or_,
-    select,
-)
-
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.dependencies import (
-    get_db,
-    require_role,
-)
-
-from app.models.funding import FundingOpportunity
+from app.dependencies import get_db, require_role
 from app.models.user import User
-
 from app.models.research_profile import ResearchProfile
 from app.models.research_domain import ResearchDomain
 from app.models.research_keyword import ResearchKeyword
 from app.models.technology_area import TechnologyArea
 
-from app.schemas.funding import (
-    FundingOpportunityCreate,
-    FundingOpportunityUpdate,
+from app.services.ai_service import build_researcher_text, build_funding_text, rank_recommendations
+from app.services.funding_eligibility_service import check_funding_eligibility
+from app.services.grants_gov_service import (
+    LiveFundingOpportunity, build_profile_search_keyword,
+    get_grants_gov_opportunity, search_grants_gov,
 )
+from app.services.anrf_service import search_anrf, get_anrf_opportunity
+from app.services.dbt_service import search_dbt, get_dbt_opportunity
+from app.services.icmr_service import search_icmr, get_icmr_opportunity
+from app.services.birac_service import search_birac, get_birac_opportunity
+from app.services.horizon_service import search_horizon, get_horizon_opportunity
+from app.services.ukri_service import search_ukri, get_ukri_opportunity
+from app.services.wellcome_service import search_wellcome, get_wellcome_opportunity
 
-from app.services.ai_service import (
-    build_researcher_text,
-    build_funding_text,
-    rank_recommendations,
-)
 
-from app.services.funding_eligibility_service import (
-    check_funding_eligibility,
-)
+router = APIRouter(prefix="/funding", tags=["Funding Opportunities"])
 
-from app.services.funding_collection_service import (
-    save_funding_opportunities,
-)
 
-from app.services.funding_source_service import (
-    collect_funding_sources,
-)
-
-
-router = APIRouter(
-    prefix="/funding",
-    tags=["Funding Opportunities"],
-)
-
-
-# ============================================================
-# HELPER
-# ============================================================
-
-def funding_to_dict(funding):
-
-    return {
-
-        "id":
-            funding.id,
-
-        "title":
-            funding.title,
-
-        "organization":
-            funding.organization,
-
-        "funding_type":
-            funding.funding_type,
-
-        "research_domain":
-            funding.research_domain,
-
-        "description":
-            funding.description,
-
-        "funding_amount":
-            funding.funding_amount,
-
-        "deadline":
-            funding.deadline,
-
-        "official_link":
-            funding.official_link,
-
-        "country":
-            funding.country,
-
-        "eligible_countries":
-            funding.eligible_countries,
-
-        "international_applicants_allowed":
-            funding.international_applicants_allowed,
-
-        "career_stage":
-            funding.career_stage,
-
-        "qualification":
-            funding.qualification,
-
-        "experience_required":
-            funding.experience_required,
-
-        "keywords":
-            funding.keywords,
-
-        "status":
-            funding.status,
-    }
-
-
-# ============================================================
-# CREATE FUNDING OPPORTUNITY
-# ADMINISTRATOR ONLY
-# ============================================================
-
-@router.post(
-    "",
-    status_code=status.HTTP_201_CREATED,
-)
-def create_funding_opportunity(
-
-    funding_data: FundingOpportunityCreate,
-
-    current_user: User = Depends(
-        require_role("administrator")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    existing = db.scalar(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.title
-            == funding_data.title,
-
-            FundingOpportunity.organization
-            == funding_data.organization,
-        )
-    )
-
-    if existing:
-
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="Funding opportunity already exists",
-        )
-
-    funding = FundingOpportunity(
-        **funding_data.model_dump()
-    )
-
-    db.add(funding)
-    db.commit()
-    db.refresh(funding)
-
-    return {
-
-        "message":
-            "Funding opportunity created successfully",
-
-        "funding_id":
-            funding.id,
-
-        "title":
-            funding.title,
-    }
-
-
-# ============================================================
-# GET ALL FUNDING OPPORTUNITIES
-# ============================================================
-
-@router.get("")
-def get_all_funding(
-
-    db: Session = Depends(get_db),
-):
-
-    funding_list = db.scalars(
-
-        select(
-            FundingOpportunity
-        ).order_by(
-            FundingOpportunity.id
-        )
-
-    ).all()
-
-    return {
-
-        "count":
-            len(funding_list),
-
-        "funding_opportunities": [
-
-            funding_to_dict(
-                funding
-            )
-
-            for funding
-            in funding_list
-        ],
-    }
-
-
-# ============================================================
-# RULE-BASED PERSONALIZED RECOMMENDATIONS
-#
-# Keeping your existing rule-based recommendation
-# separately so that you can compare rule-based vs AI.
-# ============================================================
-
-@router.get("/recommendations")
-def get_funding_recommendations(
-
-    current_user: User = Depends(
-        require_role("researcher")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    profile = db.scalar(
-
-        select(
-            ResearchProfile
-        ).where(
-
-            ResearchProfile.user_id
-            == current_user.id
-        )
-    )
-
+def _get_researcher_context(current_user: User, db: Session):
+    profile = db.scalar(select(ResearchProfile).where(ResearchProfile.user_id == current_user.id))
     if profile is None:
+        raise HTTPException(status_code=404, detail="Research profile not found.")
 
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Research profile not found",
-        )
+    domains = db.scalars(select(ResearchDomain).where(
+        ResearchDomain.research_profile_id == profile.id)).all()
+    keywords = db.scalars(select(ResearchKeyword).where(
+        ResearchKeyword.research_profile_id == profile.id)).all()
+    technologies = db.scalars(select(TechnologyArea).where(
+        TechnologyArea.research_profile_id == profile.id)).all()
 
-    research_domains = db.scalars(
-
-        select(
-            ResearchDomain
-        ).where(
-
-            ResearchDomain.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    keywords = db.scalars(
-
-        select(
-            ResearchKeyword
-        ).where(
-
-            ResearchKeyword.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    technology_areas = db.scalars(
-
-        select(
-            TechnologyArea
-        ).where(
-
-            TechnologyArea.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    funding_list = db.scalars(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.status
-            == "Open"
-        )
-
-    ).all()
-
-    recommended = []
-
-    for funding in funding_list:
-
-        score = 0
-
-        # ------------------------------------------------------
-        # DOMAIN MATCH
-        # ------------------------------------------------------
-
-        for domain in research_domains:
-
-            if (
-                funding.research_domain
-                and domain.name
-                and domain.name.lower()
-                in funding.research_domain.lower()
-            ):
-
-                score += 40
-                break
-
-        # ------------------------------------------------------
-        # KEYWORD MATCH
-        # ------------------------------------------------------
-
-        if funding.keywords:
-
-            for keyword in keywords:
-
-                if (
-                    keyword.name
-                    and keyword.name.lower()
-                    in funding.keywords.lower()
-                ):
-
-                    score += 20
-                    break
-
-        # ------------------------------------------------------
-        # TECHNOLOGY MATCH
-        # ------------------------------------------------------
-
-        if funding.keywords:
-
-            for area in technology_areas:
-
-                if (
-                    area.name
-                    and area.name.lower()
-                    in funding.keywords.lower()
-                ):
-
-                    score += 25
-                    break
-
-        # ------------------------------------------------------
-        # QUALIFICATION MATCH
-        # ------------------------------------------------------
-
-        if (
-            funding.qualification
-            and profile.highest_qualification
-            and funding.qualification.lower()
-            == profile.highest_qualification.lower()
-        ):
-
-            score += 10
-
-        # ------------------------------------------------------
-        # CAREER STAGE MATCH
-        # ------------------------------------------------------
-
-        if (
-            funding.career_stage
-            and profile.current_position
-            and profile.current_position.lower()
-            in funding.career_stage.lower()
-        ):
-
-            score += 5
-
-        if score > 0:
-
-            recommended.append({
-
-                "funding_id":
-                    funding.id,
-
-                "title":
-                    funding.title,
-
-                "organization":
-                    funding.organization,
-
-                "research_domain":
-                    funding.research_domain,
-
-                "funding_amount":
-                    funding.funding_amount,
-
-                "deadline":
-                    funding.deadline,
-
-                "match_score":
-                    score,
-            })
-
-    recommended.sort(
-
-        key=lambda item:
-            item["match_score"],
-
-        reverse=True,
+    return (
+        profile, domains, keywords, technologies,
+        build_researcher_text(profile, domains, keywords, technologies),
+        build_profile_search_keyword(domains, keywords, technologies),
     )
 
-    return {
 
-        "research_profile_id":
-            profile.id,
-
-        "total_recommendations":
-            len(recommended),
-
-        "recommendations":
-            recommended,
-    }
-
-
-# ============================================================
-# AI / SEMANTIC PERSONALIZED FUNDING RECOMMENDATIONS
-# + ELIGIBILITY MATCHING
-# ============================================================
-
-@router.get("/recommendations/ai")
-def ai_funding_recommendations(
-
-    current_user: User = Depends(
-        require_role("researcher")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    # ----------------------------------------------------------
-    # 1. GET RESEARCH PROFILE
-    # ----------------------------------------------------------
-
-    profile = db.scalar(
-
-        select(
-            ResearchProfile
-        ).where(
-
-            ResearchProfile.user_id
-            == current_user.id
-        )
-    )
-
-    if profile is None:
-
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Research profile not found.",
-        )
-
-    # ----------------------------------------------------------
-    # 2. RESEARCH DOMAINS
-    # ----------------------------------------------------------
-
-    domains = db.scalars(
-
-        select(
-            ResearchDomain
-        ).where(
-
-            ResearchDomain.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    # ----------------------------------------------------------
-    # 3. KEYWORDS
-    # ----------------------------------------------------------
-
-    keywords = db.scalars(
-
-        select(
-            ResearchKeyword
-        ).where(
-
-            ResearchKeyword.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    # ----------------------------------------------------------
-    # 4. TECHNOLOGY AREAS
-    # ----------------------------------------------------------
-
-    technologies = db.scalars(
-
-        select(
-            TechnologyArea
-        ).where(
-
-            TechnologyArea.research_profile_id
-            == profile.id
-        )
-
-    ).all()
-
-    # ----------------------------------------------------------
-    # 5. BUILD PERSONALIZED RESEARCHER REPRESENTATION
-    # ----------------------------------------------------------
-
-    researcher_text = build_researcher_text(
-
-        profile,
-        domains,
-        keywords,
-        technologies,
-    )
-
-    # ----------------------------------------------------------
-    # 6. GET OPEN FUNDING OPPORTUNITIES
-    # ----------------------------------------------------------
-
-    funding_list = db.scalars(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.status
-            == "Open"
-        )
-
-    ).all()
-
-    if not funding_list:
-
-        return {
-
-            "researcher":
-                current_user.email,
-
-            "research_profile_id":
-                profile.id,
-
-            "total_matches":
-                0,
-
-            "recommendations":
-                [],
-        }
-
-    # ----------------------------------------------------------
-    # 7. AI / SEMANTIC RANKING
-    # ----------------------------------------------------------
-
-    recommendations = rank_recommendations(
-
-        researcher_text=
-            researcher_text,
-
-        items=
-            funding_list,
-
-        text_builder=
-            build_funding_text,
-
-        subtitle_field=
-            "organization",
-    )
-
-    # ----------------------------------------------------------
-    # 8. FUNDING LOOKUP MAP
-    # ----------------------------------------------------------
-
-    funding_map = {
-
-        funding.id:
-            funding
-
-        for funding
-        in funding_list
-    }
-
-    # ----------------------------------------------------------
-    # 9. ENRICH RESULTS
-    # ----------------------------------------------------------
-
-    enriched_recommendations = []
-
-    for recommendation in recommendations:
-
-        funding_id = recommendation.get(
-            "id"
-        )
-
-        funding = funding_map.get(
-            funding_id
-        )
-
-        if funding is None:
-            continue
-
-        # ------------------------------------------------------
-        # SIMILARITY SCORE
-        # ------------------------------------------------------
-
-        score = recommendation.get(
-            "similarity_score",
-            recommendation.get(
-                "score",
-                0,
-            ),
-        )
-
-        # Convert 0-1 similarity to percentage
-
-        if score <= 1:
-
-            relevance_score = round(
-                score * 100,
-                2,
-            )
-
-        else:
-
-            relevance_score = round(
-                score,
-                2,
-            )
-
-        # ------------------------------------------------------
-        # HUMAN READABLE RELEVANCE
-        # ------------------------------------------------------
-
-        if relevance_score >= 70:
-
-            relevance_level = (
-                "Highly Relevant"
-            )
-
-        elif relevance_score >= 50:
-
-            relevance_level = (
-                "Relevant"
-            )
-
-        elif relevance_score >= 30:
-
-            relevance_level = (
-                "Moderate Match"
-            )
-
-        else:
-
-            relevance_level = (
-                "Low Match"
-            )
-
-        # ------------------------------------------------------
-        # ELIGIBILITY ANALYSIS
-        # ------------------------------------------------------
-
-        eligibility = (
-            check_funding_eligibility(
-                profile,
-                funding,
-            )
-        )
-
-        # ------------------------------------------------------
-        # FINAL RECOMMENDATION
-        # ------------------------------------------------------
-
-        enriched_recommendations.append({
-
-            "id":
-                funding.id,
-
-            "title":
-                funding.title,
-
-            "organization":
-                funding.organization,
-
-            "funding_type":
-                funding.funding_type,
-
-            "research_domain":
-                funding.research_domain,
-
-            "description":
-                funding.description,
-
-            "funding_amount":
-                funding.funding_amount,
-
-            "deadline":
-                funding.deadline,
-
-            "official_link":
-                funding.official_link,
-
-            "country":
-                funding.country,
-
-            "eligible_countries":
-                funding.eligible_countries,
-
-            "international_applicants_allowed":
-                funding.international_applicants_allowed,
-
-            "career_stage":
-                funding.career_stage,
-
-            "qualification":
-                funding.qualification,
-
-            "experience_required":
-                funding.experience_required,
-
-            "keywords":
-                funding.keywords,
-
-            "status":
-                funding.status,
-
-            "relevance_score":
-                relevance_score,
-
-            "relevance_level":
-                relevance_level,
-
-            "eligibility":
-                eligibility,
-        })
-
-    # ----------------------------------------------------------
-    # 10. SORT BEST MATCH FIRST
-    # ----------------------------------------------------------
-
-    enriched_recommendations.sort(
-
-        key=lambda item:
-            item["relevance_score"],
-
-        reverse=True,
-    )
-
-    return {
-
-        "researcher":
-            current_user.email,
-
-        "research_profile_id":
-            profile.id,
-
-        "total_matches":
-            len(
-                enriched_recommendations
-            ),
-
-        "recommendations":
-            enriched_recommendations,
-    }
-
-
-# ============================================================
-# SEARCH / FILTER FUNDING
-#
-# IMPORTANT:
-# This MUST stay ABOVE /{funding_id}
-# ============================================================
-
-@router.get("/search")
-def search_funding_opportunities(
-
-    query: str | None = Query(
-        default=None
-    ),
-
-    domain: str | None = Query(
-        default=None
-    ),
-
-    country: str | None = Query(
-        default=None
-    ),
-
-    funding_type: str | None = Query(
-        default=None
-    ),
-
-    funding_status: str | None = Query(
-        default="Open"
-    ),
-
-    current_user: User = Depends(
-        require_role("researcher")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    statement = select(
-        FundingOpportunity
-    )
-
-    # ----------------------------------------------------------
-    # STATUS
-    # ----------------------------------------------------------
-
-    if funding_status:
-
-        statement = statement.where(
-
-            FundingOpportunity.status
-            == funding_status
-        )
-
-    # ----------------------------------------------------------
-    # GENERAL TEXT SEARCH
-    # ----------------------------------------------------------
-
-    if query:
-
-        search_value = (
-            f"%{query.strip()}%"
-        )
-
-        statement = statement.where(
-
-            or_(
-
-                FundingOpportunity.title.ilike(
-                    search_value
-                ),
-
-                FundingOpportunity.description.ilike(
-                    search_value
-                ),
-
-                FundingOpportunity.keywords.ilike(
-                    search_value
-                ),
-
-                FundingOpportunity.organization.ilike(
-                    search_value
-                ),
-
-                FundingOpportunity.research_domain.ilike(
-                    search_value
-                ),
-            )
-        )
-
-    # ----------------------------------------------------------
-    # DOMAIN
-    # ----------------------------------------------------------
-
-    if domain:
-
-        statement = statement.where(
-
-            FundingOpportunity.research_domain.ilike(
-                f"%{domain.strip()}%"
-            )
-        )
-
-    # ----------------------------------------------------------
-    # COUNTRY
-    # ----------------------------------------------------------
-
-    if country:
-
-        statement = statement.where(
-
-            or_(
-
-                FundingOpportunity.country.ilike(
-                    f"%{country.strip()}%"
-                ),
-
-                FundingOpportunity.eligible_countries.ilike(
-                    f"%{country.strip()}%"
-                ),
-            )
-        )
-
-    # ----------------------------------------------------------
-    # FUNDING TYPE
-    # ----------------------------------------------------------
-
-    if funding_type:
-
-        statement = statement.where(
-
-            FundingOpportunity.funding_type.ilike(
-                f"%{funding_type.strip()}%"
-            )
-        )
-
-    opportunities = db.scalars(
-        statement
-    ).all()
-
-    return {
-
-        "count":
-            len(opportunities),
-
-        "funding_opportunities": [
-
-            funding_to_dict(
-                funding
-            )
-
-            for funding
-            in opportunities
-        ],
-    }
-
-
-# ============================================================
-# FUNDING DEADLINE ALERTS
-#
-# IMPORTANT:
-# Keep ABOVE /{funding_id}
-# ============================================================
-
-@router.get("/alerts")
-def get_funding_alerts(
-
-    days: int = Query(
-        default=30,
-        ge=1,
-        le=365,
-    ),
-
-    current_user: User = Depends(
-        require_role("researcher")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    today = date.today()
-
-    end_date = (
-        today
-        + timedelta(
-            days=days
-        )
-    )
-
-    opportunities = db.scalars(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.status
-            == "Open",
-
-            FundingOpportunity.deadline
-            .is_not(None),
-
-            FundingOpportunity.deadline
-            >= today,
-
-            FundingOpportunity.deadline
-            <= end_date,
-        ).order_by(
-
-            FundingOpportunity.deadline
-        )
-
-    ).all()
-
-    alerts = []
-
-    for funding in opportunities:
-
-        days_remaining = (
-            funding.deadline
-            - today
-        ).days
-
-        alerts.append({
-
-            "id":
-                funding.id,
-
-            "title":
-                funding.title,
-
-            "organization":
-                funding.organization,
-
-            "funding_amount":
-                funding.funding_amount,
-
-            "deadline":
-                funding.deadline,
-
-            "days_remaining":
-                days_remaining,
-
-            "official_link":
-                funding.official_link,
-        })
-
-    return {
-
-        "alert_period_days":
-            days,
-
-        "count":
-            len(alerts),
-
-        "alerts":
-            alerts,
-    }
-
-
-# ============================================================
-# COLLECT / UPDATE FUNDING DATABASE
-#
-# ADMINISTRATOR ONLY
-#
-# IMPORTANT:
-# Keep ABOVE /{funding_id}
-# ============================================================
-
-@router.post("/collect")
-def collect_funding_opportunities(
-
-    current_user: User = Depends(
-        require_role("administrator")
-    ),
-
-    db: Session = Depends(get_db),
-):
-
-    records = (
-        collect_funding_sources()
-    )
-
-    result = (
-        save_funding_opportunities(
-            db,
-            records,
-        )
-    )
-
-    return {
-
-        "message":
-            "Funding collection completed.",
-
-        **result,
-    }
-
-
-# ============================================================
-# GET ONE FUNDING OPPORTUNITY
-#
-# ALL STATIC ROUTES ABOVE THIS POINT.
-# ============================================================
-
-@router.get("/{funding_id}")
-def get_funding_by_id(
-
-    funding_id: int,
-
-    db: Session = Depends(get_db),
-):
-
-    funding = db.scalar(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.id
-            == funding_id
-        )
-    )
-
-    if funding is None:
-
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Funding opportunity not found",
-        )
-
-    result = funding_to_dict(
-        funding
-    )
-
-    result["created_at"] = (
-        funding.created_at
-    )
-
-    result["updated_at"] = (
-        funding.updated_at
-    )
-
+def _serialize(item: LiveFundingOpportunity):
+    result = item.to_dict()
+    if item.deadline:
+        result["deadline"] = item.deadline.isoformat()
     return result
 
 
-# ============================================================
-# UPDATE FUNDING OPPORTUNITY
-# ADMINISTRATOR ONLY
-# ============================================================
+def _fetch_all(query: str | None, per_source: int = 8):
+    """One source failing must not take down the whole Funding page."""
+    providers = (
+        ("Grants.gov", lambda: search_grants_gov(keyword=query, limit=per_source)),
+        ("ANRF", lambda: search_anrf(query=query, limit=per_source)),
+        ("DBT", lambda: search_dbt(query=query, limit=per_source)),
+        ("ICMR", lambda: search_icmr(query=query, limit=per_source)),
+        ("BIRAC", lambda: search_birac(query=query, limit=per_source)),
+        ("Horizon Europe", lambda: search_horizon(query=query, limit=per_source)),
+        ("UKRI", lambda: search_ukri(query=query, limit=per_source)),
+        ("Wellcome", lambda: search_wellcome(query=query, limit=per_source)),
+    )
 
-@router.patch("/{funding_id}")
-def update_funding_opportunity(
+    items = []
+    errors = []
+    for name, fetch in providers:
+        try:
+            items.extend(fetch())
+        except Exception as exc:
+            errors.append(f"{name}: {exc}")
 
-    funding_id: int,
+    # Dedupe by source + URL/title.
+    seen = set()
+    unique = []
+    for item in items:
+        key = (item.source, item.official_link or item.title)
+        if key not in seen:
+            seen.add(key)
+            unique.append(item)
 
-    funding_data:
-        FundingOpportunityUpdate,
+    return unique, errors
 
-    current_user: User = Depends(
-        require_role("administrator")
-    ),
 
+def _recommendation_response(items, researcher_text, profile, top_n=12):
+    if not items:
+        return []
+
+    try:
+        ranked = rank_recommendations(
+            researcher_text=researcher_text,
+            items=items,
+            text_builder=build_funding_text,
+            subtitle_field="organization",
+        )
+    except Exception:
+        researcher_words = {w.lower() for w in researcher_text.split() if len(w) >= 3}
+        ranked = []
+        for item in items:
+            item_words = {w.lower() for w in build_funding_text(item).split() if len(w) >= 3}
+            overlap = len(researcher_words & item_words) / max(len(researcher_words), 1)
+            ranked.append({"id": item.id, "similarity_score": overlap})
+        ranked.sort(key=lambda x: x["similarity_score"], reverse=True)
+
+    item_map = {x.id: x for x in items}
+    output = []
+
+    for ranked_item in ranked[:top_n]:
+        item = item_map.get(ranked_item["id"])
+        if not item:
+            continue
+
+        score = float(ranked_item.get("similarity_score", ranked_item.get("score", 0)))
+        relevance = round(score * 100 if score <= 1 else score, 2)
+
+        if relevance >= 70:
+            level = "Highly Relevant"
+        elif relevance >= 50:
+            level = "Relevant"
+        elif relevance >= 30:
+            level = "Moderate Match"
+        else:
+            level = "Low Match"
+
+        result = _serialize(item)
+        result.update({
+            "relevance_score": relevance,
+            "relevance_level": level,
+            "eligibility": check_funding_eligibility(profile, item),
+        })
+        output.append(result)
+
+    return output
+
+
+@router.get("/recommendations/ai")
+def ai_funding_recommendations(
+    current_user: User = Depends(require_role("researcher")),
     db: Session = Depends(get_db),
 ):
-
-    funding = db.scalar(
-
-        select(
-            FundingOpportunity
-        ).where(
-
-            FundingOpportunity.id
-            == funding_id
-        )
+    profile, domains, keywords, technologies, researcher_text, search_keyword = (
+        _get_researcher_context(current_user, db)
     )
 
-    if funding is None:
-
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Funding opportunity not found",
-        )
-
-    update_data = (
-        funding_data.model_dump(
-            exclude_unset=True
-        )
-    )
-
-    for field, value in (
-        update_data.items()
-    ):
-
-        setattr(
-            funding,
-            field,
-            value,
-        )
-
-    db.commit()
-    db.refresh(funding)
+    items, errors = _fetch_all(search_keyword, per_source=8)
+    recommendations = _recommendation_response(items, researcher_text, profile, top_n=12)
 
     return {
-
-        "message":
-            "Funding opportunity updated successfully",
-
-        "funding_id":
-            funding.id,
-
-        "updated_fields":
-            list(
-                update_data.keys()
-            ),
+        "researcher": current_user.email,
+        "research_profile_id": profile.id,
+        "source": "Multi-source: Grants.gov + ANRF + DBT + ICMR + BIRAC + Horizon Europe + UKRI + Wellcome",
+        "live": True,
+        "total_matches": len(recommendations),
+        "recommendations": recommendations,
+        "source_warnings": errors,
     }
 
 
-# ============================================================
-# DELETE FUNDING OPPORTUNITY
-# ADMINISTRATOR ONLY
-# ============================================================
+@router.get("/search")
+def search_funding_opportunities(
+    query: str | None = Query(default=None),
+    current_user: User = Depends(require_role("researcher")),
+):
+    if not query or not query.strip():
+        raise HTTPException(status_code=400, detail="Search query is required.")
 
-@router.delete("/{funding_id}")
-def delete_funding_opportunity(
+    items, errors = _fetch_all(query.strip(), per_source=8)
+    return {
+        "count": len(items),
+        "source": "Multi-source",
+        "live": True,
+        "funding_opportunities": [_serialize(x) for x in items[:30]],
+        "source_warnings": errors,
+    }
 
-    funding_id: int,
 
-    current_user: User = Depends(
-        require_role("administrator")
-    ),
-
+@router.get("/alerts")
+def get_funding_alerts(
+    days: int = Query(default=30, ge=1, le=365),
+    current_user: User = Depends(require_role("researcher")),
     db: Session = Depends(get_db),
 ):
+    _, _, _, _, _, search_keyword = _get_researcher_context(current_user, db)
+    items, errors = _fetch_all(search_keyword, per_source=10)
 
-    funding = db.scalar(
+    today = date.today()
+    end_date = today + timedelta(days=days)
+    alerts = []
 
-        select(
-            FundingOpportunity
-        ).where(
+    for item in items:
+        if item.deadline and today <= item.deadline <= end_date:
+            alerts.append({
+                "id": item.id,
+                "title": item.title,
+                "organization": item.organization,
+                "funding_amount": item.funding_amount,
+                "deadline": item.deadline.isoformat(),
+                "days_remaining": (item.deadline - today).days,
+                "official_link": item.official_link,
+                "source": item.source,
+            })
 
-            FundingOpportunity.id
-            == funding_id
-        )
-    )
-
-    if funding is None:
-
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Funding opportunity not found",
-        )
-
-    deleted_title = (
-        funding.title
-    )
-
-    db.delete(
-        funding
-    )
-
-    db.commit()
-
+    alerts.sort(key=lambda x: x["deadline"])
     return {
-
-        "message":
-            "Funding opportunity deleted successfully",
-
-        "deleted_funding":
-            deleted_title,
+        "alert_period_days": days,
+        "source": "Multi-source",
+        "live": True,
+        "count": len(alerts),
+        "alerts": alerts,
+        "source_warnings": errors,
     }
+
+
+def get_live_funding_by_id(funding_id: str):
+    if funding_id.startswith("grantsgov-"):
+        return get_grants_gov_opportunity(funding_id.removeprefix("grantsgov-"))
+    if funding_id.startswith("anrf-"):
+        return get_anrf_opportunity(funding_id)
+    if funding_id.startswith("dbt-"):
+        return get_dbt_opportunity(funding_id)
+    if funding_id.startswith("icmr-"):
+        return get_icmr_opportunity(funding_id)
+    if funding_id.startswith("birac-"):
+        return get_birac_opportunity(funding_id)
+    if funding_id.startswith("eufunding-"):
+        return get_horizon_opportunity(funding_id)
+    if funding_id.startswith("ukri-"):
+        return get_ukri_opportunity(funding_id)
+    if funding_id.startswith("wellcome-"):
+        return get_wellcome_opportunity(funding_id)
+    raise ValueError("Unknown funding source.")
+
+
+@router.get("/{funding_id}")
+def get_funding_by_id(
+    funding_id: str,
+    current_user: User = Depends(require_role("researcher")),
+):
+    try:
+        return _serialize(get_live_funding_by_id(funding_id))
+    except (RuntimeError, ValueError) as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
