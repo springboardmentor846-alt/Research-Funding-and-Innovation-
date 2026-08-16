@@ -13,6 +13,7 @@ from app.routers import patent_intelligence
 from app.routers import technology
 from app.routers import innovation
 from app.routers import commercialization
+from app.routers import reports
 
 
 Base.metadata.create_all(bind=engine)
@@ -50,6 +51,19 @@ app.include_router(patent_intelligence.router)
 app.include_router(technology.router)
 app.include_router(innovation.router)
 app.include_router(commercialization.router)
+app.include_router(reports.router)
+
+
+# -------------------- Health Check --------------------
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok"
+    }
+
+
+# -------------------- Root --------------------
 
 @app.get("/")
 def home():
