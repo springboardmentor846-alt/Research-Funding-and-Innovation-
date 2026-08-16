@@ -25,6 +25,7 @@ from app.crud.patent import (
     get_patent_trend,
     get_competitor_analysis,
     get_technology_clusters,
+    search_patentsview,
 )
 from app.crud.technology import get_technology_intelligence
 from app.crud.innovation import get_innovation_score
@@ -139,6 +140,14 @@ def list_patents(
         return []
 
     return get_patents_by_profile(db, profile.id)
+
+
+@router.get("/patents/search-live")
+def search_live_patents(
+    keyword: str,
+    current_user: dict = Depends(get_current_user),
+):
+    return search_patentsview(keyword)
 
 
 @router.get("/patents/trend")

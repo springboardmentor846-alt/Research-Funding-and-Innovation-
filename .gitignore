@@ -7,3 +7,4 @@ venv/
 backend/venv/
 backend/test.db
 backend/seed_data.py
+backend/test_pytest.db

@@ -1,9 +1,46 @@
 import re
 from collections import defaultdict
 
+import requests as http_requests
 from sqlalchemy.orm import Session
 from app.models.patent import Patent
 from app.schemas.patent import PatentCreate
+
+
+def search_patentsview(keyword: str, limit: int = 10):
+    """
+    Live search against the PatentsView public API (USPTO) for real
+    granted patents matching the given keyword in their title.
+    """
+    try:
+        query = {
+            "q": {"_text_any": {"patent_title": keyword}},
+            "f": ["patent_id", "patent_title", "patent_date", "assignees.assignee_organization"],
+            "o": {"size": limit},
+        }
+        response = http_requests.get(
+            "https://search.patentsview.org/api/v1/patent/",
+            params={"q": http_requests.utils.quote(str(query))},
+            timeout=10,
+        )
+        response.raise_for_status()
+        data = response.json()
+        hits = data.get("patents", [])
+    except Exception:
+        return []
+
+    results = []
+    for hit in hits:
+        assignees = hit.get("assignees") or []
+        assignee_name = assignees[0].get("assignee_organization") if assignees else "Unknown"
+        results.append({
+            "title": hit.get("patent_title", "Untitled Patent"),
+            "assignee": assignee_name or "Unknown",
+            "filing_date": hit.get("patent_date", "Not specified"),
+            "patent_number": hit.get("patent_id", "N/A"),
+        })
+
+    return results
 
 
 def create_patent(db: Session, profile_id: int, data: PatentCreate):
