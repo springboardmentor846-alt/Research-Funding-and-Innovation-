@@ -6,11 +6,13 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [token, setToken] = useState("");
+  const [messageType, setMessageType] = useState("error");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/v1/auth/login", {
@@ -18,8 +20,8 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
         password: password,
       });
 
-      setToken(response.data.access_token);
-      setMessage("Login successful!");
+      setMessage("Login successful! Redirecting...");
+      setMessageType("success");
       onLoginSuccess(response.data.access_token);
     } catch (error) {
       if (error.response) {
@@ -27,6 +29,9 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
       } else {
         setMessage("Could not connect to server");
       }
+      setMessageType("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -99,8 +104,8 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
                 required
               />
             </div>
-            <button type="submit" className="auth-submit">
-              Sign In
+            <button type="submit" className="auth-submit" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in..." : "Sign In"}
             </button>
           </form>
 
@@ -109,12 +114,10 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
             <span onClick={onSwitchToRegister}>Register here</span>
           </p>
 
-          {message && <p className="auth-message">{message}</p>}
-
-          {token && (
-            <div className="auth-token">
-              <strong>Token:</strong> {token}
-            </div>
+          {message && (
+            <p className={`auth-message ${messageType === "success" ? "auth-message-success" : "auth-message-error"}`}>
+              {message}
+            </p>
           )}
         </div>
       </div>

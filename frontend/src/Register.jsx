@@ -9,10 +9,13 @@ function Register({ onSwitchToLogin }) {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("researcher");
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("error");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setMessage("");
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/v1/auth/register", {
@@ -22,13 +25,17 @@ function Register({ onSwitchToLogin }) {
         role,
       });
 
-      setMessage(`Registered successfully: ${response.data.email}`);
+      setMessage(`Registered successfully! You can now sign in.`);
+      setMessageType("success");
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.detail || "Registration failed");
       } else {
         setMessage("Could not connect to server");
       }
+      setMessageType("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -116,11 +123,10 @@ function Register({ onSwitchToLogin }) {
                 <option value="researcher">Researcher</option>
                 <option value="startup_founder">Startup Founder</option>
                 <option value="innovation_manager">Innovation Manager</option>
-                <option value="admin">Administrator</option>
               </select>
             </div>
-            <button type="submit" className="auth-submit">
-              Create Account
+            <button type="submit" className="auth-submit" disabled={isSubmitting}>
+              {isSubmitting ? "Creating account..." : "Create Account"}
             </button>
           </form>
 
@@ -129,7 +135,11 @@ function Register({ onSwitchToLogin }) {
             <span onClick={onSwitchToLogin}>Login here</span>
           </p>
 
-          {message && <p className="auth-message">{message}</p>}
+          {message && (
+            <p className={`auth-message ${messageType === "success" ? "auth-message-success" : "auth-message-error"}`}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </div>
