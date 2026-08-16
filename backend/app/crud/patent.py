@@ -5,8 +5,10 @@ import requests as http_requests
 from sqlalchemy.orm import Session
 from app.models.patent import Patent
 from app.schemas.patent import PatentCreate
+from app.core.cache import ttl_cache
 
 
+@ttl_cache(seconds=300)
 def search_patentsview(keyword: str, limit: int = 10):
     """
     Live search against the PatentsView public API (USPTO) for real

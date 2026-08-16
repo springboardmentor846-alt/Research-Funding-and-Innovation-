@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from typing import List
 import requests
+
+from app.core.limiter import limiter
 
 from app.db.database import get_db
 from app.schemas.research_profile import ResearchProfileCreate, ResearchProfileResponse
@@ -143,7 +145,9 @@ def list_patents(
 
 
 @router.get("/patents/search-live")
+@limiter.limit("10/minute")
 def search_live_patents(
+    request: Request,
     keyword: str,
     current_user: dict = Depends(get_current_user),
 ):
@@ -203,7 +207,9 @@ def commercialization_recommendations(
 # ---------------- OpenAlex Integration ----------------
 
 @router.get("/openalex/search-author")
+@limiter.limit("10/minute")
 def openalex_search_author(
+    request: Request,
     name: str,
     current_user: dict = Depends(get_current_user),
 ):

@@ -5,6 +5,12 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 from app.db.database import Base, get_db
+from app.core.limiter import limiter
+
+# Rate limiting is disabled during tests since the test suite calls
+# register/login far more often than a real user would in one minute.
+# The actual rate limits are still enforced when the app runs normally.
+limiter.enabled = False
 
 # Isolated in-memory SQLite database used only for tests.
 # This never touches the real PostgreSQL database used by the app.

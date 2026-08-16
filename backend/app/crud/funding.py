@@ -85,6 +85,10 @@ def get_recommended_funding(db: Session, user_domains: str, user_role: str = Non
     return matched
 
 
+from app.core.cache import ttl_cache
+
+
+@ttl_cache(seconds=300)
 def search_grants_gov(keyword: str, limit: int = 10):
     """
     Live search against the Grants.gov public search2 API for real

@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 from app.core.middleware import RequestIDMiddleware
+from app.core.limiter import limiter
 from app.db.database import engine, Base
 from app.models import user
 from app.api.auth import routes as auth_routes
@@ -13,6 +16,9 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="Research Funding & Innovation Intelligence Platform"
 )
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,

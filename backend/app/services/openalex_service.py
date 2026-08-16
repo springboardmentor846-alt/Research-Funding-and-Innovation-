@@ -1,8 +1,10 @@
 import requests
+from app.core.cache import ttl_cache
 
 BASE_URL = "https://api.openalex.org"
 
 
+@ttl_cache(seconds=300)
 def search_author(author_name: str):
     url = f"{BASE_URL}/authors"
     response = requests.get(

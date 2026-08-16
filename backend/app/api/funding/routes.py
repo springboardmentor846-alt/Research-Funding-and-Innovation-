@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from typing import List, Optional
 
@@ -13,6 +13,7 @@ from app.crud.funding import (
     search_grants_gov,
 )
 from app.core.security import get_current_user, require_role
+from app.core.limiter import limiter
 from app.crud.user import get_user_by_email
 from app.crud.research_profile import get_profile_by_user_id
 
@@ -59,7 +60,9 @@ def search_funding_opportunities(
 
 
 @router.get("/search-live")
+@limiter.limit("10/minute")
 def search_live_grants(
+    request: Request,
     keyword: str,
     current_user: dict = Depends(get_current_user),
 ):
