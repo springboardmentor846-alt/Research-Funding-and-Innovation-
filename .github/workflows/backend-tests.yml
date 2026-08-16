@@ -27,4 +27,8 @@ jobs:
 
       - name: Run tests
         working-directory: backend
+        env:
+          SECRET_KEY: testing-secret-key-for-ci-only
+          ALGORITHM: HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES: "60"
         run: python -m pytest
