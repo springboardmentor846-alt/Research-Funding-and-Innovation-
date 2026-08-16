@@ -20,6 +20,10 @@ import InnovationScore from "../pages/InnovationScore";
 import Commercialization from "../pages/Commercialization";
 import InnovationDashboard from "../pages/InnovationDashboard";
 
+// ===== Milestone 4 =====
+import ExecutiveDashboard from "../pages/ExecutiveDashboard";
+import Reports from "../pages/Reports";
+
 import DashboardLayout from "../components/DashboardLayout";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -34,8 +38,6 @@ function AppRoutes() {
 
         <Route path="/register" element={<Register />} />
 
-
-
         {/* Protected Routes */}
 
         <Route
@@ -46,15 +48,46 @@ function AppRoutes() {
           }
         >
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* Existing Dashboard */}
 
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
 
-          <Route path="/publications" element={<Publications />} />
+          {/* ===== Milestone 4 ===== */}
 
-          <Route path="/patents" element={<Patents />} />
+          <Route
+            path="/executive-dashboard"
+            element={<ExecutiveDashboard />}
+          />
 
-          <Route path="/funding" element={<Funding />} />
+          <Route
+            path="/reports"
+            element={<Reports />}
+          />
+
+          {/* ===== Existing Modules ===== */}
+
+          <Route
+            path="/profile"
+            element={<Profile />}
+          />
+
+          <Route
+            path="/publications"
+            element={<Publications />}
+          />
+
+          <Route
+            path="/patents"
+            element={<Patents />}
+          />
+
+          <Route
+            path="/funding"
+            element={<Funding />}
+          />
 
           <Route
             path="/recommendations"
@@ -71,11 +104,7 @@ function AppRoutes() {
             element={<PublicationTrends />}
           />
 
-
-
-          {/* ===========================
-              Milestone 3
-          ============================ */}
+          {/* ===== Milestone 3 ===== */}
 
           <Route
             path="/patent-intelligence"
@@ -104,7 +133,7 @@ function AppRoutes() {
 
         </Route>
 
-
+        {/* Unknown Route */}
 
         <Route
           path="*"

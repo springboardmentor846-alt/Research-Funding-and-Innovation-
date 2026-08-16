@@ -1,0 +1,260 @@
+.reports-page {
+  max-width: 1240px;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.reports-page .page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 34px;
+}
+
+.reports-page .page-heading h1 {
+  font-family: Manrope, sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -1.5px;
+  color: #14213d;
+  margin: 0;
+}
+
+.reports-page .page-heading p {
+  color: #72809a;
+  margin: 8px 0 0;
+}
+
+.reports-page .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  color: #7181a4;
+  margin: 0 0 8px;
+}
+
+
+/* =========================
+   REPORT GRID
+========================= */
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  );
+  gap: 22px;
+}
+
+
+/* =========================
+   REPORT CARD
+========================= */
+
+.report-card {
+  background: #fff;
+  border: 1px solid #e5eaf3;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(35, 51, 87, 0.05);
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 220px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(35, 51, 87, 0.08);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.report-icon {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 11px;
+
+  background: #edf0ff;
+  color: #5b5ce2;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 21px;
+
+  margin-bottom: 18px;
+}
+
+.report-card:nth-child(2) .report-icon {
+  background: #fff3df;
+  color: #c47b0d;
+}
+
+.report-card:nth-child(3) .report-icon {
+  background: #eaf4ff;
+  color: #2d7ec6;
+}
+
+.report-card:nth-child(4) .report-icon {
+  background: #e6f8f3;
+  color: #20997c;
+}
+
+.report-card:nth-child(5) .report-icon {
+  background: #f2eaff;
+  color: #8b55c7;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.report-content {
+  flex: 1;
+}
+
+.report-content h2 {
+  font-family: Manrope, sans-serif;
+
+  color: #17233c;
+
+  font-size: 18px;
+
+  margin: 0 0 8px;
+}
+
+.report-content p {
+  color: #7d89a0;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin: 0;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.report-actions {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.report-button {
+  border: 0;
+
+  border-radius: 8px;
+
+  padding: 9px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.report-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.report-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   PDF BUTTON
+========================= */
+
+.report-pdf {
+  background: #fff0f0;
+
+  color: #c94b4b;
+}
+
+.report-pdf:hover:not(:disabled) {
+  background: #ffe1e1;
+}
+
+
+/* =========================
+   EXCEL BUTTON
+========================= */
+
+.report-excel {
+  background: #e6f8f3;
+
+  color: #198569;
+}
+
+.report-excel:hover:not(:disabled) {
+  background: #d6f1e9;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .reports-page .page-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+
+  .report-card {
+    padding: 18px;
+  }
+
+  .report-actions {
+    flex-direction: column;
+  }
+
+  .report-button {
+    width: 100%;
+  }
+}

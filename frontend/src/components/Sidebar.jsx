@@ -7,6 +7,7 @@ function Sidebar() {
 
       <div className="sidebar-logo">
         <i className="bi bi-bezier2"></i>
+
         <span>
           Research<strong>Intel</strong>
         </span>
@@ -21,9 +22,22 @@ function Sidebar() {
           Dashboard
         </NavLink>
 
+        <NavLink
+          to="/executive-dashboard"
+          className="menu-item"
+        >
+          <i className="bi bi-speedometer2"></i>
+          Executive Dashboard
+        </NavLink>
+
         <NavLink to="/profile" className="menu-item">
           <i className="bi bi-person-vcard"></i>
           Research Profile
+        </NavLink>
+
+        <NavLink to="/reports" className="menu-item">
+          <i className="bi bi-file-earmark-bar-graph"></i>
+          Reports & Export
         </NavLink>
 
         <p>RESEARCH</p>
@@ -80,7 +94,10 @@ function Sidebar() {
           Commercialization
         </NavLink>
 
-        <NavLink to="/innovation-dashboard" className="menu-item">
+        <NavLink
+          to="/innovation-dashboard"
+          className="menu-item"
+        >
           <i className="bi bi-speedometer2"></i>
           Innovation Dashboard
         </NavLink>
