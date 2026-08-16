@@ -14,7 +14,7 @@ This platform combines four core intelligence layers:
 
 **Backend**
 - Python, FastAPI
-- SQLite (local development) + SQLAlchemy ORM
+- PostgreSQL (via Docker) + SQLAlchemy ORM
 - Alembic for database migrations
 - JWT authentication with refresh tokens
 - Role-based access control (Researcher, Startup Founder, Innovation Manager, Admin)
@@ -89,6 +89,13 @@ cd infra
 docker compose up -d
 ```
 
+Run database migrations:
+
+```
+cd backend
+alembic upgrade head
+```
+
 Run the backend:
 
 ```
@@ -137,4 +144,4 @@ This project is being built in milestones as part of a mentorship program:
 
 ## Author
 
-Upendra
+Upendra 
