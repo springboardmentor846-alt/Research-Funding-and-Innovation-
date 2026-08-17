@@ -26,8 +26,17 @@ app = FastAPI(
 # -------------------- CORS --------------------
 
 origins = [
+    # Local Vite development
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+
+    # Docker frontend
+    "http://localhost",
+    "http://127.0.0.1",
+
+    # Docker/frontend with explicit port
+    "http://localhost:80",
+    "http://127.0.0.1:80",
 ]
 
 app.add_middleware(
