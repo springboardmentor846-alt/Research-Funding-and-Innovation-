@@ -5,19 +5,27 @@ docker-compose.override.yml
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 *.py[cod]
 *$py.class
 *.so
 *.egg-info/
+
+# Virtual environments
 .venv/
 venv/
-env/
-.pytest_cache/
-.coverage
+
+# Environment variables
+.env
+.env.local
 
 # Node
 node_modules/
 dist/
+build/
+
+# Package managers
 .npm
 .yarn
 
@@ -34,10 +42,6 @@ Thumbs.db
 # Logs
 *.log
 backend/logs/
-
-# Env
-.env
-.env.local
 
 # Data
 data/
