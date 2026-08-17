@@ -18,6 +18,7 @@ from app.routers import trends
 from app.routers import patent_landscape
 from app.routers import research_trends
 from app.routers import startup
+from app.routers import collaboration
 
 
 
@@ -47,6 +48,7 @@ app.include_router(
 )
 app.include_router(research_trends.router)
 app.include_router(startup.router)
+app.include_router(collaboration.router)
 
 
 @app.get("/")

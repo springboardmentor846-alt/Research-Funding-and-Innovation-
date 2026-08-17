@@ -9,6 +9,7 @@ from app.config import settings
 from app.database import Base
 from app.models import (
     OrganizationInformation,
+    PasswordResetToken,
     Patent,
     Publication,
     ResearchDomain,

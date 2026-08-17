@@ -1,4 +1,7 @@
 from datetime import date, timedelta
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
+import time
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select
@@ -55,8 +58,30 @@ def _serialize(item: LiveFundingOpportunity):
     return result
 
 
+# Short-lived process-local cache. It requires no Redis or extra deployment service.
+# Each API process has its own cache, so deployment remains simple.
+_FUNDING_CACHE_TTL = 15 * 60
+_funding_cache = {}
+_funding_cache_lock = threading.Lock()
+
+
 def _fetch_all(query: str | None, per_source: int = 8):
-    """One source failing must not take down the whole Funding page."""
+    """Fetch funding sources concurrently and cache short-lived results.
+
+    The old implementation called every external provider one after another.
+    One slow provider could therefore make the whole Funding page wait.
+    Providers now run concurrently, and repeated searches are served from a
+    15-minute process-local cache. A failed provider still does not block the
+    other sources.
+    """
+    cache_key = (query or "").strip().lower(), per_source
+    now = time.monotonic()
+
+    with _funding_cache_lock:
+        cached = _funding_cache.get(cache_key)
+        if cached and now - cached["created"] < _FUNDING_CACHE_TTL:
+            return cached["items"], cached["errors"]
+
     providers = (
         ("Grants.gov", lambda: search_grants_gov(keyword=query, limit=per_source)),
         ("ANRF", lambda: search_anrf(query=query, limit=per_source)),
@@ -70,11 +95,15 @@ def _fetch_all(query: str | None, per_source: int = 8):
 
     items = []
     errors = []
-    for name, fetch in providers:
-        try:
-            items.extend(fetch())
-        except Exception as exc:
-            errors.append(f"{name}: {exc}")
+
+    with ThreadPoolExecutor(max_workers=len(providers)) as executor:
+        future_map = {executor.submit(fetch): name for name, fetch in providers}
+        for future in as_completed(future_map):
+            name = future_map[future]
+            try:
+                items.extend(future.result())
+            except Exception as exc:
+                errors.append(f"{name}: {exc}")
 
     # Dedupe by source + URL/title.
     seen = set()
@@ -84,6 +113,13 @@ def _fetch_all(query: str | None, per_source: int = 8):
         if key not in seen:
             seen.add(key)
             unique.append(item)
+
+    with _funding_cache_lock:
+        _funding_cache[cache_key] = {
+            "created": time.monotonic(),
+            "items": unique,
+            "errors": errors,
+        }
 
     return unique, errors
 

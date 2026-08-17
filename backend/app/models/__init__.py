@@ -16,3 +16,4 @@ from app.models.researcher_imported_publication import (
 )
 
 from .startup import Startup
+from app.models.password_reset_token import PasswordResetToken

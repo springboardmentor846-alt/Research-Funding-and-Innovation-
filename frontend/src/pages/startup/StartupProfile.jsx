@@ -1,784 +1,132 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { CheckCircle2, Save, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
+import { createStartupProfile, getStartupProfile, updateStartupProfile } from "../../api/startup";
 
-import {
-  getStartupProfile,
-  createStartupProfile,
-  updateStartupProfile,
-} from "../../api/startup/profile";
+const initial = {
+  startup_name: "", tagline: "", industry: "", stage: "Idea", founded_year: "", funding_stage: "Bootstrapped",
+  startup_email: "", phone_number: "", website: "", linkedin_url: "", location: "", description: "",
+  problem_statement: "", solution: "", technology_stack: "", research_interests: "", funding_needed: "",
+  team_size: 1, pitch_deck_url: "", logo_url: "",
+};
 
-function StartupProfile() {
-
-  const [profileExists, setProfileExists] =
-    useState(false);
-
-  const [loading, setLoading] =
-    useState(true);
-
-  const [saving, setSaving] =
-    useState(false);
-
-  const [message, setMessage] =
-    useState("");
-
-  const [formData, setFormData] =
-    useState({
-
-      startup_name: "",
-      tagline: "",
-
-      industry: "",
-      stage: "Idea",
-
-      founded_year: "",
-
-      funding_stage: "Bootstrapped",
-
-      startup_email: "",
-      phone_number: "",
-
-      website: "",
-      linkedin_url: "",
-
-      location: "",
-
-      description: "",
-
-      technology_stack: "",
-      research_interests: "",
-
-
-
-      team_size: 1,
-
-    });
+export default function StartupProfile() {
+  const [form, setForm] = useState(initial);
+  const [exists, setExists] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchProfile();
+    getStartupProfile().then((data) => { setForm({ ...initial, ...data }); setExists(true); }).catch(() => setExists(false)).finally(() => setLoading(false));
   }, []);
 
-  async function fetchProfile() {
-
-    try {
-
-      const response =
-        await getStartupProfile();
-
-      setFormData(response);
-
-      setProfileExists(true);
-
-    }
-
-    catch {
-
-      setProfileExists(false);
-
-    }
-
-    finally {
-
-      setLoading(false);
-
-    }
-
+  function change(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: name === "team_size" || name === "founded_year" ? value : value }));
   }
 
-  function handleChange(event) {
-
-    setFormData({
-
-      ...formData,
-
-      [event.target.name]:
-      event.target.value,
-
-    });
-
-  }
-
-  async function handleSubmit(event) {
-
+  async function submit(event) {
     event.preventDefault();
-
+    setSaving(true); setMessage("");
     try {
-
-      setSaving(true);
-
-      setMessage("");
-
-      if (profileExists) {
-
-        await updateStartupProfile(
-          formData
-        );
-
-        setMessage(
-          "Startup profile updated successfully."
-        );
-
-      }
-
-      else {
-
-        await createStartupProfile(
-          formData
-        );
-
-        setProfileExists(true);
-
-        setMessage(
-          "Startup profile created successfully."
-        );
-
-      }
-
-    }
-
-    catch {
-
-      setMessage(
-        "Failed to save startup profile."
-      );
-
-    }
-
-    finally {
-
-      setSaving(false);
-
-    }
-
+      const payload = { ...form, team_size: Number(form.team_size || 1), founded_year: Number(form.founded_year || new Date().getFullYear()) };
+      const saved = exists ? await updateStartupProfile(payload) : await createStartupProfile(payload);
+      setForm({ ...initial, ...saved }); setExists(true); setMessage("Startup profile saved successfully.");
+    } catch (error) {
+      setMessage(error.response?.data?.detail || "Unable to save startup profile.");
+    } finally { setSaving(false); }
   }
 
-  if (loading) {
-
-    return (
-
-      <div className="module-loading">
-
-        <div className="spinner-border text-primary" />
-
-        <span>
-
-          Loading startup profile...
-
-        </span>
-
-      </div>
-
+  async function deleteAccount() {
+    const confirmed = window.confirm(
+      "Delete your account permanently? This will remove your account and associated startup data. This action cannot be undone."
     );
 
+    if (!confirmed) return;
+
+    try {
+      setDeleting(true);
+      await api.delete("/auth/account");
+      localStorage.clear();
+      navigate("/login", { replace: true });
+    } catch (error) {
+      setMessage(
+        error.response?.data?.detail ||
+          error.message ||
+          "Unable to delete your account."
+      );
+    } finally {
+      setDeleting(false);
+    }
   }
 
+  if (loading) return <div className="startup-loading">Loading startup profile...</div>;
+
   return (
+    <div className="startup-page">
+      <div className="startup-page-header"><span className="startup-eyebrow">STARTUP MANAGEMENT</span><h1>Startup Profile</h1><p>Maintain the information used for researcher discovery, startup collaboration and funding matching.</p></div>
+      {message && <div className="startup-success-alert"><CheckCircle2 size={17} /> {message}</div>}
+      <form onSubmit={submit} className="startup-form-panel">
+        <FormSection title="Startup Details" text="Basic information about your company and current stage.">
+          <Field label="Startup Name" name="startup_name" value={form.startup_name} onChange={change} required />
+          <Field label="Tagline" name="tagline" value={form.tagline} onChange={change} />
+          <Field label="Industry" name="industry" value={form.industry} onChange={change} placeholder="AI, Healthcare, FinTech..." />
+          <Select label="Startup Stage" name="stage" value={form.stage} onChange={change} options={["Idea", "Prototype", "MVP", "Seed", "Series A", "Growth"]} />
+          <Field label="Founded Year" name="founded_year" type="number" value={form.founded_year} onChange={change} />
+          <Select label="Funding Stage" name="funding_stage" value={form.funding_stage} onChange={change} options={["Bootstrapped", "Angel", "Seed", "Series A", "Series B", "Growth"]} />
+        </FormSection>
+        <FormSection title="Contact Information" text="Public contact details that can help potential collaborators reach you.">
+          <Field label="Email" name="startup_email" type="email" value={form.startup_email} onChange={change} />
+          <Field label="Phone" name="phone_number" value={form.phone_number} onChange={change} />
+          <Field label="Website" name="website" value={form.website} onChange={change} />
+          <Field label="LinkedIn" name="linkedin_url" value={form.linkedin_url} onChange={change} />
+          <Field label="Location" name="location" value={form.location} onChange={change} />
+        </FormSection>
+        <FormSection title="Problem & Solution" text="Explain what problem your startup solves and how your solution works.">
+          <TextArea label="Startup Description" name="description" value={form.description} onChange={change} full />
+          <TextArea label="Problem Statement" name="problem_statement" value={form.problem_statement} onChange={change} full />
+          <TextArea label="Solution" name="solution" value={form.solution} onChange={change} full />
+        </FormSection>
+        <FormSection title="Innovation & Funding" text="These fields improve matching with researchers and funding opportunities.">
+          <TextArea label="Technology Stack" name="technology_stack" value={form.technology_stack} onChange={change} placeholder="Python, FastAPI, React, TensorFlow..." />
+          <TextArea label="Research Interests" name="research_interests" value={form.research_interests} onChange={change} placeholder="Generative AI, computer vision, climate tech..." />
+          <Field label="Funding Needed" name="funding_needed" value={form.funding_needed} onChange={change} placeholder="₹50 lakh" />
+          <Field label="Team Size" name="team_size" type="number" min="1" value={form.team_size} onChange={change} />
+          <Field label="Pitch Deck URL" name="pitch_deck_url" value={form.pitch_deck_url} onChange={change} />
+          <Field label="Logo URL" name="logo_url" value={form.logo_url} onChange={change} />
+        </FormSection>
+        <div className="startup-form-footer"><span>{exists ? "Profile is already created. Changes will update it." : "Create your startup profile to unlock matching features."}</span><button className="startup-primary-button" disabled={saving}><Save size={17} /> {saving ? "Saving..." : "Save Changes"}</button></div>
+      </form>
 
-    <div className="module-page">
-
-      <div className="module-page-header">
-
+      <section className="account-danger-zone">
         <div>
-
-          <span className="module-eyebrow">
-
-            STARTUP MANAGEMENT
-
-          </span>
-
-          <h1>
-
-            Startup Profile
-
-          </h1>
-
+          <span className="account-danger-eyebrow">ACCOUNT</span>
+          <h2>Delete account</h2>
           <p>
-
-            Build your startup identity, discover
-            researchers and connect with funding
-            opportunities.
-
+            Permanently delete your account and associated startup data.
+            This action cannot be undone.
           </p>
-
         </div>
 
-        <div
-          className={`record-status ${
-            profileExists
-              ? "complete"
-              : "incomplete"
-          }`}
+        <button
+          type="button"
+          className="account-danger-button"
+          onClick={deleteAccount}
+          disabled={deleting}
         >
-
-          <span className="record-status-dot"></span>
-
-          {
-            profileExists
-              ? "Profile Created"
-              : "Profile Not Created"
-          }
-
-        </div>
-
-      </div>
-
-      {
-
-        message &&
-
-        <div className="module-alert">
-
-          {message}
-
-        </div>
-
-      }
-
-      {/* Quick Cards */}
-
-      <div className="module-content-grid mb-4">
-
-        <Link
-          to="/startup/researchers"
-          className="module-card"
-        >
-
-          <div className="module-icon">
-
-            👨‍🔬
-
-          </div>
-
-          <div className="module-card-content">
-
-            <h3>
-
-              Find Researchers
-
-            </h3>
-
-            <p>
-
-              Discover researchers suitable
-              for your startup.
-
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link
-          to="/startup/requests"
-          className="module-card"
-        >
-
-          <div className="module-icon">
-
-            🤝
-
-          </div>
-
-          <div className="module-card-content">
-
-            <h3>
-
-              Collaboration Requests
-
-            </h3>
-
-            <p>
-
-              Manage collaboration invitations.
-
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link
-          to="/startup/funding"
-          className="module-card"
-        >
-
-          <div className="module-icon">
-
-            💰
-
-          </div>
-
-          <div className="module-card-content">
-
-            <h3>
-
-              Funding Opportunities
-
-            </h3>
-
-            <p>
-
-              Explore grants and startup funding.
-
-            </p>
-
-          </div>
-
-        </Link>
-
-        <Link
-          to="/startup/innovation-score"
-          className="module-card"
-        >
-
-          <div className="module-icon">
-
-            ⭐
-
-          </div>
-
-          <div className="module-card-content">
-
-            <h3>
-
-              Innovation Score
-
-            </h3>
-
-            <p>
-
-              View AI-powered innovation insights.
-
-            </p>
-
-          </div>
-
-        </Link>
-
-      </div>
-
-      <div className="module-content-grid">
-
-        <div className="professional-form-card">
-
-          <div className="form-card-header">
-
-            <div>
-
-              <h2>
-
-                Startup Information
-
-              </h2>
-
-              <p>
-
-                Maintain your startup identity
-                and organization details.
-
-              </p>
-
-            </div>
-
-          </div>
-
-          <form onSubmit={handleSubmit}>
-            <div className="form-section">
-
-  <div className="form-section-title">
-
-    Startup Details
-
-  </div>
-
-  <div className="professional-form-grid">
-
-    <div className="professional-field">
-
-      <label>
-
-        Startup Name
-
-      </label>
-
-      <input
-        type="text"
-        name="startup_name"
-        placeholder="Example: InnovAI Labs"
-        value={formData.startup_name}
-        onChange={handleChange}
-      />
-
+          <Trash2 size={16} />
+          {deleting ? "Deleting..." : "Delete Account"}
+        </button>
+      </section>
     </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Tagline
-
-      </label>
-
-      <input
-        type="text"
-        name="tagline"
-        placeholder="One line about your startup"
-        value={formData.tagline}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Industry
-
-      </label>
-
-      <input
-        type="text"
-        name="industry"
-        placeholder="AI, Healthcare, FinTech..."
-        value={formData.industry}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Startup Stage
-
-      </label>
-
-      <select
-        name="stage"
-        value={formData.stage}
-        onChange={handleChange}
-      >
-
-        <option>Idea</option>
-        <option>MVP</option>
-        <option>Prototype</option>
-        <option>Seed</option>
-        <option>Series A</option>
-        <option>Growth</option>
-
-      </select>
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Founded Year
-
-      </label>
-
-      <input
-        type="number"
-        name="founded_year"
-        placeholder="2025"
-        value={formData.founded_year}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Funding Stage
-
-      </label>
-
-      <select
-        name="funding_stage"
-        value={formData.funding_stage}
-        onChange={handleChange}
-      >
-
-        <option>Bootstrapped</option>
-        <option>Angel</option>
-        <option>Seed</option>
-        <option>Series A</option>
-        <option>Series B</option>
-
-      </select>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div className="form-section">
-
-  <div className="form-section-title">
-
-    Contact Information
-
-  </div>
-
-  <div className="professional-form-grid">
-
-    <div className="professional-field">
-
-      <label>Email</label>
-
-      <input
-        type="email"
-        name="startup_email"
-        value={formData.startup_email}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>Phone</label>
-
-      <input
-        type="text"
-        name="phone_number"
-        value={formData.phone_number}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>Website</label>
-
-      <input
-        type="text"
-        name="website"
-        value={formData.website}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>LinkedIn</label>
-
-      <input
-        type="text"
-        name="linkedin_url"
-        value={formData.linkedin_url}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field professional-field-full">
-
-      <label>Location</label>
-
-      <input
-        type="text"
-        name="location"
-        value={formData.location}
-        onChange={handleChange}
-      />
-
-    </div>
-
-  </div>
-
-</div>
-
-<div className="form-section">
-
-  <div className="professional-field">
-
-    <label>
-
-      Startup Description
-
-    </label>
-
-    <textarea
-      rows="6"
-      name="description"
-      placeholder="Describe your startup, problem statement, solution and vision..."
-      value={formData.description}
-      onChange={handleChange}
-    />
-
-    <span className="field-help">
-
-      Briefly explain what your startup does.
-
-    </span>
-
-  </div>
-
-</div>
-
-<div className="form-section">
-
-  <div className="form-section-title">
-
-    Innovation & Collaboration
-
-  </div>
-
-  <div className="professional-form-grid">
-
-    <div className="professional-field">
-
-      <label>
-
-        Technology Stack
-
-      </label>
-
-      <input
-        type="text"
-        name="technology_stack"
-        value={formData.technology_stack}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Innovation Area
-
-      </label>
-
-      <input
-        type="text"
-        name="research_interests"
-        value={formData.research_interests}
-        onChange={handleChange}
-      />
-
-    </div>
-
-    <div className="professional-field">
-
-      <label>
-
-        Team Size
-
-      </label>
-
-      <input
-        type="number"
-        name="team_size"
-        value={formData.team_size}
-        onChange={handleChange}
-      />
-
-    </div>
-
-
-  </div>
-
-</div>
-            <div className="professional-form-actions">
-
-              <button
-                type="submit"
-                className="primary-action-btn"
-                disabled={saving}
-              >
-
-                {
-                  saving
-                    ? "Saving..."
-                    : profileExists
-                      ? "Save Changes"
-                      : "Create Profile"
-                }
-
-              </button>
-
-            </div>
-
-          </form>
-
-        </div>
-
-        <aside className="profile-guidance-card">
-
-          <div className="guidance-icon">
-
-            🚀
-
-          </div>
-
-          <h3>
-
-            Why complete your startup profile?
-
-          </h3>
-
-          <p>
-
-            A complete startup profile improves collaboration,
-            researcher recommendations, funding opportunities
-            and AI-powered innovation analysis.
-
-          </p>
-
-          <div className="guidance-list">
-
-            <div>
-
-              <span>01</span>
-
-              Find researchers matching your technology.
-
-            </div>
-
-            <div>
-
-              <span>02</span>
-
-              Receive relevant funding recommendations.
-
-            </div>
-
-            <div>
-
-              <span>03</span>
-
-              Improve collaboration opportunities.
-
-            </div>
-
-            <div>
-
-              <span>04</span>
-
-              Generate your Innovation Score.
-
-            </div>
-
-          </div>
-
-        </aside>
-
-      </div>
-
-    </div>
-
   );
-
 }
 
-export default StartupProfile;
+function FormSection({ title, text, children }) { return <section className="startup-form-section"><div className="startup-form-section-heading"><h2>{title}</h2><p>{text}</p></div><div className="startup-form-grid">{children}</div></section>; }
+function Field({ label, name, value, onChange, type = "text", placeholder = "", required = false, min }) { return <label className="startup-field"><span>{label}</span><input type={type} name={name} value={value ?? ""} onChange={onChange} placeholder={placeholder} required={required} min={min} /></label>; }
+function TextArea({ label, name, value, onChange, placeholder = "", full = false }) { return <label className={`startup-field ${full ? "full" : ""}`}><span>{label}</span><textarea name={name} value={value ?? ""} onChange={onChange} placeholder={placeholder} rows={full ? 4 : 3} /></label>; }
+function Select({ label, name, value, onChange, options }) { return <label className="startup-field"><span>{label}</span><select name={name} value={value} onChange={onChange}>{options.map((option) => <option key={option}>{option}</option>)}</select></label>; }

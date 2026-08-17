@@ -5,10 +5,9 @@ import {
   Outlet,
   useOutletContext,
 } from "react-router-dom";
-
+import { LogOut } from "lucide-react";
 
 function ResearcherLayout() {
-
   const { user } = useOutletContext();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -19,101 +18,120 @@ function ResearcherLayout() {
     navigate("/login");
   };
 
-
-const navItems = [
-  {
-    heading: "Workspace",
-    items: [
-      {
-        path: "/dashboard",
-        label: "Dashboard",
-        icon: "📊",
-      },
-    ],
-  },
-
-  {
-    heading: "Research",
-    items: [
-      {
-        path: "/profile",
-        label: "Research Profile",
-        icon: "👤",
-      },
-      {
-      path: "/profile/domains",
-      label: "Research Domains",
-      icon: "🧪",
-    },
+  const navItems = [
     {
-      path: "/profile/keywords",
-      label: "Keywords",
-      icon: "🏷️",
+      heading: "Workspace",
+      items: [
+        {
+          path: "/dashboard",
+          label: "Dashboard",
+          icon: "📊",
+        },
+      ],
     },
+
     {
-      path: "/profile/technology-areas",
-      label: "Technology Areas",
-      icon: "💡",
+      heading: "Research",
+      items: [
+        {
+          path: "/profile",
+          label: "Research Profile",
+          icon: "👤",
+        },
+        {
+          path: "/profile/domains",
+          label: "Research Domains",
+          icon: "🧪",
+        },
+        {
+          path: "/profile/keywords",
+          label: "Keywords",
+          icon: "🏷️",
+        },
+        {
+          path: "/profile/technology-areas",
+          label: "Technology Areas",
+          icon: "💡",
+        },
+        {
+          path: "/profile/organization",
+          label: "Organization",
+          icon: "🏢",
+        },
+      ],
     },
+
     {
-      path: "/profile/organization",
-      label: "Organization",
-      icon: "🏢",
+      heading: "Research Assets",
+      items: [
+        {
+          path: "/profile/publications",
+          label: "Publications",
+          icon: "📚",
+        },
+        {
+          path: "/profile/patents",
+          label: "Patents",
+          icon: "📄",
+        },
+      ],
     },
-    ],
-  },
 
-  {
-    heading: "Research Assets",
-    items: [
-      {
-        path: "/profile/publications",
-        label: "Publications",
-        icon: "📚",
-      },
-      {
-        path: "/profile/patents",
-        label: "Patents",
-        icon: "📄",
-      },
-    ],
-  },
+    {
+      heading: "Collaboration",
+      items: [
+        {
+          path: "/startups",
+          label: "Find Startups",
+          icon: "🤝",
+        },
+        {
+          path: "/requests",
+          label: "Collaboration Requests",
+          icon: "📨",
+        },
+      ],
+    },
 
-  {
-    heading: "Funding",
-    items: [
-      {
-        path: "/funding",
-        label: "Funding Opportunities",
-        icon: "💰",
-      },
-      {
-        path: "/grant-prediction/1",
-        label: "Grant Prediction",
-        icon: "🎯",
-      },
-    ],
-  },
+    {
+      heading: "Funding",
+      items: [
+        {
+          path: "/funding",
+          label: "Funding Opportunities",
+          icon: "💰",
+        },
+        {
+          path: "/grant-prediction/1",
+          label: "Grant Prediction",
+          icon: "🎯",
+        },
+      ],
+    },
 
-  {
-    heading: "Analytics",
-    items: [
-      {
-        path: "/patent-landscape",
-        label: "Patent Landscape",
-        icon: "🌍",
-      },
-      {
-        path: "/research-trends",
-        label: "Research Trends",
-        icon: "📈",
-      },
-    ],
-  },
-];
+    {
+      heading: "Analytics",
+      items: [
+        {
+          path: "/patent-landscape",
+          label: "Patent Landscape",
+          icon: "🌍",
+        },
+        {
+          path: "/research-trends",
+          label: "Research Trends",
+          icon: "📈",
+        },
+      ],
+    },
+  ];
 
   return (
-    <div className={`app-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
+    <div
+      className={`app-shell ${
+        collapsed ? "sidebar-collapsed" : ""
+      }`}
+    >
       <aside className="app-sidebar">
         <div className="sidebar-brand">
           <div className="brand-mark">IF</div>
@@ -132,39 +150,39 @@ const navItems = [
           </div>
         )}
 
-<nav className="sidebar-nav">
-  {navItems.map((group) => (
-    <div key={group.heading}>
-      {!collapsed && (
-        <div className="sidebar-section-label">
-          {group.heading}
-        </div>
-      )}
+        <nav className="sidebar-nav">
+          {navItems.map((group) => (
+            <div key={group.heading}>
+              {!collapsed && (
+                <div className="sidebar-section-label">
+                  {group.heading}
+                </div>
+              )}
 
-      {group.items.map((item) => (
-        <NavLink
-          key={item.path}
-          to={item.path}
-          end={
-            item.path === "/dashboard" ||
-            item.path === "/profile"
-          }
-          className={({ isActive }) =>
-            `sidebar-link ${isActive ? "active" : ""}`
-          }
-        >
-          <span className="sidebar-icon">
-            {item.icon}
-          </span>
+              {group.items.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  end={
+                    item.path === "/dashboard" ||
+                    item.path === "/profile"
+                  }
+                  className={({ isActive }) =>
+                    `sidebar-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <span className="sidebar-icon">
+                    {item.icon}
+                  </span>
 
-          {!collapsed && (
-            <span>{item.label}</span>
-          )}
-        </NavLink>
-      ))}
-    </div>
-  ))}
-</nav>
+                  {!collapsed && (
+                    <span>{item.label}</span>
+                  )}
+                </NavLink>
+              ))}
+            </div>
+          ))}
+        </nav>
 
         <div className="sidebar-user">
           <div className="user-avatar">
@@ -173,8 +191,13 @@ const navItems = [
 
           {!collapsed && (
             <div className="sidebar-user-info">
-              <strong>{user?.full_name || "Researcher"}</strong>
-              <span>{user?.role || "researcher"}</span>
+              <strong>
+                {user?.full_name || "Researcher"}
+              </strong>
+
+              <span>
+                {user?.role || "researcher"}
+              </span>
             </div>
           )}
 
@@ -183,8 +206,9 @@ const navItems = [
               className="logout-icon-btn"
               onClick={handleLogout}
               title="Logout"
+              aria-label="Logout"
             >
-              ↪
+              <LogOut size={19} strokeWidth={2} />
             </button>
           )}
         </div>
@@ -197,7 +221,11 @@ const navItems = [
               className="sidebar-toggle-btn"
               onClick={() => setCollapsed(!collapsed)}
               aria-label="Toggle sidebar"
-              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={
+                collapsed
+                  ? "Expand sidebar"
+                  : "Collapse sidebar"
+              }
             >
               ☰
             </button>
@@ -214,8 +242,8 @@ const navItems = [
         </header>
 
         <div className="app-content">
-  <Outlet context={{ user }} />
-</div>
+          <Outlet context={{ user }} />
+        </div>
       </main>
     </div>
   );

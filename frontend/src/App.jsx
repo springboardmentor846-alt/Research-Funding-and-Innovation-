@@ -8,6 +8,8 @@ import {
 // Public
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 // Shared
 import ProtectedLayout from "./components/shared/ProtectedLayout";
@@ -46,8 +48,10 @@ import StartupDashboard from "./pages/startup/StartupDashboard";
 import StartupProfile from "./pages/startup/StartupProfile";
 
 import FindResearchers from "./pages/startup/FindResearchers";
+import FindStartups from "./pages/startup/FindStartups";
 import CollaborationRequests from "./pages/startup/CollaborationRequests";
 import StartupFunding from "./pages/startup/Funding";
+import PredictSuccess from "./pages/startup/PredictSuccess";
 import InnovationScore from "./pages/startup/InnovationScore";
 
 // ================= MANAGER =================
@@ -101,6 +105,9 @@ function App() {
           path="/register"
           element={<Register />}
         />
+
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* =====================================================
                 AUTHENTICATED
@@ -230,6 +237,11 @@ function App() {
     />
 
     <Route
+      path="/startup/startups"
+      element={<FindStartups />}
+    />
+
+    <Route
       path="/startup/requests"
       element={<CollaborationRequests />}
     />
@@ -237,6 +249,16 @@ function App() {
     <Route
       path="/startup/funding"
       element={<StartupFunding />}
+    />
+
+    <Route
+      path="/startup/predict-success"
+      element={null}
+    />
+
+    <Route
+      path="/startup/predict-success/:fundingId"
+      element={<PredictSuccess />}
     />
 
     <Route

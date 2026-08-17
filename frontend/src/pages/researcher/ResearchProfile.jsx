@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Trash2 } from "lucide-react";
 
 function ResearchProfile() {
   const [profile, setProfile] = useState(null);
@@ -16,6 +17,8 @@ function ResearchProfile() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -108,6 +111,29 @@ function ResearchProfile() {
       );
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    const confirmed = window.confirm(
+      "Delete your account permanently? This will remove your account and associated research data. This action cannot be undone."
+    );
+
+    if (!confirmed) return;
+
+    try {
+      setDeleting(true);
+      await api.delete("/auth/account");
+      localStorage.clear();
+      navigate("/login", { replace: true });
+    } catch (error) {
+      setMessage(
+        error.response?.data?.detail ||
+          error.message ||
+          "Unable to delete your account."
+      );
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -364,6 +390,27 @@ function ResearchProfile() {
           </div>
         </aside>
       </div>
+
+      <section className="account-danger-zone">
+        <div>
+          <span className="account-danger-eyebrow">ACCOUNT</span>
+          <h2>Delete account</h2>
+          <p>
+            Permanently delete your account and associated research data.
+            This action cannot be undone.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="account-danger-button"
+          onClick={handleDeleteAccount}
+          disabled={deleting}
+        >
+          <Trash2 size={16} />
+          {deleting ? "Deleting..." : "Delete Account"}
+        </button>
+      </section>
     </div>
   );
 }

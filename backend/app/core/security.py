@@ -1,6 +1,8 @@
 from pwdlib import PasswordHash
 from datetime import datetime, timedelta, timezone 
 import jwt
+import hashlib
+import secrets
 
 from app.config import settings
 
@@ -68,3 +70,10 @@ def decode_token(token: str) -> dict:
         settings.JWT_SECRET_KEY,
         algorithms=[settings.JWT_ALGORITHM]
     )
+
+def create_password_reset_token() -> str:
+    return secrets.token_urlsafe(32)
+
+
+def hash_password_reset_token(token: str) -> str:
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()

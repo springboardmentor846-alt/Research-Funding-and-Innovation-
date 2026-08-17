@@ -6,11 +6,11 @@ export default function AIInsight({ insight }) {
         return (
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
                 <h2 className="text-2xl font-bold text-gray-800">
-                    AI Insight
+                    Key Insight
                 </h2>
 
                 <p className="text-gray-500 mt-2">
-                    No AI insights available.
+                    No insights available.
                 </p>
             </div>
         );
@@ -32,7 +32,7 @@ export default function AIInsight({ insight }) {
                     <div>
 
                         <h2 className="text-2xl font-bold text-white">
-                            AI Research Insight
+                            Key Insight
                         </h2>
 
                         <p className="text-blue-100 mt-1">

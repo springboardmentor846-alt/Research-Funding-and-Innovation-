@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional
 
 
@@ -12,12 +12,11 @@ class StartupProfileBase(BaseModel):
     founded_year: Optional[int] = None
     funding_stage: Optional[str] = "Bootstrapped"
 
-    startup_email: Optional[EmailStr] = None
+    startup_email: Optional[str] = None
     phone_number: Optional[str] = None
 
     website: Optional[str] = None
     linkedin_url: Optional[str] = None
-
     location: Optional[str] = None
 
     description: Optional[str] = None
