@@ -7,7 +7,6 @@ from app.models.role import Role
 ROLE_NAMES = [
     "researcher",
     "startup_founder",
-    "innovation_manager",
     "administrator",
 ]
 

@@ -283,9 +283,7 @@ function Register() {
           Startup Founder
         </option>
 
-        <option value="innovation_manager">
-          Innovation Manager
-        </option>
+      
 
       </select>
 

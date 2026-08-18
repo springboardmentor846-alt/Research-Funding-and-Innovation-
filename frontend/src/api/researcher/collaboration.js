@@ -7,8 +7,8 @@ export async function searchStartups(query = "") {
   return response.data;
 }
 
-export async function sendCollaborationRequest(recipientUserId, message) {
-  const response = await api.post("/startup/collaboration-requests", {
+export async function sendCollaborationRequest(recipientUserId, message = "") {
+  const response = await api.post("/collaboration/requests", {
     recipient_user_id: recipientUserId,
     message,
   });
@@ -16,13 +16,13 @@ export async function sendCollaborationRequest(recipientUserId, message) {
 }
 
 export async function getCollaborationRequests() {
-  const response = await api.get("/startup/collaboration-requests");
+  const response = await api.get("/collaboration/requests");
   return response.data;
 }
 
 export async function updateCollaborationRequest(id, status) {
   const response = await api.patch(
-    `/startup/collaboration-requests/${id}`,
+    `/collaboration/requests/${id}`,
     { status }
   );
   return response.data;

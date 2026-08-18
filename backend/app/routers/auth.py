@@ -63,6 +63,15 @@ def register_user(
             detail="Email already registered"
         )
 
+    # Public registration intentionally supports only the two end-user roles.
+    # Administrator accounts are provisioned separately and there is no
+    # Innovation Manager role in the current InnovFund product.
+    if user_data.role not in {"researcher", "startup_founder"}:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="You can register only as a researcher or startup founder."
+        )
+
     role = db.scalar(
         select(Role).where(Role.name == user_data.role)
     )

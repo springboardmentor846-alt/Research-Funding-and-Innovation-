@@ -958,7 +958,7 @@
   gap: 7px;
 }
 
-.startup-request-actions button {
+/* .startup-request-actions button {
   width: 30px;
   height: 30px;
   border: 1px solid #dce3ec;
@@ -966,6 +966,53 @@
   border-radius: 7px;
   color: #5b6f8d;
   cursor: pointer;
+} */
+
+.startup-request-actions button {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9e2ef;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Accept */
+.startup-request-actions button[title="Accept"] {
+  color: #16a34a !important;
+  border-color: #bbf7d0 !important;
+  background: #ffffff !important;
+}
+
+.startup-request-actions button[title="Accept"] svg {
+  color: #16a34a !important;
+  stroke: #16a34a !important;
+}
+
+.startup-request-actions button[title="Accept"]:hover {
+  background: #ecfdf3 !important;
+  border-color: #86efac !important;
+}
+
+/* Reject */
+.startup-request-actions button[title="Reject"] {
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+  background: #ffffff !important;
+}
+
+.startup-request-actions button[title="Reject"] svg {
+  color: #dc2626 !important;
+  stroke: #dc2626 !important;
+}
+
+.startup-request-actions button[title="Reject"]:hover {
+  background: #fef2f2 !important;
+  border-color: #fca5a5 !important;
 }
 
 .startup-status {

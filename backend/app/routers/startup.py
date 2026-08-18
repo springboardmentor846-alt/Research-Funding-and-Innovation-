@@ -152,7 +152,7 @@ def find_startups(
     query: str | None = Query(default=None, max_length=150),
     limit: int = Query(default=30, ge=1, le=50),
     db: Session = Depends(get_db),
-    current_user: User = Depends(require_role("startup_founder")),
+    current_user: User = Depends(require_role("researcher", "startup_founder")),
 ):
     stmt = (
         select(Startup, User)

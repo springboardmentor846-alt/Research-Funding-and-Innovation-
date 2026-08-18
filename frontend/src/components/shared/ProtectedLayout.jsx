@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import api from "../../api/axios";
 import DashboardLayout from "../researcher/ResearcherLayout";
+import AIAssistant from "./AIAssistant";
 
 function ProtectedLayout() {
   const [user, setUser] = useState(null);
@@ -45,7 +46,18 @@ function ProtectedLayout() {
     return <Navigate to="/login" replace />;
   }
 
- return <Outlet context={{ user }} />;
+  const showAssistant =
+    user?.role === "researcher" ||
+    user?.role === "startup_founder" ||
+    localStorage.getItem("role") === "researcher" ||
+    localStorage.getItem("role") === "startup_founder";
+
+  return (
+    <>
+      <Outlet context={{ user }} />
+      {showAssistant && <AIAssistant />}
+    </>
+  );
 }
 
 export default ProtectedLayout;

@@ -71,10 +71,6 @@ function Login() {
           navigate("/startup/dashboard");
           break;
 
-        case "innovation_manager":
-          navigate("/manager/dashboard");
-          break;
-
         default:
           navigate("/dashboard");
       }

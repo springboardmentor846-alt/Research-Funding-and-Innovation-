@@ -18,7 +18,6 @@ import RoleProtectedRoute from "./components/shared/RoleProtectedRoute";
 // Layouts
 import ResearcherLayout from "./components/researcher/ResearcherLayout";
 import StartupLayout from "./components/startup/StartupLayout";
-import ManagerLayout from "./components/manager/ManagerLayout";
 
 // ================= RESEARCHER =================
 
@@ -56,7 +55,6 @@ import InnovationScore from "./pages/startup/InnovationScore";
 
 // ================= MANAGER =================
 
-import InnovationManagerDashboard from "./pages/manager/InnovationManagerDashboard";
 
 function App() {
 
@@ -74,9 +72,6 @@ function App() {
 
       case "startup_founder":
         return "/startup/dashboard";
-
-      case "innovation_manager":
-        return "/manager/dashboard";
 
       default:
         return "/login";
@@ -199,6 +194,16 @@ function App() {
                 element={<ResearchTrends />}
               />
 
+              <Route
+                path="/startups"
+                element={<FindStartups />}
+              />
+
+              <Route
+                path="/requests"
+                element={<CollaborationRequests />}
+              />
+
             </Route>
 
           </Route>
@@ -269,29 +274,6 @@ function App() {
   </Route>
 
 </Route>
-
-          {/* =====================================================
-                      MANAGER
-          ===================================================== */}
-
-          <Route
-            element={
-              <RoleProtectedRoute
-                allowedRoles={["innovation_manager"]}
-              />
-            }
-          >
-
-            <Route element={<ManagerLayout />}>
-
-              <Route
-                path="/manager/dashboard"
-                element={<InnovationManagerDashboard />}
-              />
-
-            </Route>
-
-          </Route>
 
         </Route>
 
