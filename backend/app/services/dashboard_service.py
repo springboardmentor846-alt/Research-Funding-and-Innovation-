@@ -6,6 +6,9 @@ from app.models.user import User
 def get_dashboard_data(db, current_user):
     role = current_user["role"]
 
+    print("CURRENT USER:", current_user)
+    print("CURRENT ROLE:", role)
+
     if role == "Researcher":
         total_projects = (
             db.query(ResearchProject)

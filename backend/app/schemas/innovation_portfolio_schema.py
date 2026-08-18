@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, HttpUrl
 
 
 class PortfolioCategory(str, Enum):
@@ -30,6 +30,10 @@ class InnovationPortfolioBase(BaseModel):
     status: PortfolioStatus
     visibility: PortfolioVisibility
 
+    github_url: Optional[HttpUrl] = None
+    paper_url: Optional[HttpUrl] = None
+    prototype_link: Optional[HttpUrl] = None
+
 
 class InnovationPortfolioCreate(InnovationPortfolioBase):
     pass
@@ -41,6 +45,10 @@ class InnovationPortfolioUpdate(BaseModel):
     description: Optional[str] = None
     status: Optional[PortfolioStatus] = None
     visibility: Optional[PortfolioVisibility] = None
+
+    github_url: Optional[HttpUrl] = None
+    paper_url: Optional[HttpUrl] = None
+    prototype_link: Optional[HttpUrl] = None
 
 
 class InnovationPortfolioResponse(InnovationPortfolioBase):

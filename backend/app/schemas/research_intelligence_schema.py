@@ -1,98 +1,115 @@
-from typing import List, Optional
+from typing import List, Optional, Union
+
 from pydantic import BaseModel
 
 
-# -----------------------------
-# Author
-# -----------------------------
+# ============================================================
+# AUTHOR
+# ============================================================
+
 class AuthorResponse(BaseModel):
     name: str
 
 
-# -----------------------------
-# Institution
-# -----------------------------
+# ============================================================
+# INSTITUTION
+# ============================================================
+
 class InstitutionResponse(BaseModel):
     name: str
 
 
-# -----------------------------
-# Research Paper
-# -----------------------------
+# ============================================================
+# RESEARCH PAPER
+# ============================================================
+
 class PaperResponse(BaseModel):
     id: str
     title: str
-    publication_year: Optional[int]
-    doi: Optional[str]
+    publication_year: Optional[int] = None
+    doi: Optional[str] = None
     cited_by_count: int
     authors: List[AuthorResponse]
 
 
-# -----------------------------
-# Search Response
-# -----------------------------
+# ============================================================
+# PAPER SEARCH
+# ============================================================
+
 class PaperSearchResponse(BaseModel):
     count: int
     results: List[PaperResponse]
 
 
-# -----------------------------
-# Paper Detail Response
-# -----------------------------
+# ============================================================
+# PAPER DETAIL
+# ============================================================
+
 class PaperDetailResponse(BaseModel):
     id: str
     title: str
-    publication_year: Optional[int]
-    doi: Optional[str]
+    publication_year: Optional[int] = None
+    doi: Optional[str] = None
     cited_by_count: int
-    abstract: Optional[str]
-    journal: Optional[str]
-    pdf_url: Optional[str]
+    abstract: Optional[str] = None
+    journal: Optional[str] = None
+    pdf_url: Optional[str] = None
     authors: List[AuthorResponse]
     institutions: List[InstitutionResponse]
-    # -----------------------------
-# Author Search Response
-# -----------------------------
+
+
+# ============================================================
+# AUTHOR SEARCH
+# ============================================================
+
 class AuthorSearchItem(BaseModel):
     id: str
     name: str
-    orcid: Optional[str]
+    orcid: Optional[str] = None
     works_count: int
     cited_by_count: int
-    h_index: Optional[int]
-    last_known_institution: Optional[str]
+    h_index: Optional[int] = None
+    last_known_institution: Optional[str] = None
 
 
 class AuthorSearchResponse(BaseModel):
     count: int
     results: List[AuthorSearchItem]
-    # -----------------------------
-# Topic
-# -----------------------------
+
+
+# ============================================================
+# RESEARCH TOPIC
+# ============================================================
+
 class ResearchTopicResponse(BaseModel):
     name: str
     count: float
 
-# -----------------------------
-# Author Detail Response
-# -----------------------------
+
+# ============================================================
+# AUTHOR DETAIL
+# ============================================================
+
 class AuthorDetailResponse(BaseModel):
     id: str
     name: str
-    orcid: Optional[str]
+    orcid: Optional[str] = None
     works_count: int
     cited_by_count: int
-    h_index: Optional[int]
-    institution: Optional[str]
-    country: Optional[str]
+    h_index: Optional[int] = None
+    institution: Optional[str] = None
+    country: Optional[str] = None
     topics: List[ResearchTopicResponse]
-    # -----------------------------
-# Institution Search Response
-# -----------------------------
+
+
+# ============================================================
+# INSTITUTION SEARCH
+# ============================================================
+
 class InstitutionSearchItem(BaseModel):
     id: str
     name: str
-    country: Optional[str]
+    country: Optional[str] = None
     works_count: int
     cited_by_count: int
 
@@ -100,10 +117,12 @@ class InstitutionSearchItem(BaseModel):
 class InstitutionSearchResponse(BaseModel):
     count: int
     results: List[InstitutionSearchItem]
-    
-    # -----------------------------
-# Institution Detail Response
-# -----------------------------
+
+
+# ============================================================
+# INSTITUTION DETAIL
+# ============================================================
+
 class InstitutionAuthorResponse(BaseModel):
     name: str
 
@@ -116,34 +135,44 @@ class InstitutionTopicResponse(BaseModel):
 class InstitutionDetailResponse(BaseModel):
     id: str
     name: str
-    country: Optional[str]
-    homepage_url: Optional[str]
+    country: Optional[str] = None
+    homepage_url: Optional[str] = None
     works_count: int
     cited_by_count: int
     topics: List[InstitutionTopicResponse]
     top_authors: List[InstitutionAuthorResponse]
-    # -----------------------------
-# Recommendation Response
-# -----------------------------
+
+
+# ============================================================
+# RECOMMENDATIONS
+# ============================================================
+
 class RecommendationItem(BaseModel):
     title: str
     authors: List[str]
-    publication_year: Optional[int]
+    publication_year: Optional[int] = None
     cited_by_count: int
-    doi: Optional[str]
-    url: Optional[str]
+    doi: Optional[str] = None
+    url: Optional[str] = None
 
 
 class RecommendationResponse(BaseModel):
     query: str
     recommendations: List[RecommendationItem]
-    # ============================================
-# AI Research Summarizer
-# ============================================
+
+
+# ============================================================
+# AI RESEARCH SUMMARY
+# ============================================================
 
 class ResearchSummaryRequest(BaseModel):
     title: str
     abstract: str
+
+
+class InnovationOpportunity(BaseModel):
+    strategy_name: str
+    description: str
 
 
 class ResearchSummaryResponse(BaseModel):
@@ -152,13 +181,15 @@ class ResearchSummaryResponse(BaseModel):
     methodology: str
     key_findings: str
     future_scope: str
-    innovation_opportunities: List[str]
- 
+
+    innovation_opportunities: List[
+        Union[str, InnovationOpportunity]
+    ]
 
 
-# ============================================
-# AI Innovation Generator
-# ============================================
+# ============================================================
+# AI INNOVATION GENERATOR
+# ============================================================
 
 class InnovationGeneratorRequest(BaseModel):
     title: str
@@ -227,9 +258,11 @@ class InnovationGeneratorResponse(BaseModel):
     technology_readiness: TechnologyReadiness
 
     commercialization_plan: CommercializationPlan
-    # ============================================
-# AI Research Gap Detector
-# ============================================
+
+
+# ============================================================
+# AI RESEARCH GAP DETECTOR
+# ============================================================
 
 class ResearchGapRequest(BaseModel):
     title: str
@@ -242,18 +275,11 @@ class ResearchGapResponse(BaseModel):
     future_directions: List[str]
     novel_opportunities: List[str]
     interdisciplinary_opportunities: List[str]
-    # ============================================
-# AI Literature Review Generator
-# ============================================
-
-class LiteratureReviewRequest(BaseModel):
-    title: str
-    abstract: str
 
 
-# ============================================
-# AI Literature Review Generator
-# ============================================
+# ============================================================
+# AI LITERATURE REVIEW
+# ============================================================
 
 class LiteratureReviewRequest(BaseModel):
     title: str
@@ -262,7 +288,7 @@ class LiteratureReviewRequest(BaseModel):
 
 class ExistingResearch(BaseModel):
     title: str
-    year: Optional[int]
+    year: Optional[int] = None
     abstract: str
 
 
@@ -294,9 +320,11 @@ class LiteratureReviewResponse(BaseModel):
     comparison: List[ComparisonItem]
 
     conclusion: str
-    # ============================================
-# AI Research Trend Analyzer
-# ============================================
+
+
+# ============================================================
+# AI RESEARCH TREND ANALYZER
+# ============================================================
 
 class ResearchTrendRequest(BaseModel):
     title: str
@@ -324,9 +352,11 @@ class ResearchTrendResponse(BaseModel):
     future_trends: List[FutureTrend]
     publication_growth: str
     recommendation: str
-    # ============================================
-# Citation Intelligence
-# ============================================
+
+
+# ============================================================
+# CITATION INTELLIGENCE
+# ============================================================
 
 class CitationRequest(BaseModel):
     title: str
@@ -343,9 +373,11 @@ class CitationResponse(BaseModel):
     chicago: str
     bibtex: str
     ris: str
-    # ============================================
-# AI Research Chat Assistant
-# ============================================
+
+
+# ============================================================
+# AI RESEARCH CHAT
+# ============================================================
 
 class ResearchChatRequest(BaseModel):
     title: str
@@ -355,9 +387,11 @@ class ResearchChatRequest(BaseModel):
 
 class ResearchChatResponse(BaseModel):
     answer: str
-    # ============================================
-# Research Paper Comparator
-# ============================================
+
+
+# ============================================================
+# PAPER COMPARATOR
+# ============================================================
 
 class PaperComparatorRequest(BaseModel):
     title1: str
@@ -374,9 +408,11 @@ class PaperComparatorResponse(BaseModel):
     weaknesses_paper1: List[str]
     weaknesses_paper2: List[str]
     recommendation: str
-    # ============================================
-# Research Proposal Generator
-# ============================================
+
+
+# ============================================================
+# RESEARCH PROPOSAL
+# ============================================================
 
 class ResearchProposalRequest(BaseModel):
     title: str
@@ -391,9 +427,11 @@ class ResearchProposalResponse(BaseModel):
     expected_outcomes: List[str]
     future_scope: str
     timeline: str
-    # ============================================
-# Novelty Checker
-# ============================================
+
+
+# ============================================================
+# NOVELTY CHECKER
+# ============================================================
 
 class NoveltyCheckerRequest(BaseModel):
     title: str
@@ -408,9 +446,11 @@ class NoveltyCheckerResponse(BaseModel):
     unique_contributions: List[str]
     patent_potential: str
     improvement_suggestions: List[str]
-    # ============================================
-# Research Question Generator
-# ============================================
+
+
+# ============================================================
+# RESEARCH QUESTION GENERATOR
+# ============================================================
 
 class ResearchQuestionRequest(BaseModel):
     title: str
@@ -423,9 +463,11 @@ class ResearchQuestionResponse(BaseModel):
     hypotheses: List[str]
     research_scope: str
     future_research_directions: List[str]
-    # ============================================
-# Methodology Recommender
-# ============================================
+
+
+# ============================================================
+# METHODOLOGY RECOMMENDER
+# ============================================================
 
 class MethodologyRequest(BaseModel):
     title: str

@@ -12,7 +12,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from app.database.db import Base
-from sqlalchemy.orm import relationship
 
 
 class PortfolioCategory(str, Enum):
@@ -25,7 +24,11 @@ class PortfolioCategory(str, Enum):
 class InnovationPortfolio(Base):
     __tablename__ = "innovation_portfolios"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
 
     user_id = Column(
         Integer,
@@ -33,19 +36,54 @@ class InnovationPortfolio(Base):
         nullable=False,
     )
 
-    title = Column(String(255), nullable=False)
+    title = Column(
+        String(255),
+        nullable=False
+    )
 
-    category = Column(String(50), nullable=False)
+    category = Column(
+        String(50),
+        nullable=False
+    )
 
-    description = Column(Text, nullable=True)
+    description = Column(
+        Text,
+        nullable=True
+    )
 
-    status = Column(String(50), nullable=False)
+    status = Column(
+        String(50),
+        nullable=False
+    )
 
     visibility = Column(
         String(20),
         nullable=False,
         default="Private"
     )
+
+    # -----------------------------------------
+    # URL FIELDS
+    # -----------------------------------------
+
+    github_url = Column(
+        String(500),
+        nullable=True
+    )
+
+    paper_url = Column(
+        String(500),
+        nullable=True
+    )
+
+    prototype_link = Column(
+        String(500),
+        nullable=True
+    )
+
+    # -----------------------------------------
+    # TIMESTAMPS
+    # -----------------------------------------
 
     created_at = Column(
         DateTime(timezone=True),
@@ -58,7 +96,15 @@ class InnovationPortfolio(Base):
         onupdate=func.now()
     )
 
+    # -----------------------------------------
+    # USER RELATIONSHIP
+    # -----------------------------------------
+
     user = relationship("User")
+
+    # -----------------------------------------
+    # PROJECT DETAILS
+    # -----------------------------------------
 
     project_detail = relationship(
         "ProjectDetail",
@@ -66,26 +112,46 @@ class InnovationPortfolio(Base):
         uselist=False,
         cascade="all, delete-orphan"
     )
+
+    # -----------------------------------------
+    # RESEARCH PAPER DETAILS
+    # -----------------------------------------
+
     research_paper_detail = relationship(
-    "ResearchPaperDetail",
-    back_populates="portfolio",
-    uselist=False,
-    cascade="all, delete-orphan"
-)
+        "ResearchPaperDetail",
+        back_populates="portfolio",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+
+    # -----------------------------------------
+    # PATENT DETAILS
+    # -----------------------------------------
+
     patent_detail = relationship(
-    "PatentDetail",
-    back_populates="portfolio",
-    uselist=False,
-    cascade="all, delete-orphan"
-)
+        "PatentDetail",
+        back_populates="portfolio",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+
+    # -----------------------------------------
+    # PROTOTYPE DETAILS
+    # -----------------------------------------
+
     prototype_detail = relationship(
-    "PrototypeDetail",
-    back_populates="portfolio",
-    uselist=False,
-    cascade="all, delete-orphan"
-)
+        "PrototypeDetail",
+        back_populates="portfolio",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+
+    # -----------------------------------------
+    # INNOVATION VAULT
+    # -----------------------------------------
+
     vault_files = relationship(
-    "InnovationVault",
-    back_populates="portfolio",
-    cascade="all, delete-orphan"
-)
+        "InnovationVault",
+        back_populates="portfolio",
+        cascade="all, delete-orphan"
+    )
