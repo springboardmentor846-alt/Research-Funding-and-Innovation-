@@ -1,0 +1,18 @@
+# Milestone 3 — Patent Analytics & Innovation Intelligence
+#
+# These packages are required to run the patent module.  They are additive
+# to the existing project requirements; nothing here replaces or
+# downgrades anything in requirements.txt.
+#
+# sentence-transformers is OPTIONAL: the patent similarity engine will
+# fall back to a TF-IDF representation when sentence-transformers (and
+# its torch dependency) cannot be installed.  This keeps production
+# deployments lightweight.
+
+scikit-learn>=1.3        # TF-IDF, cosine_similarity, KMeans
+numpy>=1.24              # vector math
+httpx>=0.25              # async provider HTTP (already a project dep)
+
+# Optional — richer semantic embeddings.  Uncomment to enable.
+# sentence-transformers>=2.2
+# torch>=2.0

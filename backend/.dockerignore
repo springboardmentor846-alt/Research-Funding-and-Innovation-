@@ -1,0 +1,16 @@
+# Backend
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+*.log
+tests/
+
+# Frontend
+node_modules/
+dist/
+.dockerignore
+Dockerfile
