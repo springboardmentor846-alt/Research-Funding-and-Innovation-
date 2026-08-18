@@ -8,7 +8,6 @@ from app.services.ai_service import generate_ai_response
 
 
 class ResearchAssistant:
-    """Thin compatibility wrapper around the OpenRouter AI service."""
 
     async def summarize(
         self, text: str, max_length: int = 200, min_length: int = 60
