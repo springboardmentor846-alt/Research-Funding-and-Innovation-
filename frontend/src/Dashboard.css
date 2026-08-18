@@ -58,11 +58,6 @@
 }
 
 /* ===== CONTENT ===== */
-.dash-content {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 40px;
-}
 
 .dash-welcome {
   margin-bottom: 28px;
@@ -962,4 +957,113 @@
 .role-admin {
   color: var(--danger);
   background: #fdecea;
+}
+
+/* ===== FUNDING SEARCH (was inline styles — moved for consistency) ===== */
+.funding-search-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: var(--paper-white);
+  box-sizing: border-box;
+}
+
+.funding-search-input:focus {
+  outline: none;
+  border-color: var(--signal-teal);
+  box-shadow: 0 0 0 3px var(--signal-teal-light);
+}
+
+.funding-match-badge {
+  display: inline-block;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+
+.funding-deadline {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--slate);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .dash-body {
+    flex-direction: column;
+  }
+
+  .dash-sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .sidebar-groups-wrap {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  .dash-main {
+    padding: 24px;
+  }
+
+  .score-hero {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-navbar {
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dash-brand {
+    font-size: 15px;
+  }
+
+  .dash-main {
+    padding: 16px;
+  }
+
+  .dash-welcome h1 {
+    font-size: 22px;
+  }
+
+  .dash-card {
+    padding: 16px;
+  }
+
+  .score-row,
+  .hotspot-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .score-value,
+  .hotspot-count {
+    text-align: left;
+  }
+
+  .funding-grid,
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
 }

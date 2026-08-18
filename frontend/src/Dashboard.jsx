@@ -497,16 +497,7 @@ function Dashboard({ token, onLogout }) {
                   placeholder="Search by keyword... e.g. AI"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "10px 12px",
-                    marginTop: "6px",
-                    marginBottom: "14px",
-                    border: "1px solid #d7dce3",
-                    borderRadius: "6px",
-                    fontSize: "14px",
-                    boxSizing: "border-box",
-                  }}
+                  className="funding-search-input"
                 />
 
                 {searchTerm.trim() && filteredFunding.length === 0 && (
@@ -521,16 +512,8 @@ function Dashboard({ token, onLogout }) {
                         <div key={item.id} className="funding-item">
                           {match && (
                             <span
-                              style={{
-                                display: "inline-block",
-                                background: match.color,
-                                color: "#fff",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                padding: "3px 9px",
-                                borderRadius: "12px",
-                                marginBottom: "6px",
-                              }}
+                              className="funding-match-badge"
+                              style={{ background: match.color }}
                             >
                               {match.label} · {match.percent}%
                             </span>
@@ -540,7 +523,7 @@ function Dashboard({ token, onLogout }) {
                             <span className="funding-tag">{item.source}</span>
                             <span className="funding-amount">{item.amount}</span>
                           </div>
-                          <p style={{ fontSize: "13px", color: "var(--slate)" }}>
+                          <p className="funding-deadline">
                             <strong>Deadline:</strong> {item.deadline}
                           </p>
                           <p className="funding-desc">{item.description}</p>
@@ -569,16 +552,8 @@ function Dashboard({ token, onLogout }) {
                         <div key={item.id} className="funding-item">
                           {match && (
                             <span
-                              style={{
-                                display: "inline-block",
-                                background: match.color,
-                                color: "#fff",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                padding: "3px 9px",
-                                borderRadius: "12px",
-                                marginBottom: "6px",
-                              }}
+                              className="funding-match-badge"
+                              style={{ background: match.color }}
                             >
                               {match.label} · {match.percent}%
                             </span>
@@ -588,7 +563,7 @@ function Dashboard({ token, onLogout }) {
                             <span className="funding-tag">{item.source}</span>
                             <span className="funding-amount">{item.amount}</span>
                           </div>
-                          <p style={{ fontSize: "13px", color: "var(--slate)" }}>
+                          <p className="funding-deadline">
                             <strong>Deadline:</strong> {item.deadline}
                           </p>
                           <p className="funding-desc">{item.description}</p>
