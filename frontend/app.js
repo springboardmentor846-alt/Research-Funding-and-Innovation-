@@ -283,14 +283,89 @@ function patentsView() {
 
 function reportsView() {
   return `
-    <section class="panel">
-      <h2>Milestone Summary</h2>
-      <div class="report-box">
-        <p><strong>Milestone 1 Completed:</strong> login page, dashboard prototype, module planning, profile page, and sample API server.</p>
-        <p><strong>Milestone 2 Completed:</strong> funding recommendation page, match percentage display, eligibility details, research trend page, topic relevance score, and trend insight cards.</p>
-        <p><strong>Milestone 3 Started:</strong> patent analytics page, patent risk/status display, innovation score breakdown, and commercialization recommendation section.</p>
-        <p><strong>Next:</strong> connect real patent datasets like Google Patents, The Lens, or USPTO, and improve scoring logic.</p>
+    <section class="milestone-banner">
+      <div>
+        <strong>Milestone 4 Final Review</strong>
+        <span>Testing, Reports, Deployment Plan</span>
       </div>
+      <p>This page summarizes all milestones and final project status.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Final Milestone Summary</h2>
+      <div class="report-box">
+        <p><strong>Milestone 1 Completed:</strong> login page, dashboard prototype, research profile page, module planning, and sample API server.</p>
+        <p><strong>Milestone 2 Completed:</strong> funding recommendation workflow, match percentage, eligibility details, research trend page, topic relevance score, and trend insight cards.</p>
+        <p><strong>Milestone 3 Completed:</strong> patent analytics page, patent status, patent risk level, innovation score breakdown, and commercialization recommendation section.</p>
+        <p><strong>Milestone 4 Completed:</strong> final integration review, reports page, GitHub documentation, testing plan, deployment plan, and final presentation preparation.</p>
+      </div>
+    </section>
+
+    <section class="split page-gap">
+      <div class="panel">
+        <h2>Testing Status</h2>
+        <div class="workflow">
+          <div class="step"><strong>Login Flow</strong><span>Demo login tested and dashboard opens successfully.</span></div>
+          <div class="step"><strong>Dashboard Pages</strong><span>Profile, funding, trends, patent analytics, and reports pages checked.</span></div>
+          <div class="step"><strong>API Response</strong><span>Sample /api/dashboard endpoint tested with JSON data.</span></div>
+          <div class="step"><strong>Browser Testing</strong><span>Prototype tested locally using localhost:8000.</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Deployment Plan</h2>
+        <div class="workflow">
+          <div class="step"><strong>Current</strong><span>Local Python server prototype.</span></div>
+          <div class="step"><strong>Next</strong><span>Convert backend to FastAPI and connect database.</span></div>
+          <div class="step"><strong>Docker</strong><span>Create Dockerfile and Docker Compose for frontend/backend.</span></div>
+          <div class="step"><strong>Cloud</strong><span>Deploy final version on AWS, Azure, Render, or Railway.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel page-gap">
+      <h2>Final Project Status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Authentication</td>
+            <td><span class="tag">Prototype Done</span></td>
+            <td>Demo login completed; real JWT authentication planned.</td>
+          </tr>
+          <tr>
+            <td>Funding Discovery</td>
+            <td><span class="tag">Prototype Done</span></td>
+            <td>Match score, eligibility, amount, and deadline shown.</td>
+          </tr>
+          <tr>
+            <td>Research Trends</td>
+            <td><span class="tag">Prototype Done</span></td>
+            <td>Trend cards, growth, relevance score, and paper count shown.</td>
+          </tr>
+          <tr>
+            <td>Patent Analytics</td>
+            <td><span class="tag">Prototype Done</span></td>
+            <td>Patent status, risk level, and citation details shown.</td>
+          </tr>
+          <tr>
+            <td>Commercialization</td>
+            <td><span class="tag">Prototype Done</span></td>
+            <td>Commercialization recommendation section added.</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td><span class="tag">Planned</span></td>
+            <td>Docker and cloud deployment are planned as next improvement.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   `;
 }
