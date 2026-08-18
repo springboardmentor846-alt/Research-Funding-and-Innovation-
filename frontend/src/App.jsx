@@ -4,7 +4,6 @@ import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import { SavedPatentsProvider } from "./context/SavedPatentsContext.jsx";
 import { NotificationsProvider } from "./context/NotificationsContext.jsx";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
-
 import MainLayout from "./layouts/MainLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 
