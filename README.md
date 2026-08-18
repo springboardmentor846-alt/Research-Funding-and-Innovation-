@@ -78,10 +78,10 @@ Expected Outcome
 
 The innovation score uses the following factors:
 
-Research Novelty - 30%
-Patent Strength - 20%
-Technology Maturity - 15%
-Market Potential - 20%
+Research Novelty - 30%,
+Patent Strength - 20%,
+Technology Maturity - 15%,
+Market Potential - 20%,
 Funding Relevance - 15%
 
 ## Milestone 4 — Analytics, Testing & Deployment
