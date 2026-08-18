@@ -1,15 +1,3 @@
-"""Compatibility shim for the legacy ``ResearchAssistant`` surface.
-
-The previous implementation used Hugging Face Transformers (extractive
-summarization) and the OpenAI Python SDK. Both have been replaced by
-the OpenRouter-backed service in :mod:`app.services.ai_service`.
-
-This module keeps the ``research_assistant`` instance and its
-``.explain_patent`` / ``.summarize`` / etc. methods available so the
-``/api/v1/patents/explain`` route and any other legacy caller keep
-working. Every method now delegates to the single AI service — no
-duplication, no model code in this package.
-"""
 from __future__ import annotations
 
 import asyncio
