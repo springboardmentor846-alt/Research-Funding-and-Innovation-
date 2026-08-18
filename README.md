@@ -52,3 +52,37 @@ Implemented prototype features:
 
 ```bash
 python server.py
+## Milestone 3 Work
+
+For Milestone 3, the focus was on Patent Analytics and Innovation Intelligence.
+
+Implemented prototype features:
+
+- Patent Analytics page
+- Patent title, assignee, domain, filing date, and citation count
+- Patent status and risk level
+- Innovation score breakdown
+- Commercialization recommendation section
+- Sample backend API data for patent and innovation intelligence
+
+Milestone 3 helps users understand whether similar technologies already exist, whether there is patent risk, and how the research idea can be converted into a product, startup, licensing opportunity, or SaaS tool.
+
+## Milestone 4 Work
+
+For Milestone 4, the project was prepared for final review.
+
+Completed work:
+
+- Final integration review
+- Reports page updated with all milestone summaries
+- Testing status added
+- Deployment plan added
+- GitHub documentation updated
+- Final presentation explanation prepared
+
+## Testing
+
+The prototype was tested locally using:
+
+```bash
+python server.py
