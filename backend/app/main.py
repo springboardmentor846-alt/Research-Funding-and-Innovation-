@@ -20,6 +20,7 @@ from app.routers import research_trends
 from app.routers import startup
 from app.routers import collaboration
 from app.routers import chatbot
+from app.routers import admin
 
 
 
@@ -51,6 +52,7 @@ app.include_router(research_trends.router)
 app.include_router(startup.router)
 app.include_router(collaboration.router)
 app.include_router(chatbot.router, prefix="/api")
+app.include_router(admin.router)
 
 
 @app.get("/")

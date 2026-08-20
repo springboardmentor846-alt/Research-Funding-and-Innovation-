@@ -18,6 +18,7 @@ import RoleProtectedRoute from "./components/shared/RoleProtectedRoute";
 // Layouts
 import ResearcherLayout from "./components/researcher/ResearcherLayout";
 import StartupLayout from "./components/startup/StartupLayout";
+import AdminLayout from "./components/admin/AdminLayout";
 
 // ================= RESEARCHER =================
 
@@ -53,6 +54,11 @@ import StartupFunding from "./pages/startup/Funding";
 import PredictSuccess from "./pages/startup/PredictSuccess";
 import InnovationScore from "./pages/startup/InnovationScore";
 
+// ================= ADMIN =================
+
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+
 // ================= MANAGER =================
 
 
@@ -72,6 +78,9 @@ function App() {
 
       case "startup_founder":
         return "/startup/dashboard";
+
+      case "administrator":
+        return "/admin/dashboard";
 
       default:
         return "/login";
@@ -207,6 +216,30 @@ function App() {
             </Route>
 
           </Route>
+
+{/* =====================================================
+            ADMINISTRATOR
+===================================================== */}
+
+<Route
+  element={
+    <RoleProtectedRoute
+      allowedRoles={["administrator"]}
+    />
+  }
+>
+  <Route element={<AdminLayout />}>
+    <Route
+      path="/admin/dashboard"
+      element={<AdminDashboard />}
+    />
+
+    <Route
+      path="/admin/users"
+      element={<AdminUsers />}
+    />
+  </Route>
+</Route>
 
 {/* =====================================================
             STARTUP

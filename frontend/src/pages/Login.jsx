@@ -71,6 +71,10 @@ function Login() {
           navigate("/startup/dashboard");
           break;
 
+        case "administrator":
+          navigate("/admin/dashboard");
+          break;
+
         default:
           navigate("/dashboard");
       }

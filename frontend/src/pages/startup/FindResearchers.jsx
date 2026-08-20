@@ -65,8 +65,20 @@ export default function FindResearchers() {
                 <div className="startup-result-detail"><Code2 size={16} /> {researcher.technology_areas?.join(", ") || researcher.research_domains?.join(", ") || "Research areas not specified"}</div>
                 <p className="startup-result-bio">{researcher.bio || "No profile summary provided."}</p>
                 <div className="startup-card-actions">
-                  {researcher.email && <a href={`mailto:${researcher.email}`} className="startup-secondary-button"><Mail size={16} /> Email</a>}
-                  <button className="startup-primary-button" onClick={() => connect(researcher)} disabled={sending === researcher.user_id}><Send size={16} /> {sending === researcher.user_id ? "Sending..." : "Connect"}</button>
+{researcher.email && (
+  <a
+    href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${encodeURIComponent(
+      researcher.email
+    )}&su=${encodeURIComponent(
+      "Research Collaboration Opportunity - InnovFund"
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="startup-secondary-button"
+  >
+    <Mail size={16} /> Email
+  </a>
+)}              <button className="startup-primary-button" onClick={() => connect(researcher)} disabled={sending === researcher.user_id}><Send size={16} /> {sending === researcher.user_id ? "Sending..." : "Connect"}</button>
                 </div>
                 <ArrowRight className="startup-card-watermark" size={48} />
               </article>

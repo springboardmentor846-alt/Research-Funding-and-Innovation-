@@ -3592,8 +3592,8 @@ select {
 .research-prediction-metric span {
   display: block;
   margin-bottom: 6px;
-  color: #7890aa;
-  font-size: 9px;
+  color: #3d4a58;
+  font-size: 13px;
 }
 
 .research-prediction-metric strong {
@@ -3613,8 +3613,8 @@ select {
   padding: 12px 13px;
   border-radius: 8px;
   background: #f5f8fc;
-  color: #607995;
-  font-size: 10px;
+  color: #3d4c5c;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -3648,8 +3648,8 @@ select {
 
 .research-prediction-card-heading p {
   margin: 5px 0 0;
-  color: #7088a4;
-  font-size: 10px;
+  color: #3d4856;
+  font-size: 15px;
 }
 
 .research-prediction-list {
@@ -3663,8 +3663,8 @@ select {
   min-height: 45px;
   padding: 13px 0;
   border-bottom: 1px solid #edf1f5;
-  color: #58718e;
-  font-size: 10px;
+  color: #3a495a;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -3717,8 +3717,8 @@ select {
 .research-prediction-feature span {
   display: block;
   margin-bottom: 5px;
-  color: #7890aa;
-  font-size: 9px;
+  color: #333d48;
+  font-size: 15px;
 }
 
 .research-prediction-feature strong {
@@ -3830,3 +3830,73 @@ select {
 
 
 
+
+/* =========================================================
+   Researcher sidebar refinements
+   Matches the professional Lucide icon treatment used by
+   the Startup layout and keeps long researcher navigation
+   independently scrollable.
+   ========================================================= */
+
+.app-sidebar {
+  overflow: hidden;
+}
+
+.sidebar-nav {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(143, 164, 194, 0.48) transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(143, 164, 194, 0.48);
+  border-radius: 999px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(143, 164, 194, 0.72);
+}
+
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  color: #9fb1c9;
+}
+
+.sidebar-icon svg {
+  display: block;
+}
+
+.sidebar-link:hover .sidebar-icon,
+.sidebar-link.active .sidebar-icon {
+  color: #ffffff;
+}
+
+.sidebar-link.active .sidebar-icon {
+  color: #a9c8ff;
+}
+
+@media (max-width: 700px) {
+  .app-sidebar {
+    overflow: visible;
+  }
+
+  .sidebar-nav {
+    overflow-y: visible;
+  }
+}
