@@ -2,9 +2,6 @@ from collections import Counter
 
 from sqlalchemy import select
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
 from app.services.lens_service import search_patents
 
 from app.models.research_profile import ResearchProfile
@@ -241,6 +238,11 @@ def calculate_similarity(
     researcher_text,
     patent_text
 ):
+
+    # Import scikit-learn only when patent landscape similarity is requested.
+    # This prevents NumPy/SciPy/scikit-learn from consuming memory at startup.
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.metrics.pairwise import cosine_similarity
 
     if not researcher_text:
 

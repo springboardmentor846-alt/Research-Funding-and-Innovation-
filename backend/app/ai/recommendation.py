@@ -1,5 +1,3 @@
-from sklearn.metrics.pairwise import cosine_similarity
-
 from app.ai.embedding import generate_embedding
 
 
@@ -10,7 +8,11 @@ def calculate_similarity(
     """
     Returns cosine similarity between researcher profile
     and funding opportunity.
+
+    scikit-learn is imported only when this feature is actually used,
+    avoiding unnecessary ML memory usage during FastAPI startup.
     """
+    from sklearn.metrics.pairwise import cosine_similarity
 
     researcher_vector = generate_embedding(
         researcher_text

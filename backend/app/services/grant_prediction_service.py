@@ -1,11 +1,23 @@
-import joblib
+_model = None
 
-model = joblib.load(
-    "app/ml/grant_model.pkl"
-)
+
+def _get_model():
+    """Load the trained grant model only when prediction is requested."""
+    global _model
+
+    if _model is None:
+        import joblib
+
+        _model = joblib.load(
+            "app/ml/grant_model.pkl"
+        )
+
+    return _model
 
 
 def predict_probability(features):
+
+    model = _get_model()
 
     probability = model.predict_proba(
         [features]
