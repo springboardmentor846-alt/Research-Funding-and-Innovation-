@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./Login.css";
 
-function Login({ onLoginSuccess, onSwitchToRegister }) {
+function Login({ onLoginSuccess, onSwitchToRegister, onSwitchToForgotPassword }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -103,6 +103,9 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <p className="auth-forgot-link" onClick={onSwitchToForgotPassword}>
+                Forgot password?
+              </p>
             </div>
             <button type="submit" className="auth-submit" disabled={isSubmitting}>
               {isSubmitting ? "Signing in..." : "Sign In"}

@@ -10,7 +10,22 @@ import TechnologyIntelligence from "./TechnologyIntelligence";
 import InnovationScore from "./InnovationScore";
 import CommercializationRecommendations from "./CommercializationRecommendations";
 import ResearchProfileForm from "./ResearchProfileForm";
+import ResearchLibrary from "./ResearchLibrary";
+import CollaborationRequests from "./CollaborationRequests";
+import FundingExplanationButton from "./FundingExplanationButton";
+import PredictSuccessButton from "./PredictSuccessButton";
+import GlobalPatentLandscape from "./GlobalPatentLandscape";
+import StartupProfileForm from "./StartupProfileForm";
+import FindResearchers from "./FindResearchers";
+import FindStartups from "./FindStartups";
+import StartupFunding from "./StartupFunding";
+import ProfileEntitiesManager from "./ProfileEntitiesManager";
+import OrganizationInfoForm from "./OrganizationInfoForm";
+import DashboardOverview from "./DashboardOverview";
+import ResearchProfileHeader from "./ResearchProfileHeader";
 import LiveGrantsSearch from "./LiveGrantsSearch";
+import OtherFundingSourcesSearch from "./OtherFundingSourcesSearch";
+import AIAssistant from "./AIAssistant";
 import AdminPanel from "./AdminPanel";
 import NotificationBell from "./NotificationBell";
 import Reports from "./Reports";
@@ -25,7 +40,7 @@ function Dashboard({ token, onLogout }) {
   const [allFunding, setAllFunding] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [profileDomains, setProfileDomains] = useState("");
-  const [openGroups, setOpenGroups] = useState(["workspace", "research-group", "patents-group", "insights-group"]);
+  const [openGroups, setOpenGroups] = useState(["workspace", "research-group", "patents-group", "insights-group", "collaboration-group", "startup-group"]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -189,6 +204,96 @@ function Dashboard({ token, onLogout }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 17l6-6 4 4 8-8" />
               <path d="M15 7h6v6" />
+            </svg>
+          ),
+        },
+        {
+          id: "research-library",
+          label: "Library",
+          color: "#1C8C7A",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+          ),
+        },
+      ],
+    },
+    {
+      id: "collaboration-group",
+      label: "Network",
+      roles: ["researcher", "startup_founder", "innovation_manager"],
+      items: [
+        {
+          id: "collaboration",
+          label: "Collaboration Requests",
+          color: "#2E5EAA",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="8" cy="8" r="3.5" />
+              <circle cx="17" cy="8" r="3" />
+              <path d="M2.5 20c0-3.3 2.5-5.8 5.5-5.8s5.5 2.5 5.5 5.8" />
+              <path d="M14.5 14.5c2.5.3 4.5 2.3 4.5 5.5" />
+            </svg>
+          ),
+        },
+      ],
+    },
+    {
+      id: "startup-group",
+      label: "Startup",
+      roles: ["startup_founder"],
+      items: [
+        {
+          id: "startup-profile",
+          label: "Startup Profile",
+          color: "#C9862B",
+          roles: ["startup_founder"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 21h18" />
+              <path d="M5 21V7l7-4 7 4v14" />
+              <path d="M10 21v-6h4v6" />
+            </svg>
+          ),
+        },
+        {
+          id: "find-researchers",
+          label: "Find Researchers",
+          color: "#C9862B",
+          roles: ["startup_founder"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M21 21l-4.3-4.3" />
+            </svg>
+          ),
+        },
+        {
+          id: "find-startups",
+          label: "Find Startups",
+          color: "#C9862B",
+          roles: ["startup_founder"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="10" width="6" height="11" />
+              <rect x="10" y="4" width="6" height="17" />
+              <rect x="17" y="14" width="4" height="7" />
+            </svg>
+          ),
+        },
+        {
+          id: "startup-funding",
+          label: "Startup Funding",
+          color: "#C9862B",
+          roles: ["startup_founder"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.2 2.5-2.2s2.5.8 2.5 2c0 1.5-1.3 1.9-2.5 2.3-1.3.4-2.5.9-2.5 2.4 0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2.2" />
             </svg>
           ),
         },
@@ -398,25 +503,36 @@ function Dashboard({ token, onLogout }) {
 
           {activeTab === "overview" && (
             <>
-              {profile && (
-                <div className="dash-card">
-                  <h3>Your Profile</h3>
-                  <p className="dash-card-subtitle">Account details</p>
-                  <p><strong>Email:</strong> {profile.email}</p>
-                  <p><strong>Role:</strong> {formatRole(profile.role)}</p>
-                </div>
-              )}
+              {currentRole === "researcher" && profile ? (
+                <DashboardOverview token={token} profile={profile} onNavigate={setActiveTab} />
+              ) : (
+                <>
+                  {profile && (
+                    <div className="dash-card">
+                      <h3>Your Profile</h3>
+                      <p className="dash-card-subtitle">Account details</p>
+                      <p><strong>Email:</strong> {profile.email}</p>
+                      <p><strong>Role:</strong> {formatRole(profile.role)}</p>
+                    </div>
+                  )}
 
-              <div className="dash-card">
-                <h3>Innovation Score</h3>
-                <p className="dash-card-subtitle">Your overall innovation potential, based on research, patents, technology and funding fit</p>
-                <InnovationScore token={token} />
-              </div>
+                  <div className="dash-card">
+                    <h3>Innovation Score</h3>
+                    <p className="dash-card-subtitle">Your overall innovation potential, based on research, patents, technology and funding fit</p>
+                    <InnovationScore token={token} />
+                  </div>
+                </>
+              )}
             </>
           )}
 
           {activeTab === "research-profile" && (
-            <ResearchProfileForm token={token} onProfileSaved={fetchFunding} />
+            <>
+              <ResearchProfileHeader token={token} />
+              <ResearchProfileForm token={token} onProfileSaved={fetchFunding} />
+              <ProfileEntitiesManager token={token} />
+              <OrganizationInfoForm token={token} />
+            </>
           )}
 
           {activeTab === "research-trends" && (
@@ -441,8 +557,54 @@ function Dashboard({ token, onLogout }) {
             </>
           )}
 
+          {activeTab === "research-library" && (
+            <ResearchLibrary token={token} />
+          )}
+
+          {activeTab === "collaboration" && (
+            <CollaborationRequests token={token} />
+          )}
+
+          {activeTab === "startup-profile" && (
+            <div className="dash-card">
+              <h3>Startup Profile</h3>
+              <p className="dash-card-subtitle">Tell researchers and other startups about your venture</p>
+              <StartupProfileForm token={token} />
+            </div>
+          )}
+
+          {activeTab === "find-researchers" && (
+            <div className="dash-card">
+              <h3>Find Researchers</h3>
+              <p className="dash-card-subtitle">Discover researchers to collaborate with</p>
+              <FindResearchers token={token} />
+            </div>
+          )}
+
+          {activeTab === "find-startups" && (
+            <div className="dash-card">
+              <h3>Find Startups</h3>
+              <p className="dash-card-subtitle">Discover other startups on the platform</p>
+              <FindStartups token={token} />
+            </div>
+          )}
+
+          {activeTab === "startup-funding" && (
+            <div className="dash-card">
+              <h3>Startup Funding</h3>
+              <p className="dash-card-subtitle">Funding opportunities matched to your startup, with success prediction</p>
+              <StartupFunding token={token} />
+            </div>
+          )}
+
           {activeTab === "patents" && (
             <>
+              <div className="dash-card">
+                <h3>Global Patent Landscape</h3>
+                <p className="dash-card-subtitle">Live search across worldwide patents (via Lens.org)</p>
+                <GlobalPatentLandscape token={token} />
+              </div>
+
               <div className="dash-card">
                 <h3>Patent Trend</h3>
                 <p className="dash-card-subtitle">Patent filings over time</p>
@@ -485,6 +647,14 @@ function Dashboard({ token, onLogout }) {
                 <h3>Search Real US Federal Grants</h3>
                 <p className="dash-card-subtitle">Live search from Grants.gov — the official U.S. government grants database</p>
                 <LiveGrantsSearch token={token} />
+              </div>
+
+              <div className="dash-card">
+                <h3>Search Other Funding Sources</h3>
+                <p className="dash-card-subtitle">
+                  Live search across Horizon Europe, UKRI, ANRF, BIRAC, DBT, ICMR, and Wellcome
+                </p>
+                <OtherFundingSourcesSearch token={token} />
               </div>
 
               <div className="dash-card">
@@ -567,6 +737,8 @@ function Dashboard({ token, onLogout }) {
                             <strong>Deadline:</strong> {item.deadline}
                           </p>
                           <p className="funding-desc">{item.description}</p>
+                          <FundingExplanationButton token={token} fundingId={item.id} />
+                          <PredictSuccessButton token={token} fundingId={item.id} />
                         </div>
                       );
                     })}
@@ -600,6 +772,7 @@ function Dashboard({ token, onLogout }) {
           )}
         </div>
       </div>
+      <AIAssistant token={token} />
     </div>
   );
 }

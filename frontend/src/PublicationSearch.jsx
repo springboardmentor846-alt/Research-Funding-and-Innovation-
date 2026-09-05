@@ -33,14 +33,14 @@ function PublicationSearch({ token, onAdded }) {
   const handleAdd = async (pub) => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/v1/profile/publications",
+        "http://127.0.0.1:8000/api/v1/profile/library",
         pub,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setMessage(`Added: ${pub.title.slice(0, 50)}...`);
+      setMessage(`Saved to Research Library: ${pub.title.slice(0, 50)}...`);
       onAdded();
     } catch (err) {
-      setMessage("Could not add publication.");
+      setMessage(err.response?.data?.detail || "Could not save publication.");
     }
   };
 
@@ -69,7 +69,7 @@ function PublicationSearch({ token, onAdded }) {
                 <p className="search-result-meta">{pub.authors} · {pub.year} · {pub.source}</p>
               </div>
               <button className="search-add-btn" onClick={() => handleAdd(pub)}>
-                Add
+                Save to Library
               </button>
             </div>
           ))}
