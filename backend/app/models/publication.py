@@ -15,4 +15,9 @@ class Publication(Base):
     source = Column(String)      # journal/conference name
     link = Column(String)        # URL to paper
 
+    pdf_path = Column(String, nullable=True)          # uploaded PDF file path, if any
+    source_type = Column(String, default="own", nullable=False)
+    # source_type: "own" = added/authored by the researcher (My Publications)
+    #              "external" = imported from OpenAlex for reference (Research Library)
+
     profile = relationship("ResearchProfile", backref="publication_list")

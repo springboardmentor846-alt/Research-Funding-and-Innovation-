@@ -8,7 +8,7 @@ from app.models.publication import Publication
 from app.schemas.publication import PublicationCreate
 
 
-def create_publication(db: Session, profile_id: int, data: PublicationCreate):
+def create_publication(db: Session, profile_id: int, data: PublicationCreate, source_type: str = "own"):
     new_pub = Publication(
         profile_id=profile_id,
         title=data.title,
@@ -16,6 +16,7 @@ def create_publication(db: Session, profile_id: int, data: PublicationCreate):
         year=data.year,
         source=data.source,
         link=data.link,
+        source_type=source_type,
     )
     db.add(new_pub)
     db.commit()
@@ -24,7 +25,36 @@ def create_publication(db: Session, profile_id: int, data: PublicationCreate):
 
 
 def get_publications_by_profile(db: Session, profile_id: int):
-    return db.query(Publication).filter(Publication.profile_id == profile_id).all()
+    """All 'own' publications authored by the researcher (My Publications)."""
+    return (
+        db.query(Publication)
+        .filter(Publication.profile_id == profile_id, Publication.source_type == "own")
+        .all()
+    )
+
+
+def get_research_library(db: Session, profile_id: int):
+    """External publications imported from OpenAlex for reference (Research Library)."""
+    return (
+        db.query(Publication)
+        .filter(Publication.profile_id == profile_id, Publication.source_type == "external")
+        .all()
+    )
+
+
+def get_publication_by_id_for_profile(db: Session, publication_id: int, profile_id: int):
+    return (
+        db.query(Publication)
+        .filter(Publication.id == publication_id, Publication.profile_id == profile_id)
+        .first()
+    )
+
+
+def set_publication_pdf_path(db: Session, publication: Publication, pdf_path: str):
+    publication.pdf_path = pdf_path
+    db.commit()
+    db.refresh(publication)
+    return publication
 
 
 def get_publication_trend(db: Session):
