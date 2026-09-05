@@ -12,6 +12,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
   const [keywords, setKeywords] = useState("");
   const [technologyAreas, setTechnologyAreas] = useState("");
   const [organizationName, setOrganizationName] = useState("");
+  const [orcidId, setOrcidId] = useState("");
   const [profileMessage, setProfileMessage] = useState("");
   const [savingProfile, setSavingProfile] = useState(false);
 
@@ -22,6 +23,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
   const [pubSource, setPubSource] = useState("");
   const [publications, setPublications] = useState([]);
   const [pubMessage, setPubMessage] = useState("");
+  const [uploadingPubId, setUploadingPubId] = useState(null);
 
   // ---- Patent fields ----
   const [patentTitle, setPatentTitle] = useState("");
@@ -38,6 +40,13 @@ function ResearchProfileForm({ token, onProfileSaved }) {
   const [openAlexLoading, setOpenAlexLoading] = useState(false);
   const [importingAuthorId, setImportingAuthorId] = useState("");
 
+  // ---- ORCID import ----
+  const [orcidSearchName, setOrcidSearchName] = useState("");
+  const [orcidResults, setOrcidResults] = useState([]);
+  const [orcidMessage, setOrcidMessage] = useState("");
+  const [orcidLoading, setOrcidLoading] = useState(false);
+  const [importingOrcidId, setImportingOrcidId] = useState("");
+
   const loadExistingProfile = async () => {
     try {
       const res = await axios.get(`${API_BASE}/`, authHeaders);
@@ -46,6 +55,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
       setKeywords(res.data.keywords || "");
       setTechnologyAreas(res.data.technology_areas || "");
       setOrganizationName(res.data.organization_name || "");
+      setOrcidId(res.data.orcid_id || "");
     } catch (err) {
       setProfileExists(false);
     }
@@ -119,6 +129,56 @@ function ResearchProfileForm({ token, onProfileSaved }) {
     }
   };
 
+  const handleSearchOrcid = async (e) => {
+    e.preventDefault();
+    setOrcidMessage("");
+    setOrcidResults([]);
+    if (!orcidSearchName.trim()) {
+      setOrcidMessage("Enter a name to search.");
+      return;
+    }
+    setOrcidLoading(true);
+    try {
+      const res = await axios.get(`${API_BASE}/orcid/search`, {
+        ...authHeaders,
+        params: { name: orcidSearchName },
+      });
+      setOrcidResults(res.data || []);
+      if (!res.data || res.data.length === 0) {
+        setOrcidMessage("No researchers found on ORCID for that name.");
+      }
+    } catch (err) {
+      setOrcidMessage(
+        err.response?.data?.detail || "Could not reach ORCID. Check your internet connection."
+      );
+    } finally {
+      setOrcidLoading(false);
+    }
+  };
+
+  const handleImportFromOrcid = async (candidateOrcidId) => {
+    setOrcidMessage("");
+    setImportingOrcidId(candidateOrcidId);
+    try {
+      const res = await axios.post(
+        `${API_BASE}/orcid/import`,
+        null,
+        { ...authHeaders, params: { orcid_id: candidateOrcidId } }
+      );
+      setOrcidMessage(
+        `Imported ${res.data.imported} of ${res.data.total} works from ORCID.`
+      );
+      setOrcidId(candidateOrcidId);
+      if (onProfileSaved) onProfileSaved();
+    } catch (err) {
+      setOrcidMessage(
+        err.response?.data?.detail || "Could not import from ORCID."
+      );
+    } finally {
+      setImportingOrcidId("");
+    }
+  };
+
   useEffect(() => {
     loadExistingProfile();
     loadPublications();
@@ -138,6 +198,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
           keywords: keywords,
           technology_areas: technologyAreas,
           organization_name: organizationName,
+          orcid_id: orcidId,
         },
         authHeaders
       );
@@ -183,6 +244,33 @@ function ResearchProfileForm({ token, onProfileSaved }) {
         err.response?.data?.detail || "Could not add publication."
       );
     }
+  };
+
+  const handleUploadPdf = async (publicationId, file) => {
+    if (!file) return;
+    setUploadingPubId(publicationId);
+    setPubMessage("");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      await axios.post(
+        `${API_BASE}/publications/${publicationId}/upload-pdf`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setPubMessage("PDF uploaded.");
+      loadPublications();
+    } catch (err) {
+      setPubMessage(err.response?.data?.detail || "Could not upload PDF.");
+    }
+    setUploadingPubId(null);
   };
 
   const handleAddPatent = async (e) => {
@@ -293,6 +381,15 @@ function ResearchProfileForm({ token, onProfileSaved }) {
           onChange={(e) => setOrganizationName(e.target.value)}
         />
 
+        <label style={labelStyle}>ORCID iD (optional)</label>
+        <input
+          style={inputStyle}
+          type="text"
+          placeholder="e.g. 0000-0002-1825-0097"
+          value={orcidId}
+          onChange={(e) => setOrcidId(e.target.value)}
+        />
+
         <button style={btnStyle} type="submit" disabled={savingProfile}>
           {savingProfile ? "Saving..." : profileExists ? "Update Profile" : "Create Profile"}
         </button>
@@ -355,6 +452,29 @@ function ResearchProfileForm({ token, onProfileSaved }) {
                 <div key={p.id} style={listItemStyle}>
                   <strong>{p.title}</strong>
                   {p.year ? ` (${p.year})` : ""} {p.authors ? `— ${p.authors}` : ""}
+                  <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "10px" }}>
+                    {p.pdf_path ? (
+                      <a
+                        href={`http://127.0.0.1:8000/${p.pdf_path}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ fontSize: "12.5px", color: "#1C8C7A", fontWeight: 600 }}
+                      >
+                        View PDF
+                      </a>
+                    ) : (
+                      <label style={{ fontSize: "12.5px", cursor: "pointer", color: "#2E5EAA", fontWeight: 600 }}>
+                        {uploadingPubId === p.id ? "Uploading..." : "Upload PDF"}
+                        <input
+                          type="file"
+                          accept="application/pdf"
+                          style={{ display: "none" }}
+                          disabled={uploadingPubId === p.id}
+                          onChange={(e) => handleUploadPdf(p.id, e.target.files[0])}
+                        />
+                      </label>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -407,6 +527,59 @@ function ResearchProfileForm({ token, onProfileSaved }) {
                     disabled={importingAuthorId === author.id}
                   >
                     {importingAuthorId === author.id ? "Importing..." : "Import Publications"}
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <hr style={{ margin: "18px 0", border: "none", borderTop: "1px solid #e5e9ef" }} />
+          <h4 style={{ marginBottom: "6px" }}>Import Works from ORCID</h4>
+          <p className="dash-card-subtitle" style={{ marginBottom: "10px" }}>
+            Search your name on ORCID (the researcher identifier registry) and import the works listed on your public ORCID record.
+          </p>
+          <form onSubmit={handleSearchOrcid} style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+            <input
+              style={{ ...inputStyle, marginBottom: 0, flex: 1 }}
+              type="text"
+              placeholder="Search researcher name, e.g. Jane Smith"
+              value={orcidSearchName}
+              onChange={(e) => setOrcidSearchName(e.target.value)}
+            />
+            <button style={btnStyle} type="submit" disabled={orcidLoading}>
+              {orcidLoading ? "Searching..." : "Search"}
+            </button>
+          </form>
+
+          {orcidMessage && (
+            <p style={{ fontSize: "12.5px", marginBottom: "10px", color: "#3b4252" }}>
+              {orcidMessage}
+            </p>
+          )}
+
+          {orcidResults.length > 0 && (
+            <div style={{ marginBottom: "18px" }}>
+              {orcidResults.map((candidate) => (
+                <div
+                  key={candidate.orcid_id}
+                  style={{
+                    ...listItemStyle,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span>
+                    <strong>{candidate.name}</strong>
+                    {" — "}
+                    {candidate.orcid_id}
+                  </span>
+                  <button
+                    style={{ ...btnStyle, padding: "6px 12px", fontSize: "12px" }}
+                    onClick={() => handleImportFromOrcid(candidate.orcid_id)}
+                    disabled={importingOrcidId === candidate.orcid_id}
+                  >
+                    {importingOrcidId === candidate.orcid_id ? "Importing..." : "Import Works"}
                   </button>
                 </div>
               ))}

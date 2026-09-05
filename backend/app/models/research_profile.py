@@ -15,5 +15,6 @@ class ResearchProfile(Base):
     patents = Column(Text)
     technology_areas = Column(Text)
     organization_name = Column(String)
+    orcid_id = Column(String, nullable=True)  # e.g. "0000-0002-1825-0097"
 
     user = relationship("User", backref="research_profile")

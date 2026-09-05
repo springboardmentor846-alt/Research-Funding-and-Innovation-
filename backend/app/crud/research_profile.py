@@ -17,6 +17,7 @@ def create_or_update_profile(db: Session, user_id: int, profile_data: ResearchPr
         existing_profile.patents = profile_data.patents
         existing_profile.technology_areas = profile_data.technology_areas
         existing_profile.organization_name = profile_data.organization_name
+        existing_profile.orcid_id = profile_data.orcid_id
 
         db.commit()
         db.refresh(existing_profile)
@@ -30,9 +31,10 @@ def create_or_update_profile(db: Session, user_id: int, profile_data: ResearchPr
         patents=profile_data.patents,
         technology_areas=profile_data.technology_areas,
         organization_name=profile_data.organization_name,
+        orcid_id=profile_data.orcid_id,
     )
 
     db.add(new_profile)
     db.commit()
     db.refresh(new_profile)
-    return new_profile 
+    return new_profile

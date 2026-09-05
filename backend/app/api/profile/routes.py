@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+import os
+import uuid
+
+from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile, File
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from typing import List
@@ -9,10 +12,31 @@ from app.core.limiter import limiter
 from app.db.database import get_db
 from app.schemas.research_profile import ResearchProfileCreate, ResearchProfileResponse
 from app.crud.research_profile import create_or_update_profile, get_profile_by_user_id
+from app.schemas.profile_entities import (
+    NamedEntityCreate,
+    ResearchDomainResponse,
+    ResearchKeywordResponse,
+    TechnologyAreaResponse,
+    OrganizationInfoUpdate,
+    OrganizationInfoResponse,
+)
+from app.crud.profile_entities import (
+    add_research_domain,
+    get_research_domains,
+    delete_research_domain,
+    add_research_keyword,
+    get_research_keywords,
+    delete_research_keyword,
+    add_technology_area,
+    get_technology_areas,
+    delete_technology_area,
+    get_organization_info,
+    upsert_organization_info,
+)
 from app.core.security import get_current_user
 from app.crud.user import get_user_by_email
 
-from app.schemas.publication import PublicationCreate, PublicationResponse
+from app.schemas.publication import PublicationCreate, PublicationResponse, ExternalPublicationImport
 from app.schemas.patent import PatentCreate, PatentResponse
 from app.crud.publication import (
     create_publication,
@@ -20,6 +44,10 @@ from app.crud.publication import (
     get_publication_trend,
     get_emerging_topics,
     get_research_hotspots,
+    get_research_library,
+    get_publication_by_id_for_profile,
+    set_publication_pdf_path,
+    search_openalex,
 )
 from app.crud.patent import (
     create_patent,
@@ -33,7 +61,13 @@ from app.crud.technology import get_technology_intelligence
 from app.crud.innovation import get_innovation_score
 from app.crud.commercialization import get_commercialization_recommendations
 from app.services.openalex_service import search_author, extract_publications
-from app.crud.funding import get_recommended_funding
+from app.services.orcid_service import search_orcid_by_name, get_orcid_works
+from app.services.crossref_service import search_crossref
+from app.services.explanation_service import explain_funding_match
+from app.services.grant_prediction_service import predict_grant_success
+from app.services.patent_landscape_service import patent_landscape
+from app.services.lens_service import LensNotConfiguredError
+from app.crud.funding import get_recommended_funding, get_funding_by_id
 from app.services.report_service import generate_pdf_report, generate_excel_report
 
 router = APIRouter()
@@ -67,6 +101,162 @@ def get_my_profile(
     return profile
 
 
+def _get_own_profile_or_404(db: Session, current_user: dict):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+    return profile
+
+
+# ---------------- Research Domains (granular) ----------------
+
+@router.post("/domains", response_model=ResearchDomainResponse)
+def add_domain(
+    data: NamedEntityCreate,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    name = data.name.strip()
+    if not name:
+        raise HTTPException(status_code=400, detail="Domain name cannot be empty")
+
+    domain, created = add_research_domain(db, profile, name)
+    if not created:
+        raise HTTPException(status_code=400, detail="This research domain already exists")
+    return domain
+
+
+@router.get("/domains", response_model=List[ResearchDomainResponse])
+def list_domains(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    return get_research_domains(db, profile.id)
+
+
+@router.delete("/domains/{domain_id}")
+def remove_domain(
+    domain_id: int,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    deleted = delete_research_domain(db, profile, domain_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Research domain not found")
+    return {"message": "Research domain deleted successfully"}
+
+
+# ---------------- Research Keywords (granular) ----------------
+
+@router.post("/keywords", response_model=ResearchKeywordResponse)
+def add_keyword(
+    data: NamedEntityCreate,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    name = data.name.strip()
+    if not name:
+        raise HTTPException(status_code=400, detail="Keyword cannot be empty")
+
+    keyword, created = add_research_keyword(db, profile, name)
+    if not created:
+        raise HTTPException(status_code=400, detail="This keyword already exists")
+    return keyword
+
+
+@router.get("/keywords", response_model=List[ResearchKeywordResponse])
+def list_keywords(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    return get_research_keywords(db, profile.id)
+
+
+@router.delete("/keywords/{keyword_id}")
+def remove_keyword(
+    keyword_id: int,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    deleted = delete_research_keyword(db, profile, keyword_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Keyword not found")
+    return {"message": "Keyword deleted successfully"}
+
+
+# ---------------- Technology Areas (granular) ----------------
+
+@router.post("/technology-areas", response_model=TechnologyAreaResponse)
+def add_tech_area(
+    data: NamedEntityCreate,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    name = data.name.strip()
+    if not name:
+        raise HTTPException(status_code=400, detail="Technology area cannot be empty")
+
+    tech_area, created = add_technology_area(db, profile, name)
+    if not created:
+        raise HTTPException(status_code=400, detail="This technology area already exists")
+    return tech_area
+
+
+@router.get("/technology-areas", response_model=List[TechnologyAreaResponse])
+def list_tech_areas(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    return get_technology_areas(db, profile.id)
+
+
+@router.delete("/technology-areas/{tech_area_id}")
+def remove_tech_area(
+    tech_area_id: int,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    deleted = delete_technology_area(db, profile, tech_area_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Technology area not found")
+    return {"message": "Technology area deleted successfully"}
+
+
+# ---------------- Organization Information (extended) ----------------
+
+@router.get("/organization-info", response_model=OrganizationInfoResponse)
+def get_org_info(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    org_info = get_organization_info(db, profile.id)
+    if not org_info:
+        raise HTTPException(status_code=404, detail="Organization information not set yet")
+    return org_info
+
+
+@router.put("/organization-info", response_model=OrganizationInfoResponse)
+def update_org_info(
+    data: OrganizationInfoUpdate,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    profile = _get_own_profile_or_404(db, current_user)
+    return upsert_organization_info(db, profile, data.model_dump())
+
+
 @router.post("/publications", response_model=PublicationResponse)
 def add_publication(
     pub_data: PublicationCreate,
@@ -96,6 +286,94 @@ def list_publications(
         return []
 
     return get_publications_by_profile(db, profile.id)
+
+
+@router.get("/publications/search-openalex")
+@limiter.limit("10/minute")
+def publications_search_openalex(
+    request: Request,
+    query: str,
+    current_user: dict = Depends(get_current_user),
+):
+    return search_openalex(query)
+
+
+# ---------------- Research Library (external, reference-only publications) ----------------
+# Distinct from "My Publications": these are papers the researcher found via
+# OpenAlex search and saved for reference, not papers they authored themselves.
+
+@router.post("/library", response_model=PublicationResponse)
+def add_to_research_library(
+    pub_data: ExternalPublicationImport,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    return create_publication(
+        db,
+        profile.id,
+        PublicationCreate(**pub_data.model_dump()),
+        source_type="external",
+    )
+
+
+@router.get("/library", response_model=List[PublicationResponse])
+def list_research_library(
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        return []
+
+    return get_research_library(db, profile.id)
+
+
+# ---------------- Publication PDF upload ----------------
+
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "..", "uploads", "publications")
+
+
+@router.post("/publications/{publication_id}/upload-pdf", response_model=PublicationResponse)
+async def upload_publication_pdf(
+    publication_id: int,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    publication = get_publication_by_id_for_profile(db, publication_id, profile.id)
+    if not publication:
+        raise HTTPException(status_code=404, detail="Publication not found")
+
+    if file.content_type != "application/pdf":
+        raise HTTPException(status_code=400, detail="Only PDF files are allowed")
+
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+    safe_filename = f"{publication_id}_{uuid.uuid4().hex}.pdf"
+    file_path = os.path.join(UPLOAD_DIR, safe_filename)
+
+    contents = await file.read()
+    with open(file_path, "wb") as f:
+        f.write(contents)
+
+    relative_path = f"uploads/publications/{safe_filename}"
+    return set_publication_pdf_path(db, publication, relative_path)
 
 
 @router.get("/publications/trend")
@@ -261,10 +539,155 @@ def openalex_import_publications(
             source=item.get("source"),
             link=item.get("link"),
         )
-        create_publication(db, profile.id, pub_data)
+        create_publication(db, profile.id, pub_data, source_type="external")
         imported += 1
 
     return {"imported": imported, "total": len(publications)}
+
+
+# ---------------- ORCID Integration ----------------
+
+@router.get("/orcid/search")
+@limiter.limit("10/minute")
+def orcid_search(
+    request: Request,
+    name: str,
+    current_user: dict = Depends(get_current_user),
+):
+    return search_orcid_by_name(name)
+
+
+@router.get("/orcid/works")
+@limiter.limit("10/minute")
+def orcid_works(
+    request: Request,
+    orcid_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    try:
+        return get_orcid_works(orcid_id)
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=502, detail=f"Could not reach ORCID: {e}")
+
+
+@router.post("/orcid/import")
+@limiter.limit("5/minute")
+def orcid_import(
+    request: Request,
+    orcid_id: str,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    """
+    Imports every work on a researcher's public ORCID profile into their
+    Research Library (external, reference publications) and saves the
+    ORCID iD on their profile for future reference.
+    """
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    try:
+        works = get_orcid_works(orcid_id)
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=502, detail=f"Could not reach ORCID: {e}")
+
+    imported = 0
+    for item in works:
+        if not item.get("title"):
+            continue
+        pub_data = PublicationCreate(
+            title=item["title"],
+            authors=item.get("authors"),
+            year=item.get("year"),
+            source=item.get("source"),
+            link=item.get("link"),
+        )
+        create_publication(db, profile.id, pub_data, source_type="external")
+        imported += 1
+
+    profile.orcid_id = orcid_id.strip()
+    db.commit()
+
+    return {"imported": imported, "total": len(works)}
+
+
+# ---------------- Crossref Integration ----------------
+
+@router.get("/crossref/search")
+@limiter.limit("10/minute")
+def crossref_search(
+    request: Request,
+    query: str,
+    current_user: dict = Depends(get_current_user),
+):
+    return search_crossref(query)
+
+
+# ---------------- Explanation Service ----------------
+
+@router.get("/funding/{funding_id}/explanation")
+def funding_explanation(
+    funding_id: int,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    funding = get_funding_by_id(db, funding_id)
+    if not funding:
+        raise HTTPException(status_code=404, detail="Funding opportunity not found")
+
+    return explain_funding_match(profile.research_domains, funding, db_user.role)
+
+
+@router.get("/funding/{funding_id}/predict-success")
+def predict_funding_success(
+    funding_id: int,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id)
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Create your research profile first")
+
+    funding = get_funding_by_id(db, funding_id)
+    if not funding:
+        raise HTTPException(status_code=404, detail="Funding opportunity not found")
+
+    return predict_grant_success(db, profile, funding)
+
+
+# ---------------- Global Patent Landscape (Lens.org) ----------------
+
+@router.get("/patent-landscape")
+@limiter.limit("10/minute")
+def global_patent_landscape(
+    request: Request,
+    query: str,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
+    user_email = current_user.get("sub")
+    db_user = get_user_by_email(db, user_email)
+    profile = get_profile_by_user_id(db, db_user.id) if db_user else None
+    publications = get_publications_by_profile(db, profile.id) if profile else []
+
+    try:
+        return patent_landscape(query, profile, publications)
+    except LensNotConfiguredError as exc:
+        raise HTTPException(status_code=503, detail=str(exc))
 
 
 # ---------------- Notifications (computed live from real data) ----------------

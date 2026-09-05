@@ -9,6 +9,7 @@ class ResearchProfileCreate(BaseModel):
     patents: Optional[str] = None
     technology_areas: Optional[str] = None
     organization_name: Optional[str] = None
+    orcid_id: Optional[str] = None
 
 
 class ResearchProfileResponse(BaseModel):
@@ -20,6 +21,7 @@ class ResearchProfileResponse(BaseModel):
     patents: Optional[str] = None
     technology_areas: Optional[str] = None
     organization_name: Optional[str] = None
+    orcid_id: Optional[str] = None
 
     class Config:
         from_attributes = True
