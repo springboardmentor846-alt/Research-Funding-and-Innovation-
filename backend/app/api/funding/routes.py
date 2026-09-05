@@ -16,6 +16,7 @@ from app.core.security import get_current_user, require_role
 from app.core.limiter import limiter
 from app.crud.user import get_user_by_email
 from app.crud.research_profile import get_profile_by_user_id
+from app.services.funding_sources_service import search_funding_source, SOURCE_FUNCTIONS
 
 router = APIRouter()
 
@@ -67,6 +68,28 @@ def search_live_grants(
     current_user: dict = Depends(get_current_user),
 ):
     return search_grants_gov(keyword)
+
+
+@router.get("/sources")
+def list_funding_sources():
+    """Lists the additional live/curated funding sources available besides Grants.gov."""
+    return {"sources": list(SOURCE_FUNCTIONS.keys())}
+
+
+@router.get("/search-live-sources/{source}")
+@limiter.limit("10/minute")
+def search_live_funding_source(
+    request: Request,
+    source: str,
+    keyword: str = "",
+    current_user: dict = Depends(get_current_user),
+):
+    if source.lower() not in SOURCE_FUNCTIONS:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Unknown source '{source}'. Available: {', '.join(SOURCE_FUNCTIONS.keys())}",
+        )
+    return search_funding_source(source, keyword)
 
 
 @router.get("/{funding_id}", response_model=FundingResponse)
