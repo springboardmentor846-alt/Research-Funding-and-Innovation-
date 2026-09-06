@@ -16,6 +16,10 @@ from app.api.admin import routes as admin_routes
 from app.api.collaboration import routes as collaboration_routes
 from app.api.chatbot import routes as chatbot_routes
 from app.api.startup import routes as startup_routes
+from app.api.dashboard import routes as dashboard_routes
+from app.api.manager import routes as manager_routes
+from app.api.trends import routes as trends_routes
+from app.api.recommendation import routes as recommendation_routes
 
 app = FastAPI(title="Research Funding & Innovation Intelligence Platform")
 
@@ -68,6 +72,26 @@ app.include_router(
     startup_routes.router,
     prefix="/api/v1/startup",
     tags=["Startup"]
+)
+app.include_router(
+    dashboard_routes.router,
+    prefix="/api/v1/dashboard",
+    tags=["Dashboard"]
+)
+app.include_router(
+    manager_routes.router,
+    prefix="/api/v1/manager",
+    tags=["Innovation Manager"]
+)
+app.include_router(
+    trends_routes.router,
+    prefix="/api/v1/trends",
+    tags=["Research Trends"]
+)
+app.include_router(
+    recommendation_routes.router,
+    prefix="/api/v1/recommendations",
+    tags=["AI Recommendations"]
 )
 
 UPLOAD_ROOT = os.path.join(os.path.dirname(__file__), "..", "uploads")
