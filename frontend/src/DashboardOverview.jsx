@@ -89,7 +89,7 @@ function DashboardOverview({ token, profile, onNavigate }) {
     {
       title: "Innovation Score",
       description: "View your AI-generated innovation score and detailed breakdown.",
-      tab: "overview",
+      tab: "innovation-score",
       icon: "IS",
       count: `${stats.innovation}/100`,
     },

@@ -569,6 +569,13 @@ function Dashboard({ token, onLogout }) {
               )}
             </>
           )}
+          {activeTab === "innovation-score" && (
+            <div className="dash-card">
+              <h3>Innovation Score</h3>
+              <p className="dash-card-subtitle">Your overall innovation potential, based on research, patents, technology and funding fit</p>
+              <InnovationScore token={token} />
+            </div>
+          )}
 
           {activeTab === "research-profile" && (
             <>
