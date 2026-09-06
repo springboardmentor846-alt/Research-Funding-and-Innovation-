@@ -27,6 +27,9 @@ import LiveGrantsSearch from "./LiveGrantsSearch";
 import OtherFundingSourcesSearch from "./OtherFundingSourcesSearch";
 import AIAssistant from "./AIAssistant";
 import AdminPanel from "./AdminPanel";
+import PlatformTrends from "./PlatformTrends";
+import Recommendations from "./Recommendations";
+import ManagerOverview from "./ManagerOverview";
 import NotificationBell from "./NotificationBell";
 import Reports from "./Reports";
 import "./Dashboard.css";
@@ -373,9 +376,50 @@ function Dashboard({ token, onLogout }) {
             </svg>
           ),
         },
+        {
+          id: "platform-trends",
+          label: "Platform Trends",
+          color: "#B0479B",
+          roles: ["researcher", "startup_founder", "innovation_manager"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 17l6-6 4 4 8-8" />
+              <path d="M15 7h6v6" />
+            </svg>
+          ),
+        },
+        {
+          id: "recommendations",
+          label: "Recommendations",
+          color: "#B0479B",
+          roles: ["researcher"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2l2.6 6.6L21 10l-5 4.4L17.4 21 12 17.3 6.6 21 8 14.4 3 10l6.4-1.4z" />
+            </svg>
+          ),
+        },
       ],
     },
     {
+      id: "manager-group",
+      label: "Innovation Manager",
+      roles: ["innovation_manager", "admin"],
+      items: [
+        {
+          id: "manager-overview",
+          label: "Ecosystem Overview",
+          color: "#2E5EAA",
+          roles: ["innovation_manager", "admin"],
+          icon: (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 19h16M7 19V9M12 19V5M17 19v-7" />
+            </svg>
+          ),
+        },
+      ],
+    },
+        {
       id: "admin-group",
       label: "Admin",
       roles: ["admin"],
@@ -630,6 +674,30 @@ function Dashboard({ token, onLogout }) {
               <h3>Technology Intelligence</h3>
               <p className="dash-card-subtitle">Cross-domain technology maturity — research + patents combined</p>
               <TechnologyIntelligence />
+            </div>
+          )}
+
+          {activeTab === "platform-trends" && (
+            <div className="dash-card">
+              <h3>Platform Trends</h3>
+              <p className="dash-card-subtitle">Publications, domains, keywords and technology areas across every researcher on the platform</p>
+              <PlatformTrends token={token} />
+            </div>
+          )}
+
+          {activeTab === "recommendations" && (
+            <div className="dash-card">
+              <h3>AI Recommendations</h3>
+              <p className="dash-card-subtitle">Funding opportunities and potential collaborators, ranked by semantic similarity to your research profile</p>
+              <Recommendations token={token} />
+            </div>
+          )}
+
+          {activeTab === "manager-overview" && (
+            <div className="dash-card">
+              <h3>Innovation Ecosystem Overview</h3>
+              <p className="dash-card-subtitle">Platform-wide numbers, startups and collaboration activity</p>
+              <ManagerOverview token={token} />
             </div>
           )}
 
