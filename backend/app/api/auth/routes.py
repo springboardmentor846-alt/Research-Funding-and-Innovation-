@@ -44,10 +44,9 @@ def login(request: Request, user: UserLogin, db: Session = Depends(get_db)):
         "refresh_token": refresh_token,
         "token_type": "bearer",
         "email": db_user.email,
+        "name": db_user.name,
         "role": db_user.role,
     }
-
-
 @router.post("/refresh")
 def refresh_token_endpoint(payload: RefreshTokenRequest):
     if not payload.refresh_token:
@@ -62,9 +61,11 @@ def refresh_token_endpoint(payload: RefreshTokenRequest):
 
 
 @router.get("/me")
-def get_me(current_user: dict = Depends(get_current_user)):
-    return {"email": current_user.get("sub"), "role": current_user.get("role")}
-
+def get_me(current_user: dict = Depends(get_current_user), db: Session = Depends(get_db)):
+    db_user = get_user_by_email(db, current_user.get("sub"))
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return {"email": db_user.email, "name": db_user.name, "role": db_user.role}
 
 @router.get("/researcher-only")
 def researcher_route(current_user: dict = Depends(require_role(["researcher"]))):

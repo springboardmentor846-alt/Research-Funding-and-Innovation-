@@ -114,7 +114,7 @@ function DashboardOverview({ token, profile, onNavigate }) {
           <span style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.05em", color: "#1C8C7A" }}>
             RESEARCHER WORKSPACE
           </span>
-          <h2 style={{ margin: "6px 0" }}>Welcome back, {profile?.email?.split("@")[0] || "Researcher"}</h2>
+          <h2 style={{ margin: "6px 0" }}>Welcome back, {profile?.name || profile?.email?.split("@")[0] || "Researcher"}</h2>
           <p className="dash-card-subtitle">
             Manage your research identity, innovation records, and profile intelligence from one workspace.
           </p>

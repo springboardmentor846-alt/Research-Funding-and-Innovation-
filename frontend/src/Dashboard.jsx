@@ -530,7 +530,7 @@ function Dashboard({ token, onLogout }) {
                 {profile.email.charAt(0).toUpperCase()}
               </div>
               <div>
-                <div className="sidebar-footer-name">{profile.email.split("@")[0]}</div>
+                <div className="sidebar-footer-name">{profile.name || profile.email.split("@")[0]}</div>
                 <div className="sidebar-footer-role">{formatRole(profile.role)}</div>
               </div>
             </div>
@@ -539,7 +539,7 @@ function Dashboard({ token, onLogout }) {
 
         <div className="dash-main">
           <div className="dash-welcome">
-            <h1>Welcome back{profile ? `, ${profile.email.split("@")[0]}` : ""}</h1>
+            <h1>Welcome back{profile ? `, ${profile.name || profile.email.split("@")[0]}` : ""}</h1>
             <p>Here's what's happening across your funding, research and patent landscape.</p>
           </div>
 
