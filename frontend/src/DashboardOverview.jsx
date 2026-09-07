@@ -58,6 +58,7 @@ function DashboardOverview({ token, profile, onNavigate }) {
       description: "Manage your complete research profile, organization, domains, keywords and technology expertise",
       tab: "research-profile",
       icon: "RP",
+      accent: "accent-teal",
     },
     {
       title: "Publications",
@@ -65,6 +66,7 @@ function DashboardOverview({ token, profile, onNavigate }) {
       tab: "research-profile",
       icon: "PB",
       count: stats.publications,
+      accent: "accent-teal",
     },
     {
       title: "Patents",
@@ -72,6 +74,7 @@ function DashboardOverview({ token, profile, onNavigate }) {
       tab: "research-profile",
       icon: "PT",
       count: stats.patents,
+      accent: "accent-violet",
     },
     {
       title: "Funding Opportunities",
@@ -79,12 +82,14 @@ function DashboardOverview({ token, profile, onNavigate }) {
       tab: "funding",
       icon: "$",
       count: stats.funding,
+      accent: "accent-amber",
     },
     {
       title: "Global Patent Landscape",
       description: "Analyze global patent trends and competitors.",
       tab: "patents",
       icon: "GL",
+      accent: "accent-violet",
     },
     {
       title: "Innovation Score",
@@ -92,18 +97,21 @@ function DashboardOverview({ token, profile, onNavigate }) {
       tab: "innovation-score",
       icon: "IS",
       count: `${stats.innovation}/100`,
+      accent: "accent-slate",
     },
     {
       title: "Research Trends",
       description: "Explore publication trends across research domains.",
       tab: "research-trends",
       icon: "RT",
+      accent: "accent-slate",
     },
     {
       title: "Research Library",
       description: "Papers saved for reference from OpenAlex and Crossref.",
       tab: "research-library",
       icon: "RL",
+      accent: "accent-slate",
     },
   ];
 
@@ -123,27 +131,17 @@ function DashboardOverview({ token, profile, onNavigate }) {
 
       <div className="dash-card">
         <h3>Your Snapshot</h3>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginTop: "10px" }}>
+        <div className="stat-ledger">
           {[
             { label: "Research Domains", value: stats.domains, hint: "Broad research fields" },
             { label: "Publications", value: stats.publications, hint: "Scholarly research outputs" },
             { label: "Patents", value: stats.patents, hint: "Intellectual property records" },
             { label: "Innovation Score", value: `${stats.innovation}/100`, hint: "AI calculated" },
           ].map((s) => (
-            <div
-              key={s.label}
-              style={{
-                flex: "1 1 160px",
-                background: "#f7f9fb",
-                borderRadius: "10px",
-                padding: "14px 16px",
-              }}
-            >
-              <div style={{ fontSize: "12px", color: "#667085", fontWeight: 600 }}>{s.label}</div>
-              <div style={{ fontSize: "24px", fontWeight: 700, margin: "4px 0" }}>
-                {loading ? "..." : s.value}
-              </div>
-              <div style={{ fontSize: "11.5px", color: "#98A2B3" }}>{s.hint}</div>
+            <div key={s.label} className="stat-ledger-item">
+              <div className="stat-ledger-label">{s.label}</div>
+              <div className="stat-ledger-value">{loading ? "..." : s.value}</div>
+              <div className="stat-ledger-hint">{s.hint}</div>
             </div>
           ))}
         </div>
@@ -163,37 +161,17 @@ function DashboardOverview({ token, profile, onNavigate }) {
           {modules.map((m) => (
             <div
               key={m.title}
+              className={`module-tile ${m.accent}`}
               onClick={() => onNavigate && onNavigate(m.tab)}
-              style={{
-                border: "1px solid #e5e9ef",
-                borderRadius: "10px",
-                padding: "14px",
-                cursor: "pointer",
-                transition: "border-color 0.15s ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#1C8C7A")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#e5e9ef")}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: "#1C8C7A",
-                    color: "#fff",
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    borderRadius: "6px",
-                    padding: "3px 7px",
-                  }}
-                >
-                  {m.icon}
-                </span>
+              <div className="module-tile-top">
+                <span className="module-tile-icon">{m.icon}</span>
                 {m.count !== undefined && (
-                  <span style={{ fontWeight: 700, fontSize: "14px" }}>{loading ? "..." : m.count}</span>
+                  <span className="module-tile-count">{loading ? "..." : m.count}</span>
                 )}
               </div>
-              <div style={{ fontWeight: 600, marginTop: "8px", fontSize: "14px" }}>{m.title}</div>
-              <div style={{ fontSize: "12px", color: "#667085", marginTop: "4px" }}>{m.description}</div>
+              <div className="module-tile-title">{m.title}</div>
+              <div className="module-tile-desc">{m.description}</div>
             </div>
           ))}
         </div>

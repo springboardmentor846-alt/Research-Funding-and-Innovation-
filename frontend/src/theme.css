@@ -29,10 +29,113 @@
   --shadow-sm: 0 1px 2px rgba(19, 27, 52, 0.06);
   --shadow-md: 0 4px 16px rgba(19, 27, 52, 0.08);
   --shadow-lg: 0 12px 32px rgba(19, 27, 52, 0.12);
+  --shadow-card-hover: 0 8px 24px rgba(19, 27, 52, 0.1);
+
+  /* Status */
+  --status-pending: #b7791f;
+  --status-pending-bg: #fdf3e0;
+  --status-accepted: #1c8c7a;
+  --status-accepted-bg: #e6f5f3;
+  --status-rejected: #b0479b;
+  --status-rejected-bg: #f8ecf6;
+
+  /* Layout accents */
+  --hairline: rgba(19, 27, 52, 0.10);
+  --violet: #6B4FA0;
+  --violet-light: #EFEAF8;
 }
 
 * {
   box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--signal-teal);
+  outline-offset: 2px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--graphite);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink-navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.mono-stat {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+a {
+  color: var(--signal-teal);
+  text-decoration: none;
+}/* ===== Research Intelligence Theme ===== */
+
+:root {
+  /* Colors */
+  --ink-navy: #131B34;
+  --ink-navy-light: #1D2848;
+  --paper: #F2F4F8;
+  --paper-white: #FFFFFF;
+  --signal-teal: #1F9E8E;
+  --signal-teal-light: #E6F5F3;
+  --amber: #E8A33D;
+  --amber-light: #FCF1DE;
+  --slate: #5B6578;
+  --graphite: #232B45;
+  --border-light: #E1E5EC;
+  --danger: #D64545;
+
+  /* Typography */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(19, 27, 52, 0.06);
+  --shadow-md: 0 4px 16px rgba(19, 27, 52, 0.08);
+  --shadow-lg: 0 12px 32px rgba(19, 27, 52, 0.12);
+  --shadow-card-hover: 0 8px 24px rgba(19, 27, 52, 0.1);
+
+  /* Status */
+  --status-pending: #b7791f;
+  --status-pending-bg: #fdf3e0;
+  --status-accepted: #1c8c7a;
+  --status-accepted-bg: #e6f5f3;
+  --status-rejected: #b0479b;
+  --status-rejected-bg: #f8ecf6;
+
+  /* Layout accents */
+  --hairline: rgba(19, 27, 52, 0.10);
+  --violet: #6B4FA0;
+  --violet-light: #EFEAF8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--signal-teal);
+  outline-offset: 2px;
 }
 
 body {
