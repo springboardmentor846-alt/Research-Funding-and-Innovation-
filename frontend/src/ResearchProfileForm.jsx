@@ -327,14 +327,17 @@ function ResearchProfileForm({ token, onProfileSaved }) {
     fontWeight: 600,
     cursor: "pointer",
   };
-  const listItemStyle = {
-    padding: "8px 10px",
-    background: "#f4f6f9",
-    borderRadius: "6px",
-    marginBottom: "6px",
+    const listItemStyle = {
+    padding: "12px 14px",
+    background: "#fff",
+    border: "1px solid #E1E5EC",
+    borderLeft: "3px solid #1F9E8E",
+    borderRadius: "8px",
+    marginBottom: "10px",
     fontSize: "13px",
+    lineHeight: "1.5",
+    transition: "box-shadow 0.15s ease",
   };
-
   return (
     <div className="dash-card">
       <h3>{profileExists ? "Your Research Profile" : "Create Your Research Profile"}</h3>
@@ -447,7 +450,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
           </form>
 
           {publications.length > 0 && (
-            <div style={{ marginBottom: "18px" }}>
+            <div style={{ marginBottom: "18px", maxHeight: "420px", overflowY: "auto", paddingRight: "6px" }}>
               {publications.map((p) => (
                 <div key={p.id} style={listItemStyle}>
                   <strong>{p.title}</strong>
