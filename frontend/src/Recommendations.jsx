@@ -17,8 +17,8 @@ function Recommendations({ token }) {
     setError("");
 
     Promise.allSettled([
-      axios.get("http://127.0.0.1:8000/api/v1/recommendations/funding", { headers }),
-      axios.get("http://127.0.0.1:8000/api/v1/recommendations/collaborators", { headers }),
+      axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/recommendations/funding", { headers }),
+      axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/recommendations/collaborators", { headers }),
     ]).then(([fundingRes, collabRes]) => {
       if (fundingRes.status === "fulfilled") {
         setFunding(fundingRes.value.data);

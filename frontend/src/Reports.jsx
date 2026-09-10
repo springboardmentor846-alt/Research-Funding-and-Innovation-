@@ -11,8 +11,8 @@ function Reports({ token }) {
     try {
       const endpoint =
         type === "pdf"
-          ? "http://127.0.0.1:8000/api/v1/profile/reports/pdf"
-          : "http://127.0.0.1:8000/api/v1/profile/reports/excel";
+          ? "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/reports/pdf"
+          : "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/reports/excel";
 
       const response = await axios.get(endpoint, {
         headers: { Authorization: `Bearer ${token}` },
@@ -103,3 +103,4 @@ function Reports({ token }) {
 }
 
 export default Reports;
+

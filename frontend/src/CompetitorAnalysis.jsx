@@ -9,7 +9,7 @@ function CompetitorAnalysis() {
     const fetchCompetitors = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/v1/profile/patents/competitor-analysis"
+          "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/patents/competitor-analysis"
         );
         setCompetitors(response.data);
       } catch (err) {
@@ -49,3 +49,4 @@ function CompetitorAnalysis() {
 }
 
 export default CompetitorAnalysis;
+

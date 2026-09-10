@@ -9,7 +9,7 @@ function FundingSearch() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/v1/funding/search", {
+      const response = await axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/funding/search", {
         params: { query },
       });
       setResults(response.data);
@@ -58,3 +58,4 @@ function FundingSearch() {
 }
 
 export default FundingSearch;
+

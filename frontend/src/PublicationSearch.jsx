@@ -14,7 +14,7 @@ function PublicationSearch({ token, onAdded }) {
     setMessage("");
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/v1/profile/publications/search-openalex",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/publications/search-openalex",
         {
           params: { query },
           headers: { Authorization: `Bearer ${token}` },
@@ -33,7 +33,7 @@ function PublicationSearch({ token, onAdded }) {
   const handleAdd = async (pub) => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/v1/profile/library",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/library",
         pub,
         { headers: { Authorization: `Bearer ${token}` } }
       );

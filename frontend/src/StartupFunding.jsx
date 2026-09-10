@@ -19,7 +19,7 @@ function StartupPredictButton({ token, fundingId }) {
     setError("");
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/v1/startup/predict-success/${fundingId}`,
+        `https://research-platform-backend-e0sf.onrender.com/api/v1/startup/predict-success/${fundingId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setPrediction(res.data);
@@ -84,7 +84,7 @@ function StartupFunding({ token }) {
     setError("");
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/v1/startup/funding",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/startup/funding",
         {
           headers: { Authorization: `Bearer ${token}` },
           params: query ? { query } : {},

@@ -17,7 +17,7 @@ function AdminPanel({ token, view }) {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/v1/admin/users", {
+      const res = await axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/admin/users", {
         headers,
         params: search ? { search } : {},
       });
@@ -39,7 +39,7 @@ function AdminPanel({ token, view }) {
 
     if (view === "stats") {
       axios
-        .get("http://127.0.0.1:8000/api/v1/admin/stats", { headers })
+        .get("https://research-platform-backend-e0sf.onrender.com/api/v1/admin/stats", { headers })
         .then((res) => setStats(res.data))
         .catch(() => setError("Could not load platform stats."))
         .finally(() => setLoading(false));
@@ -56,7 +56,7 @@ function AdminPanel({ token, view }) {
     setActionMessage("");
     try {
       await axios.patch(
-        `http://127.0.0.1:8000/api/v1/admin/users/${userId}/role`,
+        `https://research-platform-backend-e0sf.onrender.com/api/v1/admin/users/${userId}/role`,
         { role: newRole },
         { headers }
       );
@@ -70,7 +70,7 @@ function AdminPanel({ token, view }) {
   const handleDelete = async (userId) => {
     setActionMessage("");
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/v1/admin/users/${userId}`, { headers });
+      await axios.delete(`https://research-platform-backend-e0sf.onrender.com/api/v1/admin/users/${userId}`, { headers });
       setActionMessage("User deleted.");
       loadUsers();
     } catch (err) {

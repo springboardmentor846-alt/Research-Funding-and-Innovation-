@@ -31,7 +31,7 @@ function EditProfile({ token, profile, onUpdated }) {
     setMessage("");
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/v1/profile/",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/",
         { ...formData, publications: "", patents: "" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -107,3 +107,4 @@ function EditProfile({ token, profile, onUpdated }) {
 }
 
 export default EditProfile;
+

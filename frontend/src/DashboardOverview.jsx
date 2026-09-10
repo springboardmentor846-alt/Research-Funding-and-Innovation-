@@ -25,11 +25,11 @@ function DashboardOverview({ token, profile, onNavigate }) {
       setLoading(true);
       try {
         const [profileRes, pubsRes, patentsRes, fundingRes, scoreRes] = await Promise.allSettled([
-          axios.get("http://127.0.0.1:8000/api/v1/profile/", authHeaders),
-          axios.get("http://127.0.0.1:8000/api/v1/profile/publications", authHeaders),
-          axios.get("http://127.0.0.1:8000/api/v1/profile/patents", authHeaders),
-          axios.get("http://127.0.0.1:8000/api/v1/funding/recommended", authHeaders),
-          axios.get("http://127.0.0.1:8000/api/v1/profile/innovation-score", authHeaders),
+          axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/profile/", authHeaders),
+          axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/profile/publications", authHeaders),
+          axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/profile/patents", authHeaders),
+          axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/funding/recommended", authHeaders),
+          axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/profile/innovation-score", authHeaders),
         ]);
 
         const p = profileRes.status === "fulfilled" ? profileRes.value.data : null;

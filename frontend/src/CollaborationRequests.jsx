@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
-const API_BASE = "http://127.0.0.1:8000/api/v1/collaboration";
+const API_BASE = "https://research-platform-backend-e0sf.onrender.com/api/v1/collaboration";
 
 function CollaborationRequests({ token }) {
   const [received, setReceived] = useState([]);

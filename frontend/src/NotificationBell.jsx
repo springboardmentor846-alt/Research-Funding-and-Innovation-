@@ -10,7 +10,7 @@ function NotificationBell({ token }) {
   const fetchNotifications = async () => {
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/v1/profile/notifications",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/notifications",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setNotifications(res.data.notifications || []);
@@ -180,3 +180,4 @@ function NotificationBell({ token }) {
 }
 
 export default NotificationBell;
+

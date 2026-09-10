@@ -15,7 +15,7 @@ function Login({ onLoginSuccess, onSwitchToRegister, onSwitchToForgotPassword })
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/v1/auth/login", {
+      const response = await axios.post("https://research-platform-backend-e0sf.onrender.com/api/v1/auth/login", {
         email: email,
         password: password,
       });

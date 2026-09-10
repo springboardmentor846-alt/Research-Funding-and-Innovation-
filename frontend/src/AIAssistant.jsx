@@ -109,7 +109,7 @@ function AIAssistant({ token }) {
     try {
       const history = nextMessages.slice(-4).map((m) => ({ role: m.role, content: m.content }));
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/v1/chatbot/ask",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/chatbot/ask",
         { message: trimmed, history },
         { headers: { Authorization: `Bearer ${token}` } }
       );

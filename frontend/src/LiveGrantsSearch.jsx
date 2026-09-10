@@ -14,7 +14,7 @@ function LiveGrantsSearch({ token }) {
     setMessage("");
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/v1/funding/search-live",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/funding/search-live",
         {
           params: { keyword: keyword },
           headers: { Authorization: "Bearer " + token },
@@ -70,3 +70,4 @@ function LiveGrantsSearch({ token }) {
 }
 
 export default LiveGrantsSearch;
+

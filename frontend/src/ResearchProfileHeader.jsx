@@ -8,7 +8,7 @@ function ResearchProfileHeader({ token }) {
   useEffect(() => {
     const check = async () => {
       try {
-        await axios.get("http://127.0.0.1:8000/api/v1/profile/", {
+        await axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/profile/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfileExists(true);

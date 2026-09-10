@@ -35,7 +35,7 @@ function ResetPassword({ onSwitchToLogin }) {
     setIsSubmitting(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/v1/auth/reset-password",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/auth/reset-password",
         { token, new_password: newPassword }
       );
       setMessage(response.data.message);

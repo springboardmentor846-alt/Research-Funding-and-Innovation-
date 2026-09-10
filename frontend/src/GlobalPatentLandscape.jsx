@@ -16,7 +16,7 @@ function GlobalPatentLandscape({ token }) {
     setData(null);
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/v1/profile/patent-landscape",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/patent-landscape",
         {
           params: { query },
           headers: { Authorization: `Bearer ${token}` },

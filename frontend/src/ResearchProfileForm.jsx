@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE = "http://127.0.0.1:8000/api/v1/profile";
+const API_BASE = "https://research-platform-backend-e0sf.onrender.com/api/v1/profile";
 
 function ResearchProfileForm({ token, onProfileSaved }) {
   const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
@@ -458,7 +458,7 @@ function ResearchProfileForm({ token, onProfileSaved }) {
                   <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "10px" }}>
                     {p.pdf_path ? (
                       <a
-                        href={`http://127.0.0.1:8000/${p.pdf_path}`}
+                        href={`https://research-platform-backend-e0sf.onrender.com/${p.pdf_path}`}
                         target="_blank"
                         rel="noreferrer"
                         style={{ fontSize: "12.5px", color: "#1C8C7A", fontWeight: 600 }}

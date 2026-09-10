@@ -9,7 +9,7 @@ function CommercializationRecommendations({ token }) {
     const fetchRecommendations = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/v1/profile/commercialization-recommendations",
+          "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/commercialization-recommendations",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setRecommendations(response.data);
@@ -49,3 +49,4 @@ function CommercializationRecommendations({ token }) {
 }
 
 export default CommercializationRecommendations;
+

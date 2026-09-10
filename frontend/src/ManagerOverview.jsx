@@ -14,9 +14,9 @@ function ManagerOverview({ token }) {
     setError("");
 
     Promise.allSettled([
-      axios.get("http://127.0.0.1:8000/api/v1/manager/overview", { headers }),
-      axios.get("http://127.0.0.1:8000/api/v1/manager/startups", { headers }),
-      axios.get("http://127.0.0.1:8000/api/v1/manager/collaboration-activity", { headers }),
+      axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/manager/overview", { headers }),
+      axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/manager/startups", { headers }),
+      axios.get("https://research-platform-backend-e0sf.onrender.com/api/v1/manager/collaboration-activity", { headers }),
     ]).then(([overviewRes, startupsRes, activityRes]) => {
       if (overviewRes.status === "fulfilled") setOverview(overviewRes.value.data);
       else setError("Could not load the ecosystem overview.");

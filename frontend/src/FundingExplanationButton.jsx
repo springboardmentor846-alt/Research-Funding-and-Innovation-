@@ -20,7 +20,7 @@ function FundingExplanationButton({ token, fundingId }) {
     setError("");
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/v1/profile/funding/${fundingId}/explanation`,
+        `https://research-platform-backend-e0sf.onrender.com/api/v1/profile/funding/${fundingId}/explanation`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setExplanation(response.data);

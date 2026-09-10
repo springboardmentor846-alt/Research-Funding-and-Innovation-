@@ -15,7 +15,7 @@ function ForgotPassword({ onSwitchToLogin }) {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/v1/auth/forgot-password",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/auth/forgot-password",
         { email }
       );
       setMessage(response.data.message);

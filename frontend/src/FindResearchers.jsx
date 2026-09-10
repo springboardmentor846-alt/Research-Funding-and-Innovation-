@@ -15,7 +15,7 @@ function FindResearchers({ token }) {
     setError("");
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/v1/startup/researchers",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/startup/researchers",
         { ...authHeaders, params: query ? { query } : {} }
       );
       setResearchers(res.data.researchers);
@@ -38,7 +38,7 @@ function FindResearchers({ token }) {
   const handleConnect = async (userId) => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/v1/collaboration/",
+        "https://research-platform-backend-e0sf.onrender.com/api/v1/collaboration/",
         { receiver_id: userId, message: "I'd like to explore a collaboration opportunity." },
         authHeaders
       );

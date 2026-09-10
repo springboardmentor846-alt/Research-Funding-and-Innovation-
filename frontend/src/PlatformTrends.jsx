@@ -26,7 +26,7 @@ function PlatformTrends({ token }) {
     setLoading(true);
     setError("");
     axios
-      .get("http://127.0.0.1:8000/api/v1/trends/overview", {
+      .get("https://research-platform-backend-e0sf.onrender.com/api/v1/trends/overview", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setData(res.data))

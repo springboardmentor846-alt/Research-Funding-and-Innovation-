@@ -9,7 +9,7 @@ function TechnologyClusters() {
     const fetchClusters = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/v1/profile/patents/technology-clusters"
+          "https://research-platform-backend-e0sf.onrender.com/api/v1/profile/patents/technology-clusters"
         );
         setClusters(response.data);
       } catch (err) {
@@ -39,3 +39,4 @@ function TechnologyClusters() {
 }
 
 export default TechnologyClusters;
+
